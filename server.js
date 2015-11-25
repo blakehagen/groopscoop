@@ -8,7 +8,11 @@ var db = mongoose();
 
 
 
-
+// TEST ENDPOINT //
+app.post('/api/test', function(req, res, next){
+    res.status(200).send(req.body.msg + ' EVERYTHING OK');
+    
+})
 
 
 
