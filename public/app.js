@@ -7,12 +7,12 @@ angular.module('groupScoop', ['ui.router']).config(function ($stateProvider, $ur
             controller: 'homeCtrl'
         })
         .state('user-view', {
-            url: '/:user/groups',
+            url: '/user',
             templateUrl: './features/user-view/userTmpl.html',
             controller: 'userCtrl'
         })
         .state('group-view', {
-            url: '/:group',
+            url: '/group',
             templateUrl: './features/group-view/groupTmpl.html',
             controller: 'groupCtrl'
         })
