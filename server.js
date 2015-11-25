@@ -1,6 +1,6 @@
 // EXPRESS AND MONGOOSE CONFIG FILES //
-var express = require('./config/express');
-var mongoose = require('./config/mongoose');
+var express = require('./server/config/express');
+var mongoose = require('./server/config/mongoose');
 
 // RUN EXPRESS AND MONGOOSE //
 var app = express();
