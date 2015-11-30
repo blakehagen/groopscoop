@@ -1,7 +1,4 @@
-angular.module('groupScoop').controller('loginCtrl', function($scope){
-    
-    
-    
+angular.module('groupScoop').controller('loginCtrl', function($scope, testService){
     
     
     
