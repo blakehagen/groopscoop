@@ -19,45 +19,17 @@ app.use(express.static(__dirname + '/public'));
 
 var db = mongoose();
 
+// EXPRESS SESSION // 
+var session = require('express-session');
+
+app.use(session({ secret: 'i like the codez' }));;
+
+
 // PASSPORT //
 var passport = require('passport');
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-
-passport.use(new GoogleStrategy({
-    clientID: googleAuth.googleAuth.clientID,
-    clientSecret: googleAuth.googleAuth.clientSecret,
-    callbackURL: googleAuth.googleAuth.callbackURL
-}, function (req, accessToken, refreshToken, profile, done) {
-    process.nextTick(function () {
-        User.findOne({ 'google.id': profile.id }, function (err, user) {
-            if (err) return done(err);
-            if (user) {
-                return done(null, user);
-            } else {
-                var newUser = new User()
-                newUser.google.id = profile.id;
-                newUser.google.token = accessToken;
-                newUser.google.name = profile.displayName;
-                newUser.google.image = profile._json.image.url;
-                newUser.google.email = profile.emails[0].value;
-                newUser.save(function (err) {
-                    if (err)
-                        throw err;
-                    return done(null, newUser);
-                });
-            }
-        });
-    });
-}));
-
-// EXPRESS SESSION // 
-var session = require('express-session');
-
-app.use(session({ secret: 'i like the codez' }));;
 
 // SERIALIZE USER //
 passport.serializeUser(function (user, done) {
@@ -67,6 +39,35 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (user, done) {
     done(null, user);
 });
+
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
+passport.use(new GoogleStrategy({
+    clientID: googleAuth.googleAuth.clientID,
+    clientSecret: googleAuth.googleAuth.clientSecret,
+    callbackURL: googleAuth.googleAuth.callbackURL
+}, function (req, accessToken, refreshToken, profile, done) {
+
+    User.findOne({ 'google.id': profile.id }, function (err, user) {
+        if (user) {
+            console.log('Google user found in database: ', user);
+            done(null, user);
+        } else {
+            console.log('Google user not found in database');
+
+            user = new User()
+            user.google.id = profile.id;
+            user.google.token = accessToken;
+            user.google.name = profile.displayName;
+            user.google.image = profile._json.image.url;
+            user.google.email = profile.emails[0].value;
+            console.log('new user created: ', user);
+
+            user.save();
+            done(null, user);
+        }
+    });
+}));
 
 // TEST ENDPOINT //
 app.post('/api/test', function (req, res, next) {
@@ -81,8 +82,15 @@ app.get('/auth/google', passport.authenticate('google', {
 
 app.get('/auth/google/callback', passport.authenticate('google', {
     successRedirect: '/#/user',
-    failure: '/#/login'
+    failure: '/'
 }));
+
+// USER ENDPOINTS //
+app.get('/api/user', function (req, res, next) {
+    console.log(req.user);
+    res.status(200).json(req.user);
+});
+
 
 
 
