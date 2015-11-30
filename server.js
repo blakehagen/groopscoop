@@ -5,6 +5,9 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var mongoose = require('./server/config/mongoose');
 
+// MODELS //
+var User = require('./server/models/user')
+
 // GOOGLE AUTH //
 var googleAuth = require('./server/config/googleAuth');
 
@@ -29,7 +32,26 @@ passport.use(new GoogleStrategy({
     clientSecret: googleAuth.googleAuth.clientSecret,
     callbackURL: googleAuth.googleAuth.callbackURL
 }, function (req, accessToken, refreshToken, profile, done) {
-    done(null, profile);
+    process.nextTick(function () {
+        User.findOne({ 'google.id': profile.id }, function (err, user) {
+            if (err) return done(err);
+            if (user) {
+                return done(null, user);
+            } else {
+                var newUser = new User()
+                newUser.google.id = profile.id;
+                newUser.google.token = accessToken;
+                newUser.google.name = profile.displayName;
+                newUser.google.image = profile._json.image.url;
+                newUser.google.email = profile.emails[0].value;
+                newUser.save(function (err) {
+                    if (err)
+                        throw err;
+                    return done(null, newUser);
+                });
+            }
+        });
+    });
 }));
 
 // EXPRESS SESSION // 
@@ -58,9 +80,9 @@ app.get('/auth/google', passport.authenticate('google', {
 }));
 
 app.get('/auth/google/callback', passport.authenticate('google', {
-    successRedirect: '/user',
-    failure: '/login'
-}))
+    successRedirect: '/#/user',
+    failure: '/#/login'
+}));
 
 
 
