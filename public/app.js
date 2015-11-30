@@ -6,14 +6,19 @@ angular.module('groupScoop', ['ui.router']).config(function ($stateProvider, $ur
             templateUrl: './features/home/homeTmpl.html',
             controller: 'homeCtrl'
         })
-        .state('user-view', {
+        .state('login', {
+            url: '/login',
+            templateUrl: './features/login/loginTmpl.html',
+            controller: 'loginCtrl'
+        })
+        .state('user', {
             url: '/user',
-            templateUrl: './features/user-view/userTmpl.html',
+            templateUrl: './features/user/userTmpl.html',
             controller: 'userCtrl'
         })
-        .state('group-view', {
+        .state('group', {
             url: '/group',
-            templateUrl: './features/group-view/groupTmpl.html',
+            templateUrl: './features/group/groupTmpl.html',
             controller: 'groupCtrl'
         })
 
