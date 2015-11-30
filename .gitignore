@@ -1,2 +1,3 @@
 /node_modules
 /server/config/googleAuth.js
+/server/confif/mongoose.js
