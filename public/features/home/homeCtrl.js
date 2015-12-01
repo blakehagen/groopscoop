@@ -1,13 +1,6 @@
-angular.module('groupScoop').controller('homeCtrl', function($scope, testService){
+angular.module('groupScoop').controller('homeCtrl', function($scope){
     
     $scope.test = 'Hello world!'
-    
-    $scope.testPost = function(){
-        testService.newPost($scope.newPost).then(function(response){
-            console.log(response);
-        })
-    }
-    
     
     
 });
