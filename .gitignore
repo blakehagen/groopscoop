@@ -1,4 +1,2 @@
 /node_modules
-/server/config/googleAuth.js
-/server/config/mongoose.js
-/server/config/express.js
+/server/config/keys/googleAuthKeys.js
