@@ -1,6 +1,5 @@
 angular.module('groupScoop').service('authService', function ($http, $q) {
 
-
     this.getUser = function () {
         var deferred = $q.defer();
         $http({
@@ -12,5 +11,4 @@ angular.module('groupScoop').service('authService', function ($http, $q) {
         })
         return deferred.promise
     };
-
 });

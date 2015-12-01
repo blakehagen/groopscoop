@@ -11,12 +11,6 @@ angular.module('groupScoop', ['ui.router']).config(function ($stateProvider, $ur
             templateUrl: './features/login/loginTmpl.html',
             controller: 'loginCtrl'
         })
-
-        // .state('auth', {
-        //     url: '/auth/google',
-        //     templateUrl: './features/login/loginTmpl.html',
-        //     controller: 'loginCtrl'
-        // })
         .state('user', {
             url: '/user',
             templateUrl: './features/user/userTmpl.html',

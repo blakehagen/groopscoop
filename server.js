@@ -1,33 +1,19 @@
-// EXPRESS AND MONGOOSE FILES //
-var express = require('express');
-var session = require('express-session');
-var bodyParser = require('body-parser');
-var cors = require('cors');
+// REQUIRE EXPRESS CONFIG AND MONGOOSE CONFIG //
+var express = require('./server/config/express');
 var mongoose = require('./server/config/mongoose');
 
+//RUN EXPRESS & MONGOOSE CONFIG //
+var app = express();
+var db = mongoose();
+
 // MODELS //
-var User = require('./server/models/user')
+var User = require('./server/features/users/user.server.model')
 
 // GOOGLE AUTH //
 var googleAuth = require('./server/config/googleAuth');
 
-// RUN EXPRESS AND MONGOOSE //
-var app = express();
-app.use(cors());
-app.use(bodyParser.json());
-app.use(express.static(__dirname + '/public'));
-
-var db = mongoose();
-
-// EXPRESS SESSION // 
-var session = require('express-session');
-
-app.use(session({ secret: 'i like the codez' }));;
-
-
 // PASSPORT //
 var passport = require('passport');
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -40,6 +26,7 @@ passport.deserializeUser(function (user, done) {
     done(null, user);
 });
 
+// GOOGLE STRATEGY //
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 passport.use(new GoogleStrategy({
@@ -87,7 +74,6 @@ app.get('/auth/google/callback', passport.authenticate('google', {
 
 // USER ENDPOINTS //
 app.get('/api/user', function (req, res, next) {
-    console.log(req.user);
     res.status(200).json(req.user);
 });
 
