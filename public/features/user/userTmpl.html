@@ -1,4 +1,3 @@
-
 <div>
     <img class="circle" ng-src="{{user.google.image}}" alt="">
 </div>
@@ -7,3 +6,13 @@
     Hello, {{user.google.name}}
 </div>
 
+<br>
+<div>
+    <button ng-click="createGroupButtons()">Create Group</button>
+</div>
+<br>
+
+<div ng-show="newGrp">
+    <input type="text" placeholder="Group name..." ng-model="grpName">
+    <button ng-click="createNewGroup()">Submit Group</button>
+</div>

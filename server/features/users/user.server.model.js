@@ -1,13 +1,15 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-var UserSchema = mongoose.Schema({
+var UserSchema = new Schema({
     google: {
-        id: String,
-        token: String,
-        email: String,
-        name: String,
-        image: String
-    }
+        email: { type: String },
+        name: { type: String },
+        id: { type: String },
+        image: { type: String },
+        token: { type: String }
+    },
+    groups: [{ type: Schema.Types.ObjectId, ref: 'Group' }]
 });
 
 module.exports = mongoose.model('User', UserSchema);
