@@ -3,7 +3,4 @@ angular.module('groupScoop').service('socketService', ['$rootScope', function ($
     
     return socket;
     
-    
-    
-
 }]);

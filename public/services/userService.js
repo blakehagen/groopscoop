@@ -1,20 +1,22 @@
-angular.module('groupScoop').service('userService', function($http, $q){
-    
-    this.createGroup = function(grp){
+angular.module('groupScoop').service('userService', function ($http, $q) {
+
+    this.createGroup = function (grp) {
         var deferred = $q.defer();
         $http({
             method: 'POST',
-            url: '/group',
+            url: '/user',
             dataType: 'json',
             data: grp
-        }).then(function(response){
+        }).then(function (response) {
             deferred.resolve(response.data);
         })
         return deferred.promise
     }
-   
-   
-   
-   
-    
+
+
+
+
+
+
+
 });

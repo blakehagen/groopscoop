@@ -17,6 +17,16 @@
     <button ng-click="createNewGroup()">Submit Group</button>
 </div>
 
+<br> My Groups
+<div>
+    <ul>
+        <li ng-repeat="group in myGroups">{{group.groupName}}</li>
+    </ul>
+</div>
+
+<br>
+<br>
+<br>
 
 <!-- socket.io tests -->
 <br>
@@ -27,8 +37,7 @@
     <button ng-click="send()">send</button>
     <br/>
 </div>
-<br>
-(SOCKET IO TESTS):
+<br> (SOCKET IO TESTS):
 <ul>
     <li ng-repeat="message in messages track by $index">{{message}}</li>
 </ul>

@@ -4,6 +4,7 @@ var mongoose = require('./server/config/mongoose');
 var passport = require('passport');
 require('./server/config/passport.google')(passport);
 
+
 // RUN EXPRESS & MONGOOSE CONFIG //
 var app = express();
 var db = mongoose();
@@ -12,7 +13,6 @@ var db = mongoose();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-
 // INITIALIZE PASSPORT //
 app.use(passport.initialize());
 app.use(passport.session());
@@ -20,7 +20,7 @@ app.use(passport.session());
 // ROUTES //
 require('./server/features/auth/auth.server.routes')(app, passport);
 require('./server/features/users/user.server.routes')(app);
-require('./server/features/groups/group.server.routes')(app);
+// require('./server/features/groups/group.server.routes')(app);
 
 // PROTECT ROUTES //
 var requireAuth = function (req, res, next) {
@@ -33,10 +33,14 @@ var requireAuth = function (req, res, next) {
 // SOCKET.IO //
 io.on('connection', function (socket) {
     console.log('USER CONNECTED TO SOCKET');
-    socket.on('send msg', function(data){
-        io.sockets.emit('get msg', data)
+    socket.on('sendMsg', function(data){
+        io.sockets.emit('getMsg', data)
+    })
+    socket.on('createNewGroup', function(data){
+        io.sockets.emit('getGroups', data)
     })
 });
+
 
 
 
