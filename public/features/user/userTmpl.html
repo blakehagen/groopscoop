@@ -16,3 +16,19 @@
     <input type="text" placeholder="Group name..." ng-model="grpName">
     <button ng-click="createNewGroup()">Submit Group</button>
 </div>
+
+
+<!-- socket.io tests -->
+<br>
+<br>
+<div>
+    <label>Please enter a message: </label>
+    <input ng-model="msg">
+    <button ng-click="send()">send</button>
+    <br/>
+</div>
+<br>
+(SOCKET IO TESTS):
+<ul>
+    <li ng-repeat="message in messages track by $index">{{message}}</li>
+</ul>

@@ -8,6 +8,11 @@ require('./server/config/passport.google')(passport);
 var app = express();
 var db = mongoose();
 
+// SOCKET.IO //
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+
 // INITIALIZE PASSPORT //
 app.use(passport.initialize());
 app.use(passport.session());
@@ -25,9 +30,19 @@ var requireAuth = function (req, res, next) {
     return res.redirect('/');
 };
 
+// SOCKET.IO //
+io.on('connection', function (socket) {
+    console.log('USER CONNECTED TO SOCKET');
+    socket.on('send msg', function(data){
+        io.sockets.emit('get msg', data)
+    })
+});
+
+
+
 // PORT //
 var port = process.env.PORT || 3000;
 
-app.listen(port, function () {
+http.listen(port, function () {
     console.log('Listenting on port ' + port);
 });
