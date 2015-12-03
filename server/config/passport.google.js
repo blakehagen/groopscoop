@@ -28,7 +28,7 @@ module.exports = function (passport) {
                 // console.log('Google user not found in database');
 
                 user = new User()
-                user.google.id = profile.id;
+                user.google.googleId = profile.id;
                 user.google.token = accessToken;
                 user.google.name = profile.displayName;
                 user.google.image = profile._json.image.url;
