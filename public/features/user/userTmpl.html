@@ -17,8 +17,7 @@
     <button ng-click="createNewGroup()">Submit Group</button>
 </div>
 
-<br> 
-My Groups
+<br> My Groups
 <div>
     <ul>
         <li ng-repeat="group in myGroups track by $index">
@@ -28,11 +27,17 @@ My Groups
             <div ng-show="searchForUser">
                 <br>
                 <header>
-                    <md-autocomplete md-selected-item="selectedUser" md-search-text="queryText" md-items="user in findUser(queryText)" md-item-text="user.name"
-                    placeholder="Which user are you looking for?">
-
+                    <md-autocomplete 
+                    md-selected-item="selectedUser" 
+                    md-search-text="queryText" 
+                    md-items="user in findUser(queryText)" 
+                    md-min-length="3"
+                    md-item-text="user.name" 
+                    placeholder="Search for a user">
                         <span md-highlight-text="queryText">{{ user.name }}</span>
                     </md-autocomplete>
+                    <br>
+                    <br>
                     <button ng-click="sendInvite(selectedUser)">Send Invite</button>
                 </header>
                 <br>

@@ -45,10 +45,9 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
     // INVITE USER TO GROUP //
 
     $scope.getUsers = function (idx) {
-        idx.searchForUser = !idx.searchForUser;
+        idx.searchForUser = ! idx.searchForUser;
 
         userService.searchUsers().then(function (response) {
-
             console.log(response);
             $scope.users = response;
         })
@@ -58,7 +57,7 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
         var query = angular.lowercase(queryText);
         return $scope.users.filter(function (user) {
 
-            return user.name.indexOf(query) !== -1;
+            return user.name.toLowerCase().indexOf(query) !== -1;
         })
     };
 

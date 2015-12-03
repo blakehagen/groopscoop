@@ -32,7 +32,7 @@ module.exports = {
             for (var i = 0; i < users.length; i++) {
                 // ONLY SEND NAME/ID/GROUPS //
                 userData.push({
-                    name: users[i].google.name.toLowerCase(),
+                    name: users[i].google.name,
                     id: users[i]._id,
                     groups: users[i].groups
                 })
