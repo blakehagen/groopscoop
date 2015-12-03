@@ -3,7 +3,7 @@
 module.exports = function (app, passport) {
 
     app.get('/auth/google', passport.authenticate('google', {
-        session: false,
+        session: true,
         scope: ['https://www.googleapis.com/auth/plus.login', 'https://www.googleapis.com/auth/plus.profile.emails.read']
     }));
 
@@ -11,6 +11,6 @@ module.exports = function (app, passport) {
         successRedirect: '/#/user',
         failure: '/'
     }));
-    
+
 
 };

@@ -5,7 +5,7 @@ var UserSchema = new Schema({
     google: {
         email: { type: String },
         name: { type: String },
-        id: { type: String },
+        googleId: { type: String },
         image: { type: String },
         token: { type: String }
     },
