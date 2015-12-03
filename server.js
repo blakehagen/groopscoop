@@ -33,11 +33,12 @@ var requireAuth = function (req, res, next) {
 // SOCKET.IO //
 io.on('connection', function (socket) {
     console.log('USER CONNECTED TO SOCKET');
-    socket.on('sendMsg', function(data){
+    socket.on('sendMsg', function (data) {
         io.sockets.emit('getMsg', data)
     })
-    socket.on('createNewGroup', function(data){
-        io.sockets.emit('getGroups', data)
+    socket.on('createNewGroup', function (data) {
+        // console.log('socket id: ', socket.id);
+        socket.emit('getGroups', data)
     })
 });
 

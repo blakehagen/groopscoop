@@ -5,7 +5,7 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
     // GET AUTHENTICATED USER AND THEIR GROUPS //
     $scope.getAuthUser = function () {
         authService.getUser().then(function (response) {
-            console.log(response);
+            console.log('myData: ', response);
             $scope.user = response[0];
             $scope.myGroups = response[1];
         })
@@ -29,7 +29,7 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
         };
         
         userService.createGroup(grp).then(function (response) {
-            console.log(response);
+            console.log('Success: ', response);
             $scope.grpName = '';
             $scope.newGrp = !$scope.newGrp;
         })
@@ -38,7 +38,6 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
     };
 
     socketService.on('getGroups', function (data) {
-        console.log('event fired');
         $scope.myGroups.push(data);
         $scope.$digest();
     });

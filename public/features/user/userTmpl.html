@@ -20,7 +20,7 @@
 <br> My Groups
 <div>
     <ul>
-        <li ng-repeat="group in myGroups">{{group.groupName}}</li>
+        <li ng-repeat="group in myGroups track by $index">{{group.groupName}}</li>
     </ul>
 </div>
 

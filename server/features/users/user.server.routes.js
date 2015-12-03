@@ -6,7 +6,5 @@ module.exports = function (app) {
         .get(userCtrl.getUser)
         .post(userCtrl.createGroup)
 
-    app.route('/user/:id')
-        .get(userCtrl.getMyGroups)
 
 };
