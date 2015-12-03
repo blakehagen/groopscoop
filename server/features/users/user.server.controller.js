@@ -4,9 +4,7 @@ var Group = require('../groups/group.server.model');
 module.exports = {
     getUser: function (req, res, next) {
         var user = req.user;
-        // console.log(user);
         Group.find().where('users').equals(user._id).exec(function (err, result) {
-            // console.log('result', result)
             user.groups.push(result);
             res.json([user, result]);
         })
