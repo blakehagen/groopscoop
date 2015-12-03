@@ -4,7 +4,7 @@ angular.module('groupScoop').service('authService', function ($http, $q) {
         var deferred = $q.defer();
         $http({
             method: 'GET',
-            url: '/user'
+            url: '/api/v1/user'
         }).then(function (response) {
             deferred.resolve(response.data);
         })

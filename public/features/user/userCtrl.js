@@ -13,7 +13,6 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
     $scope.getAuthUser();
 
 
-
     // CREATE NEW GROUP //
     $scope.newGrp = false;
     $scope.createGroupButtons = function () {
@@ -27,7 +26,7 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
             "createdOn": moment().format('ddd MMM DD YYYY, h:mm a'),
             users: users
         };
-        
+
         userService.createGroup(grp).then(function (response) {
             console.log('Success: ', response);
             $scope.grpName = '';
@@ -43,8 +42,34 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
     });
     
     
-    
- 
+    // INVITE USER TO GROUP //
+
+    $scope.getUsers = function (idx) {
+        idx.searchForUser = !idx.searchForUser;
+
+        userService.searchUsers().then(function (response) {
+
+            console.log(response);
+            $scope.users = response;
+        })
+    }
+
+    $scope.findUser = function (queryText) {
+        var query = angular.lowercase(queryText);
+        return $scope.users.filter(function (user) {
+
+            return user.name.indexOf(query) !== -1;
+        })
+    };
+
+    $scope.sendInvite = function (user) {
+        console.log('inviting ', user);
+    }
+
+
+
+
+
     
     // SOCKET TESTS //
 

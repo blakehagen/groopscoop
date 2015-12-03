@@ -1,4 +1,4 @@
-angular.module('groupScoop', ['ui.router']).config(function ($stateProvider, $urlRouterProvider) {
+angular.module('groupScoop', ['ngMaterial', 'ui.router']).config(function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
         .state('home', {
