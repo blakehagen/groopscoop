@@ -20,7 +20,9 @@ app.use(passport.session());
 // ROUTES //
 require('./server/features/auth/auth.server.routes')(app, passport);
 require('./server/features/users/user.server.routes')(app);
-// require('./server/features/groups/group.server.routes')(app);
+require('./server/features/groups/group.server.routes')(app);
+
+
 
 // PROTECT ROUTES //
 var requireAuth = function (req, res, next) {

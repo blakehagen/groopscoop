@@ -80,11 +80,10 @@ angular.module('groupScoop').service('userService', function ($http, $q) {
         var deferred = $q.defer();
         $http({
             method: 'GET',
-            url: '/api/v1/groups'
+            url: '/api/v1/user/groups'
         }).then(function (response) {
-            // console.log('response after adding group ', response.data[response.data.length-1].groups[response.data[response.data.length-1].groups.length-1]);
-            var newGrp = response.data[response.data.length-1].groups[response.data[response.data.length-1].groups.length-1];
-            
+            var newGrp = response.data[response.data.length - 1].groups[response.data[response.data.length - 1].groups.length - 1];
+
             deferred.resolve(newGrp)
         })
         return deferred.promise

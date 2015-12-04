@@ -1,4 +1,6 @@
-angular.module('groupScoop').controller('groupCtrl', function($scope){
+angular.module('groupScoop').controller('groupCtrl', function($scope, groupService){
+    
+    
     
     
     

@@ -1,4 +1,4 @@
-angular.module('groupScoop').controller('userCtrl', function ($scope, authService, userService, socketService) {
+angular.module('groupScoop').controller('userCtrl', function ($scope, authService, userService, groupService, socketService) {
 
     var socket = io.connect();
 
@@ -9,7 +9,7 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
             $scope.user = user;
             $scope.myGroups = user.groups;
             $scope.myInvitations = user.invitations;
-        }).catch(function(error){
+        }).catch(function (error) {
             console.log('ERROR!!!', error);
         })
     };
@@ -35,15 +35,9 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
             $scope.newGrp = !$scope.newGrp;
             $scope.myGroups.push(response);
         })
-        // socketService.emit('createNewGroup', grp);
     };
+    
 
-    // socketService.on('getGroups', function (data) {
-    //     $scope.myGroups.push(data);
-    //     $scope.$digest();
-    // });
-    
-    
     // INVITE USER TO GROUP //
     // OPEN SEARCH FIELD //
     $scope.getUsers = function (idx, grpId) {
@@ -84,51 +78,38 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
     };
     
     // ACCEPT INVITATIONS //
-    $scope.acceptInvite = function(invite){
+    $scope.acceptInvite = function (invite) {
         var acceptedInviteData = {
             inviteData: invite,
             acceptedBy: $scope.user._id
-        };        
-        userService.acceptInvitation(acceptedInviteData).then(function(response){
-            console.log('after user accepts invite ', response);
-            $scope.updateGroupList();
-            $scope.getInvites();
+        };
+        userService.acceptInvitation(acceptedInviteData).then(function (response) {
+            console.log('I (auth\'d user) accepted an invite from someone else ', response);
+            $scope.updateGroupList(); // --> add new group to myGroups
+            $scope.getInvites(); // --> to remove accepted invite
         });
     };
     
-    $scope.updateGroupList = function(){
-        userService.getGroups().then(function(response){
+    //GET ALL AUTH'D USER's GROUPS //
+    $scope.updateGroupList = function () {
+        userService.getGroups().then(function (response) {
             console.log('this is newly added group: ', response);
+            $scope.newGroupId = response._id; // --> This ID will be used to find the GroupObj to add the UserID
+            $scope.updateGroupObj(); // --> update the groupObj with UserId
             $scope.myGroups.push(response);
         });
     };
     
+    // UPDATE A GROUP OBJ WITH USER ID //
+    $scope.updateGroupObj = function () {
+        groupService.updateGroup($scope.newGroupId, $scope.user._id).then(function (response) {
+            console.log('userId added to Group Object ', response)
+        })
+    }
+    
     
     
    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
     // SOCKET TESTS //
 
@@ -142,14 +123,6 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
         $scope.messages.push(data);
         $scope.$digest();
     });
-
-
-
-
-
-
-
-
 
 
 

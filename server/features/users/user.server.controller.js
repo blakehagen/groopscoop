@@ -69,14 +69,15 @@ module.exports = {
     // ACCEPT INVITE //
     acceptInvite: function(req, res, next){
         var inviteData = req.body;
+        // console.log('inviteData: ', inviteData);
         var groupId = req.body.inviteData.groupInvitedTo._id;
         User.findByIdAndUpdate(inviteData.acceptedBy, { $push: { groups: inviteData.inviteData.groupInvitedTo._id } }, function(err, result){
             if(err){
                 res.status(500);
             }
+
             User.findByIdAndUpdate(inviteData.acceptedBy, {
-                $pull: {
-                    groupInvitedTo: groupId
+                $pull: { invitations : { groupInvitedTo: groupId }
                 }},
                 function(err, result){
                 if(err){
@@ -100,4 +101,4 @@ module.exports = {
 
 
 
-}
+};

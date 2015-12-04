@@ -16,7 +16,7 @@ module.exports = function (app) {
     app.route('/api/v1/user/invite/accept')
         .post(userCtrl.acceptInvite) // user accepts invite and posts to them
         
-    app.route('/api/v1/groups')
+    app.route('/api/v1/user/groups')
         .get(userCtrl.getGroups) // get users groups (after invite accpepted, eg.)
 
 
