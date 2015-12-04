@@ -2,11 +2,12 @@ var User = require('./user.server.model');
 var Group = require('../groups/group.server.model');
 
 module.exports = {
-    // GETS AUTHENTICATED USER AND THEIR GROUPS //
+    // GETS AUTHENTICATED USER AND THEIR GROUPS ON PAGE LOAD //
     getUser: function (req, res, next) {
         var user = req.user;
         Group.find().where('users').equals(user._id).exec(function (err, result) {
             user.groups.push(result);
+            console.log('user.groups: ', user.groups)
             res.json([user, result]);
         })
     },
@@ -45,9 +46,10 @@ module.exports = {
     
     // POST NEW INVITE TO A USER //
     sendInvite: function (req, res, next) {
-        User.findByIdAndUpdate(req.body.id, { $push: { invitations: { 
-            groupInvitedTo: req.body.invitedToThisGroup,
-            invitedBy: req.body.senderId }
+        var inviteData = req.body.invitation;
+        User.findByIdAndUpdate(inviteData.targetUserId, { $push: { invitations: { 
+            groupInvitedTo: inviteData.invitedTo,
+            invitedBy: inviteData.senderName }
             }}, function (err, result) {
             if (err) {
                 res.status(500).json(err);
@@ -59,21 +61,44 @@ module.exports = {
     // GET USER INVITES //
     getInvites: function(req, res, next){
         var id = req.session.passport.user._id;
-        User.findById(id).populate('invitations.groupInvitedTo').populate('invitations.invitedBy').exec(function(err, user){
+        User.findById(id).populate('invitations').populate('invitations.groupInvitedTo').exec(function(err, user){
             res.status(200).json(user.invitations);
         })
     },
     
     // ACCEPT INVITE //
     acceptInvite: function(req, res, next){
+        var inviteData = req.body;
+        var groupId = req.body.inviteData.groupInvitedTo._id;
         // console.log(req.body.inviteData.groupInvitedTo._id);
-        User.findByIdAndUpdate(req.body.acceptedBy, { $push: { groups: req.body.inviteData.groupInvitedTo._id } }, function(err, User){
+        User.findByIdAndUpdate(inviteData.acceptedBy, { $push: { groups: inviteData.inviteData.groupInvitedTo._id } }, function(err, result){
             if(err){
                 res.status(500);
             }
+            User.findByIdAndUpdate(inviteData.acceptedBy, {
+                $pull: {
+                    groupInvitedTo: groupId
+                }},
+                function(err, result){
+                if(err){
+                    res.send(500);
+                }
+            })
             res.status(200).send('INVITE ACCEPTED!');
         });
-    }
+    },
+    
+    // GETS ALL GROUPS USER BELONGS TO //
+    getGroups: function (req, res, next) {
+        User.find().populate('groups').exec(function (err, groups) {
+            if (err) {
+                res.status(500);
+            }
+            res.status(200).json(groups)
+        })
+    },
+
+
 
 
 }

@@ -2,7 +2,7 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
 
     var socket = io.connect();
 
-    // GET AUTHENTICATED USER AND THEIR GROUPS //
+    // GET AUTHENTICATED USER AND THEIR GROUPS ON PAGE LOAD //
     $scope.getAuthUser = function () {
         authService.getUser().then(function (response) {
             console.log('MY DATA: ', response);
@@ -50,32 +50,36 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
         userService.searchUsers().then(function (response) {
             $scope.users = response;
         })
-    }
+    };
+    
     // QUERY USERS //
     $scope.findUser = function (queryText) {
         var query = angular.lowercase(queryText);
         return $scope.users.filter(function (user) {
             return user.name.toLowerCase().indexOf(query) !== -1;
-        })
+        });
     };
 
     // POST INVITE TO THE INVITED USER OBJ //
-    $scope.sendInvite = function (invite) {
-        console.log('INVITE OBJECT SENT: ', invite);
-        invite.senderId = $scope.user._id;
-        invite.invitedToThisGroup = $scope.groupId;
-        userService.sendInvite(invite).then(function (response) {
+    $scope.sendInvite = function (targetUserId) {
+        console.log('INVITE OBJECT SENT: ', targetUserId);
+        var invitation = {
+            targetUserId: targetUserId,
+            senderName: $scope.user.google.name,
+            invitedTo: $scope.groupId
+        };
+        userService.sendInvite(invitation).then(function (response) {
             console.log(response);
-        })
-    }
+        });
+    };
     
     // GET INVITATIONS //
     $scope.getInvites = function () {
         userService.getInvitations($scope.user._id).then(function (response) {
             console.log('MY INVITATIONS: ', response);
             $scope.myInvites = response;
-        })
-    }
+        });
+    };
     
     // ACCEPT INVITATIONS //
     $scope.acceptInvite = function(invite){
@@ -83,13 +87,22 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
             inviteData: invite,
             acceptedBy: $scope.user._id
         };
-        console.log('ACCEPTING THIS INVITE: ', acceptedInviteData);
+        // console.log('ACCEPTING THIS INVITE: ', acceptedInviteData);
         
         userService.acceptInvitation(acceptedInviteData).then(function(response){
             console.log(response);
-        })
-    }
+            $scope.updateGroupList();
+            
+        });
+    };
     
+    
+    $scope.updateGroupList = function(){
+        userService.getGroups().then(function(response){
+            console.log('this is newly added group: ', response);
+            $scope.myGroups.push(response);
+        });
+    };
     
     
     

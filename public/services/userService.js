@@ -27,13 +27,15 @@ angular.module('groupScoop').service('userService', function ($http, $q) {
     };
     
     // SEND AN INVITE TO A USER FOR A SPECIFIC GROUP //
-    this.sendInvite = function (invite) {
+    this.sendInvite = function (invitation) {
         var deferred = $q.defer();
         $http({
             method: 'POST',
             url: '/api/v1/user/invite',
             dataType: 'json',
-            data: invite
+            data: {
+                invitation: invitation
+            }
         }).then(function (response) {
             var success = {
                 msg: response.data,
@@ -69,6 +71,21 @@ angular.module('groupScoop').service('userService', function ($http, $q) {
         }).then(function (response) {
 
             deferred.resolve(response);
+        })
+        return deferred.promise
+    };
+    
+    // UPDATE USER'S GROUP LIST //
+    this.getGroups = function () {
+        var deferred = $q.defer();
+        $http({
+            method: 'GET',
+            url: '/api/v1/groups'
+        }).then(function (response) {
+            // console.log('response after adding group ', response.data[response.data.length-1].groups[response.data[response.data.length-1].groups.length-1]);
+            var newGrp = response.data[response.data.length-1].groups[response.data[response.data.length-1].groups.length-1];
+            
+            deferred.resolve(newGrp)
         })
         return deferred.promise
     };

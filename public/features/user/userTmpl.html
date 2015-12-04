@@ -28,13 +28,14 @@
             <div ng-show="searchForUser">
                 <br>
                 <header>
-                    <md-autocomplete md-selected-item="selectedUser" md-search-text="queryText" md-items="user in findUser(queryText)" md-min-length="3"
+                    <md-autocomplete md-selected-item="targetUser" md-search-text="queryText" md-items="user in findUser(queryText)" md-min-length="3"
                     md-item-text="user.name" placeholder="Search for a user">
                         <span md-highlight-text="queryText">{{ user.name }}</span>
                     </md-autocomplete>
+                    {{selectedUser}}
                     <br>
                     <br>
-                    <button ng-click="sendInvite(selectedUser)">Send Invite</button>
+                    <button ng-click="sendInvite(targetUser.id)">Send Invite</button>
                 </header>
                 <br>
             </div>
@@ -50,7 +51,7 @@
     <ul>
         <li ng-repeat="invite in myInvites track by $index">
             {{invite.groupInvitedTo.groupName}}
-            <br> Invited by: {{invite.invitedBy.google.name}}
+            <br> Invited by: {{invite.invitedBy}}
             <br>
             <br>
             <button ng-click="acceptInvite(invite)">Accept Invite</button>
