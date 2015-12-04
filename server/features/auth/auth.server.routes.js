@@ -7,10 +7,14 @@ module.exports = function (app, passport) {
         scope: ['https://www.googleapis.com/auth/plus.login']
     }));
 
-    app.get('/auth/google/callback', passport.authenticate('google', {
-        successRedirect: '/#/user',
-        failure: '/'
-    }));
+    app.get('/auth/google/callback', passport.authenticate('google'), function (req, res, next) {
+        if (req.user) {
+            res.redirect('/#/user/' + req.user._id);
+        }
+        res.redirect('/');
+    });
+
+    
 
 
 };

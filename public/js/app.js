@@ -6,13 +6,13 @@ angular.module('groupScoop', ['ngMaterial', 'ui.router']).config(function ($stat
             templateUrl: './features/home/homeTmpl.html',
             controller: 'homeCtrl'
         })
-        .state('login', {
-            url: '/login',
-            templateUrl: './features/login/loginTmpl.html',
-            controller: 'loginCtrl'
-        })
+        // .state('login', {
+        //     url: '/login',
+        //     templateUrl: './features/login/loginTmpl.html',
+        //     controller: 'loginCtrl'
+        // })
         .state('user', {
-            url: '/user',
+            url: '/user/:id',
             templateUrl: './features/user/userTmpl.html',
             controller: 'userCtrl'
         })
