@@ -45,9 +45,18 @@
 
 <br> My Invitations
 <div>
+    <br>
     <button ng-click="getInvites()">Get Invites</button>
     <ul>
-        <!--<li></li>-->
+        <li ng-repeat="invite in myInvites track by $index">
+            {{invite.groupInvitedTo.groupName}}
+            <br> Invited by: {{invite.invitedBy.google.name}}
+            <br>
+            <br>
+            <button ng-click="acceptInvite(invite)">Accept Invite</button>
+            <br>
+            <br>
+        </li>
     </ul>
 </div>
 

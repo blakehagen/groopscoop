@@ -13,5 +13,8 @@ module.exports = function (app) {
         .post(userCtrl.sendInvite)
         .get(userCtrl.getInvites)
 
+    app.route('/api/v1/user/invite/accept')
+        .post(userCtrl.acceptInvite)
+
 
 };

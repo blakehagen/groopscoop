@@ -37,7 +37,6 @@ io.on('connection', function (socket) {
         io.sockets.emit('getMsg', data)
     })
     socket.on('createNewGroup', function (data) {
-        // console.log('socket id: ', socket.id);
         socket.emit('getGroups', data)
     })
 });

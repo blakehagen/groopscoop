@@ -57,6 +57,21 @@ angular.module('groupScoop').service('userService', function ($http, $q) {
         })
         return deferred.promise
     };
+    
+    // AUTH'D USER ACCEPTS INVITE //
+    this.acceptInvitation = function (acceptedInvite) {
+        var deferred = $q.defer();
+        $http({
+            method: 'POST',
+            url: '/api/v1/user/invite/accept',
+            dataType: 'json',
+            data: acceptedInvite
+        }).then(function (response) {
+
+            deferred.resolve(response);
+        })
+        return deferred.promise
+    };
 
 
 

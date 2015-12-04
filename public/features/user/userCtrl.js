@@ -20,25 +20,25 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
     }
 
     $scope.createNewGroup = function () {
-        var users = [$scope.user._id];
         var grp = {
-            "groupName": $scope.grpName,
-            "createdOn": moment().format('ddd MMM DD YYYY, h:mm a'),
-            users: users
+            groupName: $scope.grpName,
+            createdOn: moment().format('ddd MMM DD YYYY, h:mm a'),
+            users: [$scope.user._id]
         };
 
         userService.createGroup(grp).then(function (response) {
-            console.log('SUCCESS - GROUP CREATED: ', response);
+            console.log('SUCCESS, GROUP CREATED: ', response);
             $scope.grpName = '';
             $scope.newGrp = !$scope.newGrp;
+            $scope.myGroups.push(response);
         })
-        socketService.emit('createNewGroup', grp);
+        // socketService.emit('createNewGroup', grp);
     };
 
-    socketService.on('getGroups', function (data) {
-        $scope.myGroups.push(data);
-        $scope.$digest();
-    });
+    // socketService.on('getGroups', function (data) {
+    //     $scope.myGroups.push(data);
+    //     $scope.$digest();
+    // });
     
     
     // INVITE USER TO GROUP //
@@ -73,8 +73,26 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
     $scope.getInvites = function () {
         userService.getInvitations($scope.user._id).then(function (response) {
             console.log('MY INVITATIONS: ', response);
+            $scope.myInvites = response;
         })
     }
+    
+    // ACCEPT INVITATIONS //
+    $scope.acceptInvite = function(invite){
+        var acceptedInviteData = {
+            inviteData: invite,
+            acceptedBy: $scope.user._id
+        };
+        console.log('ACCEPTING THIS INVITE: ', acceptedInviteData);
+        
+        userService.acceptInvitation(acceptedInviteData).then(function(response){
+            console.log(response);
+        })
+    }
+    
+    
+    
+    
    
 
 

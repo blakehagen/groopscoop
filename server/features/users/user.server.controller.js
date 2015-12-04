@@ -59,9 +59,20 @@ module.exports = {
     // GET USER INVITES //
     getInvites: function(req, res, next){
         var id = req.session.passport.user._id;
-        User.findById(id).exec(function(err, user){
+        User.findById(id).populate('invitations.groupInvitedTo').populate('invitations.invitedBy').exec(function(err, user){
             res.status(200).json(user.invitations);
         })
+    },
+    
+    // ACCEPT INVITE //
+    acceptInvite: function(req, res, next){
+        // console.log(req.body.inviteData.groupInvitedTo._id);
+        User.findByIdAndUpdate(req.body.acceptedBy, { $push: { groups: req.body.inviteData.groupInvitedTo._id } }, function(err, User){
+            if(err){
+                res.status(500);
+            }
+            res.status(200).send('INVITE ACCEPTED!');
+        });
     }
 
 
