@@ -4,11 +4,11 @@ var Group = require('../groups/group.server.model');
 module.exports = {
     // GETS AUTHENTICATED USER AND THEIR GROUPS ON PAGE LOAD //
     getUser: function (req, res, next) {
-        var user = req.user;
-        Group.find().where('users').equals(user._id).exec(function (err, result) {
-            user.groups.push(result);
-            console.log('user.groups: ', user.groups)
-            res.json([user, result]);
+            User.findById(req.user._id).populate('groups invitations').exec(function(err, user){
+                if(err){
+                    res.status(500);
+                }
+            res.status(200).json(user);
         })
     },
 
@@ -70,7 +70,6 @@ module.exports = {
     acceptInvite: function(req, res, next){
         var inviteData = req.body;
         var groupId = req.body.inviteData.groupInvitedTo._id;
-        // console.log(req.body.inviteData.groupInvitedTo._id);
         User.findByIdAndUpdate(inviteData.acceptedBy, { $push: { groups: inviteData.inviteData.groupInvitedTo._id } }, function(err, result){
             if(err){
                 res.status(500);

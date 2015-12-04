@@ -5,8 +5,11 @@ angular.module('groupScoop').service('authService', function ($http, $q) {
         $http({
             method: 'GET',
             url: '/api/v1/user'
-        }).then(function (response) {
-            deferred.resolve(response.data);
+        }).success(function (response) {
+            deferred.resolve(response);
+        }).error(function(err){
+            deferred.reject(err);
+            console.log('SERVICE ERR', err);
         })
         return deferred.promise
     };
