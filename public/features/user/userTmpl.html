@@ -21,7 +21,7 @@
 <div>
     <ul>
         <li ng-repeat="group in myGroups track by $index">
-            {{group.groupName}}
+         <a href="#/group/{{group._id}}">  {{group.groupName}}</a> 
             <br> GRP ID: {{group._id}}
             <button ng-click="getUsers(this, group._id)">Invite User</button>
             <br>

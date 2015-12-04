@@ -107,6 +107,12 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
         })
     }
     
+    // TRIGGER ROUTE CHANGE TO A GROUP //
+    
+    $scope.enterGroup = function(){
+        
+    }
+    
     
     
    
