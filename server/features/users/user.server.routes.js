@@ -6,9 +6,12 @@ module.exports = function (app) {
         .get(userCtrl.getUser)
         .post(userCtrl.createGroup)
 
-
     app.route('/api/v1/users')
         .get(userCtrl.getUsers)
+
+    app.route('/api/v1/user/invite')
+        .post(userCtrl.sendInvite)
+        .get(userCtrl.getInvites)
 
 
 };

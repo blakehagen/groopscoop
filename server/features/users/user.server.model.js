@@ -11,8 +11,8 @@ var UserSchema = new Schema({
     },
     groups: [{ type: Schema.Types.ObjectId, ref: 'Group' }],
     invitations: [{
-        group: { type: Schema.Types.ObjectId, ref: 'Group' },
-        inviter: { type: 'String' }
+        groupInvitedTo: { type: Schema.Types.ObjectId, ref: 'Group' },
+        invitedBy: { type: 'String' }
     }]
 });
 

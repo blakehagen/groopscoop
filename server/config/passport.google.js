@@ -19,15 +19,13 @@ module.exports = function (passport) {
         clientSecret: googleAuth.googleAuth.clientSecret,
         callbackURL: googleAuth.googleAuth.callbackURL
     }, function (req, accessToken, refreshToken, profile, done) {
-        // console.log('g+profile: ', profile);
 
         User.findOne({ 'google.googleId': profile.id }, function (err, user) {
             if (user) {
-                console.log(user);
-                console.log('Google user found in database: ', user);
+                console.log('Google user found in db');
                 done(null, user);
             } else {
-                console.log('Google user not found in database');
+                console.log('Google user not found in db');
 
                 user = new User()
                 user.google.googleId = profile.id;
@@ -35,7 +33,7 @@ module.exports = function (passport) {
                 user.google.name = profile.displayName;
                 user.google.image = profile._json.image.url;
                 user.google.email = profile.emails[0].value;
-                console.log('new user created: ', user);
+                console.log('New user created: ', user);
 
                 user.save();
                 done(null, user);

@@ -5,7 +5,7 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
     // GET AUTHENTICATED USER AND THEIR GROUPS //
     $scope.getAuthUser = function () {
         authService.getUser().then(function (response) {
-            console.log('myData: ', response);
+            console.log('MY DATA: ', response);
             $scope.user = response[0];
             $scope.myGroups = response[1];
         })
@@ -28,11 +28,10 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
         };
 
         userService.createGroup(grp).then(function (response) {
-            console.log('Success: ', response);
+            console.log('SUCCESS - GROUP CREATED: ', response);
             $scope.grpName = '';
             $scope.newGrp = !$scope.newGrp;
         })
-
         socketService.emit('createNewGroup', grp);
     };
 
@@ -43,27 +42,58 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
     
     
     // INVITE USER TO GROUP //
-
-    $scope.getUsers = function (idx) {
-        idx.searchForUser = ! idx.searchForUser;
-
+    // OPEN SEARCH FIELD //
+    $scope.getUsers = function (idx, grpId) {
+        idx.searchForUser = !idx.searchForUser;
+        $scope.groupId = grpId;
+        // GET USERS IN DB //
         userService.searchUsers().then(function (response) {
-            console.log(response);
             $scope.users = response;
         })
     }
-
+    // QUERY USERS //
     $scope.findUser = function (queryText) {
         var query = angular.lowercase(queryText);
         return $scope.users.filter(function (user) {
-
             return user.name.toLowerCase().indexOf(query) !== -1;
         })
     };
 
-    $scope.sendInvite = function (user) {
-        console.log('inviting ', user);
+    // POST INVITE TO THE INVITED USER OBJ //
+    $scope.sendInvite = function (invite) {
+        console.log('INVITE OBJECT SENT: ', invite);
+        invite.senderId = $scope.user._id;
+        invite.invitedToThisGroup = $scope.groupId;
+        userService.sendInvite(invite).then(function (response) {
+            console.log(response);
+        })
     }
+    
+    // GET INVITATIONS //
+    $scope.getInvites = function () {
+        userService.getInvitations($scope.user._id).then(function (response) {
+            console.log('MY INVITATIONS: ', response);
+        })
+    }
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

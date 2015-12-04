@@ -22,18 +22,14 @@
     <ul>
         <li ng-repeat="group in myGroups track by $index">
             {{group.groupName}}
-            <button ng-click="getUsers(this)">Invite User</button>
+            <br> GRP ID: {{group._id}}
+            <button ng-click="getUsers(this, group._id)">Invite User</button>
             <br>
             <div ng-show="searchForUser">
                 <br>
                 <header>
-                    <md-autocomplete 
-                    md-selected-item="selectedUser" 
-                    md-search-text="queryText" 
-                    md-items="user in findUser(queryText)" 
-                    md-min-length="3"
-                    md-item-text="user.name" 
-                    placeholder="Search for a user">
+                    <md-autocomplete md-selected-item="selectedUser" md-search-text="queryText" md-items="user in findUser(queryText)" md-min-length="3"
+                    md-item-text="user.name" placeholder="Search for a user">
                         <span md-highlight-text="queryText">{{ user.name }}</span>
                     </md-autocomplete>
                     <br>
@@ -49,6 +45,7 @@
 
 <br> My Invitations
 <div>
+    <button ng-click="getInvites()">Get Invites</button>
     <ul>
         <!--<li></li>-->
     </ul>

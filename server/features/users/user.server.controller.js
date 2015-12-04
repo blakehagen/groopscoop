@@ -14,7 +14,6 @@ module.exports = {
     // AUTH'D USER CREATES GROUP AND USERID POPULATED TO GROUP //
     createGroup: function (req, res, next) {
         var group = new Group(req.body);
-        console.log('req.body ', req.body);
         group.save(function (err, group) {
             User.findByIdAndUpdate(req.body.users[0], { $push: { groups: group._id } }, function (err, result) {
                 if (err) {
@@ -41,6 +40,27 @@ module.exports = {
                 res.status(500);
             }
             res.status(200).json(userData)
+        })
+    },
+    
+    // POST NEW INVITE TO A USER //
+    sendInvite: function (req, res, next) {
+        User.findByIdAndUpdate(req.body.id, { $push: { invitations: { 
+            groupInvitedTo: req.body.invitedToThisGroup,
+            invitedBy: req.body.senderId }
+            }}, function (err, result) {
+            if (err) {
+                res.status(500).json(err);
+            }
+            res.status(200).send("INVITE SEND SUCCESS!");
+        });
+    },
+    
+    // GET USER INVITES //
+    getInvites: function(req, res, next){
+        var id = req.session.passport.user._id;
+        User.findById(id).exec(function(err, user){
+            res.status(200).json(user.invitations);
         })
     }
 
