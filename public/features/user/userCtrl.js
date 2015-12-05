@@ -1,4 +1,4 @@
-angular.module('groupScoop').controller('userCtrl', function ($scope, authService, userService, groupService, socketService) {
+angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope, authService, userService, groupService, socketService) {
 
     var socket = io.connect();
 
@@ -10,7 +10,7 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
             $scope.myGroups = user.groups;
             $scope.myInvitations = user.invitations;
         }).catch(function (error) {
-            console.log('ERROR!!!', error);
+            console.log('Error', error);
         })
     };
     $scope.getAuthUser();
@@ -100,22 +100,21 @@ angular.module('groupScoop').controller('userCtrl', function ($scope, authServic
         });
     };
     
-    // UPDATE A GROUP OBJ WITH USER ID //
+    // UPDATE A GROUP OBJ WITH USER ID (SENDING VIA GROUP SERVICE) //
     $scope.updateGroupObj = function () {
         groupService.updateGroup($scope.newGroupId, $scope.user._id).then(function (response) {
             console.log('userId added to Group Object ', response)
         })
-    }
+    };
     
-    // TRIGGER ROUTE CHANGE TO A GROUP //
-    
-    $scope.enterGroup = function(){
-        
-    }
-    
-    
-    
-   
+    // GET GROUP DATA AFTER USER CLICKS (SENDING VIA GROUP SERVICE) //
+    $scope.getGroupData = function (groupId) {
+        groupService.getGroup(groupId).then(function (response) {
+            $rootScope.groupData = response;
+            console.log('grp data on userCtrl saved to $rootScope ', $rootScope.groupData);
+        });
+    };
+
     
     // SOCKET TESTS //
 

@@ -12,6 +12,15 @@ module.exports = {
             }
             res.status(200).send(group);
         })
+    },
+    
+        getGroupData: function(req, res, next){
+            Group.findById(req.params.groupId).populate('users').exec(function (err, group) {
+            if(err){
+                res.status(500);
+            }
+            res.status(200).send(group);
+        })
     }
     
     

@@ -15,6 +15,17 @@ angular.module('groupScoop').service('groupService', function ($http, $q) {
         return deferred.promise
     };
 
+    this.getGroup = function (groupId) {
+        var deferred = $q.defer();
+        $http({
+            method: 'GET',
+            url: '/api/v1/groups/' + groupId
+        }).then(function (response) {
+            deferred.resolve(response.data)
+        })
+        return deferred.promise
+    };
+
 
 
 
