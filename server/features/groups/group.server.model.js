@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 var GroupSchema = new Schema({
     groupName: { type: String },
     createdOn: { type: String },
-    users: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+    users: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }],
 });
 
 module.exports = mongoose.model('Group', GroupSchema);
