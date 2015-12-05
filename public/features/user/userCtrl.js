@@ -111,7 +111,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     $scope.getGroupData = function (groupId) {
         groupService.getGroup(groupId).then(function (response) {
             $rootScope.groupData = response;
-            console.log('grp data on userCtrl saved to $rootScope ', $rootScope.groupData);
+            // console.log('grp data on userCtrl saved to $rootScope ', $rootScope.groupData);
         });
     };
 

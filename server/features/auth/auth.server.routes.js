@@ -13,8 +13,15 @@ module.exports = function (app, passport) {
         }
         res.redirect('/');
     });
-
     
+    // LOG OUT //
+    app.get('/auth/logout', function (req, res) {
+        req.logout();
+        console.log('You have logged out')
+        res.redirect('/#/');
+    });
+
+
 
 
 };
