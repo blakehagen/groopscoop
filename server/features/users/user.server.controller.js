@@ -1,5 +1,6 @@
 var User = require('./user.server.model');
 var Group = require('../groups/group.server.model');
+var Post = require('../posts/post.server.model');
 
 module.exports = {
     // GETS AUTHENTICATED USER AND THEIR GROUPS ON PAGE LOAD //

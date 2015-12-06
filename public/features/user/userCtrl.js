@@ -6,6 +6,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     $scope.getAuthUser = function () {
         authService.getUser().then(function (user) {
             console.log('MY DATA: ', user);
+            $rootScope.user = user;
             $scope.user = user;
             $scope.myGroups = user.groups;
             $scope.myInvitations = user.invitations;
@@ -109,9 +110,9 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     
     // GET GROUP DATA AFTER USER CLICKS (SENDING VIA GROUP SERVICE) //
     $scope.getGroupData = function (groupId) {
-        groupService.getGroup(groupId).then(function (response) {
-            $rootScope.groupData = response;
-            // console.log('grp data on userCtrl saved to $rootScope ', $rootScope.groupData);
+        groupService.getGroup(groupId).then(function (group) {
+            $rootScope.groupData = group;
+            console.log('grp data on userCtrl saved to $rootScope ', $rootScope.groupData);
         });
     };
 

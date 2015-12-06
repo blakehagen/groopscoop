@@ -13,7 +13,8 @@ var UserSchema = new Schema({
     invitations: [{
         groupInvitedTo: { type: Schema.Types.ObjectId, ref: 'Group' },
         invitedBy: { type: String }
-    }]
+    }],
+    posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }]
 });
 
 module.exports = mongoose.model('User', UserSchema);
