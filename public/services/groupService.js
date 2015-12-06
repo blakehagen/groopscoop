@@ -16,7 +16,7 @@ angular.module('groupScoop').service('groupService', function ($http, $q) {
         return deferred.promise
     };
 
-    // GETTING GROUP DATA TO POPULATE GROUP VIEW //
+    // GETTING GROUP DATA TO POPULATE GROUP VIEW - INCLUDES POSTS //
     this.getGroup = function (groupId) {
         var deferred = $q.defer();
         $http({
@@ -29,7 +29,7 @@ angular.module('groupScoop').service('groupService', function ($http, $q) {
     };
     
     // POST NEW MESSAGE TO GROUP //
-        this.postNewMessage = function (postData) {
+    this.postNewMessage = function (postData) {
         var deferred = $q.defer();
         $http({
             method: 'POST',
@@ -41,6 +41,8 @@ angular.module('groupScoop').service('groupService', function ($http, $q) {
         })
         return deferred.promise
     };
+    
+
 
 
 

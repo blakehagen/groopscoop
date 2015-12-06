@@ -8,10 +8,7 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
         imgUrl: $rootScope.user.google.image,
         groups: $rootScope.user.groups
     };
-    console.log(user);
     
-
-
     $scope.postNew = function () {
         var postData = {
             postedBy: user.id,
@@ -21,11 +18,10 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
                 message: $scope.newMessage
             }
         };
-        // console.log('post ', post);
+        
         groupService.postNewMessage(postData).then(function(response){
             console.log('i posted: ', response);
         })
-    }
-
+    };
 
 });

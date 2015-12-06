@@ -16,7 +16,7 @@ module.exports = {
     },
     
     getGroupData: function(req, res, next){
-        Group.findById(req.params.groupId).populate('users').exec(function (err, group) {
+        Group.findById(req.params.groupId).populate('users').populate('posts').exec(function (err, group) {
             if(err){
                 res.status(500);
             }
