@@ -2,9 +2,6 @@ Group Template
     <p>Name: {{groupData.groupName}}</p>
     <p>ID: {{groupData._id}}</p>
     <p>Date: {{groupData.createdOn}}</p>
-    <p>test: {{test1}}</p>
-    <br>
-    <br>
     <br>
     <!-- create message-->
     <div>
@@ -12,25 +9,17 @@ Group Template
         <br>
         <input type="text" placeholder="Say something..." ng-model="newMessage">
         <button ng-click="postNew()">Post Message</button>
-
     </div>
-    
     <br>
     <br>
-    <br>
-    <br>
-    
-    
-    
-    
-    
-    
-    
         <!-- Posted messages-->
-        Posted Messages
-<div>
-    
-    
+        Messages
+<div ng-repeat="post in groupData.posts">
+    <br>
+    {{post.postContent.message}}
+    <br>posted by <img class="circle" ng-src="{{post.postedBy.google.image}}">{{post.postedBy.google.name}} on {{post.datePosted}}
+    <br>
+    <br>
 </div>
 
     
