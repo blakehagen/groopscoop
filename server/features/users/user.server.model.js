@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
+    dateCreatedNonRead: {type: Date, default: new Date()},
     google: {
         email: { type: String },
         name: { type: String },

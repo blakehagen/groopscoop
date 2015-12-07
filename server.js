@@ -43,12 +43,12 @@ var requireAuth = function (req, res, next) {
 //     })
 // });
 
-// io.on('connection', function (socket) {
-//     console.log('User connected on socket');
-//     socket.on('sendNewPost', function (data) {
-//         socket.emit('getNewPost', data)
-//     })
-// });
+io.on('connection', function (socket) {
+    console.log('User connected to socket1');
+    socket.on('sendNewPost', function (data) {
+        io.sockets.emit('getNewPost', data)
+    })
+});
 
 
 

@@ -14,7 +14,7 @@ Group Template
     <br>
         <!-- Posted messages-->
         Messages
-<div ng-repeat="post in groupData.posts">
+<div ng-repeat="post in groupData.posts track by $index">
     <br>
     {{post.postContent.message}}
     <br>posted by <img class="circle" ng-src="{{post.postedBy.google.image}}">{{post.postedBy.google.name}} on {{post.datePosted}}

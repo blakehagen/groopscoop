@@ -11,14 +11,14 @@ module.exports = function (app, passport) {
         if (req.user) {
             res.redirect('/#/user/' + req.user._id);
         }
-        res.redirect('/');
+        // res.redirect('/#');
     });
     
     // LOG OUT //
     app.get('/auth/logout', function (req, res) {
         req.logout();
         console.log('You have logged out')
-        res.redirect('/#/');
+        res.redirect('/#');
     });
 
 

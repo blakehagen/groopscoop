@@ -120,16 +120,16 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     
     // SOCKET TESTS //
 
-    $scope.messages = [];
+    // $scope.messages = [];
 
-    $scope.send = function () {
-        socketService.emit('sendMsg', $scope.msg);
-    };
+    // $scope.send = function () {
+    //     socketService.emit('sendMsg', $scope.msg);
+    // };
 
-    socketService.on('getMsg', function (data) {
-        $scope.messages.push(data);
-        $scope.$digest();
-    });
+    // socketService.on('getMsg', function (data) {
+    //     $scope.messages.push(data);
+    //     $scope.$digest();
+    // });
     
     
     

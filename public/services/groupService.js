@@ -23,6 +23,10 @@ angular.module('groupScoop').service('groupService', function ($http, $q) {
             method: 'GET',
             url: '/api/v1/groups/' + groupId
         }).then(function (response) {
+            console.log('service grp data: ', response.data.posts);
+            response.data.posts = response.data.posts.reverse();
+            
+            
             deferred.resolve(response.data)
         })
         return deferred.promise
