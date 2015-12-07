@@ -26,43 +26,17 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
             // TO UPDATE VIEW WHEN NEW POST //
             $scope.postData.postedBy = user;
             socketService.emit('sendNewPost', $scope.postData);
-
-            // $rootScope.groupData.posts.push($scope.postData);
-            // console.log('adding new post to rootscope: ', $rootScope.groupData.posts);
         })
     };
 
-
+    // Listening for New Posts //
     socketService.on('getNewPost', function (data) {
-        $rootScope.groupData.posts.unshift(data);
+        console.log('socketdata: ', data);
+        if (data.group === $rootScope.groupData._id) {
+            $rootScope.groupData.posts.unshift(data);
+        }
         $scope.$digest();
     });
-    
-    
-    
-    
-    //     $scope.send = function () {
-    //     socketService.emit('sendMsg', $scope.msg);
-    // };
-
-    // socketService.on('getMsg', function (data) {
-    //     $scope.messages.push(data);
-    //     $scope.$digest();
-    // });
-    
-    
-    
-    
-    
-    
-    
-    
-    // WATCH FOR NEW POSTS // TESTING!
-    // $rootScope.$watch('groupData', function () {
-    //     console.log('hi, groupDataUpdated');
-    // }, true);
-
-
 
 
 
