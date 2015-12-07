@@ -5,8 +5,10 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
     // USER OBJECT TO SEND WITH POSTED MESSAGES //
     var user = {
         id: $rootScope.user._id,
-        name: $rootScope.user.google.name,
-        imgUrl: $rootScope.user.google.image,
+        google: {
+            name: $rootScope.user.google.name,
+            image: $rootScope.user.google.image
+        },
         groups: $rootScope.user.groups
     };
 
@@ -20,14 +22,10 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
             }
         };
         groupService.postNewMessage($scope.postData).then(function (response) {
-            // Socket TEST FOR POST IN GRP //
-            socketService.emit('sendNewPost', $scope.postData);
-            socketService.on('getNewPost', function (data) {
-                console.log('socket data', data);
-                $scope.$digest();
-            });
-
-            console.log('i posted: ', response);
+            // console.log('response back after sending new post to db ', response);
+            $scope.postData.postedBy = user;
+            $rootScope.groupData.posts.push($scope.postData);
+            console.log('adding new post to rootscope: ', $rootScope.groupData.posts);
         })
     };
 

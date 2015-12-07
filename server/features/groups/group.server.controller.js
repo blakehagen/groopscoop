@@ -28,7 +28,6 @@ module.exports = {
     
     addNewPost: function(req, res, next){
         var post = new Post(req.body);
-        console.log('post: ', post);
         post.save(function (err, post) {
             Group.findByIdAndUpdate(req.params.groupId, { $push: {
             posts: post._id }}, function(err, result){

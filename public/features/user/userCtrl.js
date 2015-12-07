@@ -1,6 +1,6 @@
 angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope, authService, userService, groupService, socketService) {
 
-    var socket = io.connect();
+    // var socket = io.connect();
 
     // GET AUTHENTICATED USER AND THEIR GROUPS ON PAGE LOAD //
     $scope.getAuthUser = function () {
@@ -112,6 +112,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     $scope.getGroupData = function (groupId) {
         groupService.getGroup(groupId).then(function (group) {
             $rootScope.groupData = group;
+            // $rootScope.posts = group.posts;
             console.log('grp data on userCtrl saved to $rootScope ', $rootScope.groupData);
         });
     };
@@ -129,6 +130,9 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
         $scope.messages.push(data);
         $scope.$digest();
     });
+    
+    
+    
 
 
 
