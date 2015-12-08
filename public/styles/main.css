@@ -1,5 +1,84 @@
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;  
+}
+
+html {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+.background-blue {
+    height: 100%;
+    width: 100%;
+    background: #8CB8DA;
+}
+
+.main-wrapper {
+    height: 215px;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    /*border: 1px solid #FFF;*/
+    vertical-align: middle;
+}
+
+.logo-container {
+    margin: 0 auto;
+    text-align: center;
+    /*border: 1px solid green;*/
+    margin-bottom: 25px;
+}
+
+    .logo-container img {
+        width: 270px;
+    }
+    
+.login-button-container {
+    /*border: 1px solid rebeccapurple;*/
+    margin: 0 auto;
+    text-align: center;
+}
+
+.login-btn {
+    margin: 0 auto;
+    width: 230px;
+    height: 55px;
+    background: #ED6464;
+    border-radius: 15px;
+}
+
+    .login-btn h4 {
+        color: #fff;
+        font-size: 18px;
+        padding-top: 14px;
+    }
+
+
+
+
+
+
+
+
+
 .circle {
     width: 40px;
     border: none;
     border-radius: 50px;
 }
+
