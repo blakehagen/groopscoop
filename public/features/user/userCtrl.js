@@ -10,6 +10,13 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
             $scope.user = user;
             $scope.myGroups = user.groups;
             $scope.myInvitations = user.invitations;
+            $scope.myGroupIds = [];
+            for (var i = 0; i < $scope.myGroups.length; i++) {
+                $scope.myGroupIds.push($scope.myGroups[i]._id);
+            };
+            console.log($scope.myGroupIds);
+            // Logged in user channels of groups the belong to for socket.io //
+            socketService.emit('connectedUserGroups', $scope.myGroupIds);
         }).catch(function (error) {
             console.log('Error', error);
         })
@@ -35,6 +42,11 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
             $scope.grpName = '';
             $scope.newGrp = !$scope.newGrp;
             $scope.myGroups.push(response);
+            $scope.myGroupIds = [];
+            for (var i = 0; i < $scope.myGroups.length; i++) {
+                $scope.myGroupIds.push($scope.myGroups[i]._id);
+            };
+            socketService.emit('connectedUserGroups', $scope.myGroupIds);
         })
     };
     
@@ -98,6 +110,10 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
             $scope.newGroupId = response._id; // --> This ID will be used to find the GroupObj to add the UserID
             $scope.updateGroupObj(); // --> update the groupObj with UserId
             $scope.myGroups.push(response);
+            for (var i = 0; i < $scope.myGroups.length; i++) {
+                $scope.myGroupIds.push($scope.myGroups[i]._id);
+            };
+            socketService.emit('connectedUserGroups', $scope.myGroupIds);
         });
     };
     
@@ -112,28 +128,10 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     $scope.getGroupData = function (groupId) {
         groupService.getGroup(groupId).then(function (group) {
             $rootScope.groupData = group;
-            // $rootScope.posts = group.posts;
+
             console.log('grp data on userCtrl saved to $rootScope ', $rootScope.groupData);
         });
     };
-
-    
-    // SOCKET TESTS //
-
-    // $scope.messages = [];
-
-    // $scope.send = function () {
-    //     socketService.emit('sendMsg', $scope.msg);
-    // };
-
-    // socketService.on('getMsg', function (data) {
-    //     $scope.messages.push(data);
-    //     $scope.$digest();
-    // });
-    
-    
-    
-
 
 
 });

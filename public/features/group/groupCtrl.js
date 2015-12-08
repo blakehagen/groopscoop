@@ -1,6 +1,4 @@
 angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scope, groupService, socketService) {
-
-    var socket = io.connect();
     
     // USER OBJECT INFO FOR USE WITH NEW POSTS //
     var user = {
@@ -22,22 +20,27 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
                 message: $scope.newMessage
             }
         };
+        // SEND NEW POST TO DB //
         groupService.postNewMessage($scope.postData).then(function (response) {
+            // console.log(response);
             // TO UPDATE VIEW WHEN NEW POST //
             $scope.postData.postedBy = user;
+            $scope.postData.postId = response._id
             socketService.emit('sendNewPost', $scope.postData);
+
         })
     };
 
     // Listening for New Posts //
     socketService.on('getNewPost', function (data) {
-        console.log('socketdata: ', data);
-        if (data.group === $rootScope.groupData._id) {
-            $rootScope.groupData.posts.unshift(data);
-        }
-        $scope.$digest();
-    });
+        console.log('socketdata coming back from server: ', data);
+        // if (data.group === $rootScope.groupData._id) {
+        // console.log('get new post ', data);
+        $rootScope.groupData.posts.unshift(data);
 
+        $scope.$digest();
+
+    });
 
 
 });

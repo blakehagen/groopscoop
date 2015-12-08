@@ -32,22 +32,36 @@ var requireAuth = function (req, res, next) {
     return res.redirect('/');
 };
 
-// SOCKET.IO //
-// io.on('connection', function (socket) {
-//     console.log('socket1');
-//     socket.on('sendMsg', function (data) {
-//         io.sockets.emit('getMsg', data)
-//     })
-//     socket.on('createNewGroup', function (data) {
-//         socket.emit('getGroups', data)
-//     })
-// });
+
 
 io.on('connection', function (socket) {
-    console.log('User connected to socket1');
+    console.log('User connected to socket', socket.id);
+    socket.on('connectedUserGroups', function (data) {
+        // console.log('connectedUserGroups data: ', data);
+        var groups = data;
+        console.log(groups);
+        for (var i = 0; i < groups.length; i++) {
+            var group = groups[i];
+            socket.join(group);
+            console.log('group ', group);
+        };
+        // console.log('socket rooms ', socket.adapter.rooms);
+    });
+
+    
+    /*
+        //TODO Find groups for user that just connected
+        // var groups = data.groups;
+       for(var i = 0; i<groups.length; i++){
+           var group = groups[i];
+           socket.join(group._id) //Should be a string GUID
+       }
+    */
+
     socket.on('sendNewPost', function (data) {
-        io.sockets.emit('getNewPost', data)
-    })
+        console.log('on send new post ', data);
+       io.to(data.group).emit('getNewPost', data);
+    });
 });
 
 
