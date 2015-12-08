@@ -194,36 +194,70 @@ a:visited {
     float: right;   
 }
 
-/* CREATE NEW GROUP */
+/* CREATE NEW GROUP BOX */
 
 .create-group-box {
     width: 600px;
-    border: 1px solid #888787;
+    border: 1px solid #C9C8C8;
     background: #fff;
-    height: 400px;
     margin: 100px auto;
 }
 
 .box-row {
     width: 100%;
-    height: 50px;
-    text-align: center;
-    border: 1px solid pink;
+    height: 60px;
+    text-align: right;
+    /*border: 1px solid pink;*/
     background: #F5F5F5;
+}
+
+.space {
+    margin-bottom: 8px;
 }
 
     .box-row h3 {
         font-size: 18px;
         font-weight: 400;
-        line-height: 49px; 
+        line-height: 60px; 
+        text-align: center;
     }
     
 .inputs {
-        height: 100px;
-        background: none;
-        
-       
-        
+    height: 80px;
+    background: none;
+}
+
+.input-split {
+    height: 100%;
+    /*border: 1px solid green;*/
+    display: inline-block;
+    vertical-align: top;
+    line-height: 78px;
+    margin: 0 80px 0 0;
+}
+
+.group-input {
+    width: 270px;
+    height: 30px; 
+    borer: #959595;
+}
+
+.create-btn-container {
+    height: auto;
+    
+}
+.create-grp-btn {
+    width: 150px;
+    height: 40px;
+    background: #ED6464;
+    border-radius: 4px;
+    margin-bottom: 25px;
+}
+
+    .create-grp-btn h4 {
+        color: #fff;
+        text-align: center;
+        line-height: 39px;
     }
 
 

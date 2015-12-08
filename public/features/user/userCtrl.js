@@ -20,7 +20,6 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
         }).catch(function (error) {
             console.log('Error', error);
         })
-        // $scope.getInvites();
     };
     $scope.getAuthUser();
 
