@@ -29,6 +29,7 @@ a:visited {
 }
 
 .main-wrapper {
+    width: 300px;
     height: 215px;
     margin: auto;
     position: absolute;
