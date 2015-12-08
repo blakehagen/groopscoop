@@ -33,6 +33,8 @@ module.exports = function (passport) {
                 user.google.name = profile.displayName;
                 user.google.image = profile._json.image.url;
                 user.google.email = profile.emails[0].value;
+                // edit img url to not be just 50px //
+                user.google.image = user.google.image.replace('?sz=50', '');
                 console.log('New user created: ', user);
 
                 user.save();

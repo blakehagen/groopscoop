@@ -9,7 +9,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
             $rootScope.user = user;
             $scope.user = user;
             $scope.myGroups = user.groups;
-            $scope.myInvitations = user.invitations;
+            $scope.myInvites = user.invitations;
             $scope.myGroupIds = [];
             for (var i = 0; i < $scope.myGroups.length; i++) {
                 $scope.myGroupIds.push($scope.myGroups[i]._id);
@@ -20,14 +20,16 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
         }).catch(function (error) {
             console.log('Error', error);
         })
+        // $scope.getInvites();
     };
     $scope.getAuthUser();
 
 
     // CREATE NEW GROUP //
-    $scope.newGrp = false;
-    $scope.createGroupButtons = function () {
+    // $scope.newGrp = false;
+    $scope.createGroupBox = function () {
         $scope.newGrp = !$scope.newGrp;
+        $scope.createNewGroup = !$scope.createNewGroup;
     }
 
     $scope.createNewGroup = function () {

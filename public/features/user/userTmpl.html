@@ -1,13 +1,103 @@
-<div>
-    <img class="circle" ng-src="{{user.google.image}}" alt="">
+<div class="main-user-wrapper">
+
+    <div class="sidebar-user-view">
+        <div class="sidebar-row center userBox">
+            <div class="sidebar-sub-item">
+                <img ng-src="{{user.google.image}}">
+            </div>
+            <div class="sidebar-sub-item">
+                <h4>{{user.google.name}}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <h4 class="myGroups-text">MY GROUPS</h4>
+        </div>
+
+        <div class="sidebar-row section">
+            <div class="row">
+                <div class="sub-item">
+                    <h4 class="group-name-text">New Group</h4>
+                </div>
+                <div class="sub-item right">
+                    <h4 class="group-name-text action" ng-click="createGroupBox()">Create</h4>
+                </div>
+            </div>
+            <div class="row" ng-repeat="invite in myInvites track by $index">
+                <div class="sub-item">
+                    <h4 class="group-name-text">{{invite.groupInvitedTo.groupName}}</h4>
+                </div>
+                <div class="sub-item right">
+                    <h4 class="group-name-text action join" ng-click="acceptInvite(invite)">Join</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-row section">
+            <div class="row" ng-repeat="group in myGroups track by $index">
+                <div class="sub-item">
+                    <h4 class="group-name-text">{{group.groupName}}</h4>
+                </div>
+                <div class="sub-item right">
+                    <a href="#/group/{{group._id}}" ng-click="getGroupData(group._id)"><h4 class="group-name-text action">Go to</h4></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header">
+        <img src="./assets/groopscooplogo2-compressor.png" alt="Groop Scoop">
+    </div>
+
+    <div class="main-content-area" ng-hide="createNewGroup">
+        <create-group></create-group>
+    </div>
+
+
+
+
+
+
+
 </div>
 
-<div>
-    Hello, {{user.google.name}}
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br>
 <div>
-    <a href="/auth/logout"><button>Logout</button></a>
+    <a href="/auth/logout">
+        <button>Logout</button>
+    </a>
 </div>
 
 <br>
@@ -25,7 +115,7 @@
 <div>
     <ul>
         <li ng-repeat="group in myGroups track by $index">
-         <a href="#/group/{{group._id}}" ng-click="getGroupData(group._id)">  {{group.groupName}}</a> 
+            <a href="#/group/{{group._id}}" ng-click="getGroupData(group._id)">  {{group.groupName}}</a>
             <br> GRP ID: {{group._id}}
             <button ng-click="getUsers(this, group._id)">Invite User</button>
             <br>
@@ -82,4 +172,3 @@
 <ul>
     <li ng-repeat="message in messages track by $index">{{message}}</li>
 </ul>
-

@@ -5,7 +5,9 @@ var Post = require('../posts/post.server.model');
 module.exports = {
     // GETS AUTHENTICATED USER AND THEIR GROUPS ON PAGE LOAD //
     getUser: function (req, res, next) {
-            User.findById(req.user._id).populate('groups invitations').exec(function(err, user){
+            User.findById(req.user._id).populate('groups').populate({
+                path: 'invitations',
+                populate: {path: 'groupInvitedTo'}}).exec(function(err, user){
                 if(err){
                     res.status(500);
                 }
