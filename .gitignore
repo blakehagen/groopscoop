@@ -1,3 +1,4 @@
 /node_modules
 /server/config/keys/googleAuthKeys.js
 .DS_Store
+.vscode

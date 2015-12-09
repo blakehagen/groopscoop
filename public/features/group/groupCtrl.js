@@ -34,9 +34,10 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
     // Listening for New Posts //
     socketService.on('getNewPost', function (data) {
         console.log('socketdata coming back from server: ', data);
-        $rootScope.groupData.posts.unshift(data);
-
-        $scope.$digest();
+        if (data.group === $rootScope.groupData._id) {
+            $rootScope.groupData.posts.unshift(data);
+        }
+        // $scope.$digest();
     })
 
     $scope.disconnectSocket = function () {

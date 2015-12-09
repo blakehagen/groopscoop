@@ -138,13 +138,17 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
         });
     };
 
-    $scope.disconnect = function () {
-        socketService.disconnect();
-    }
-
     $scope.$on('$destroy', function (event) {
         socketService.removeAllListeners();
-        console.log('destroy triggered!');
+        console.log('$Destroy triggered!');
     });
+
+ $scope.people = [
+      {firstName: "Daryl", surname: "Rowland", twitter: "@darylrowland", pic: "img/daryl.jpeg"},
+      {firstName: "Alan", surname: "Partridge", twitter: "@alangpartridge", pic: "img/alanp.jpg"},
+      {firstName: "Annie", surname: "Rowland", twitter: "@anklesannie", pic: "img/annie.jpg"}
+    ];
+
+
 
 });

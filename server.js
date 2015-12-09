@@ -4,7 +4,6 @@ var mongoose = require('./server/config/mongoose');
 var passport = require('passport');
 require('./server/config/passport.google')(passport);
 
-
 // RUN EXPRESS & MONGOOSE CONFIG //
 var app = express();
 var db = mongoose();
@@ -47,20 +46,10 @@ io.on('connection', function (socket) {
         };
         // console.log('socket rooms ', socket.adapter.rooms);
     });
-
-    
-    /*
-        //TODO Find groups for user that just connected
-        // var groups = data.groups;
-       for(var i = 0; i<groups.length; i++){
-           var group = groups[i];
-           socket.join(group._id) //Should be a string GUID
-       }
-    */
-
     socket.on('sendNewPost', function (data) {
         console.log('on send new post ', data);
         io.to(data.group).emit('getNewPost', data);
+        console.log('sent to ', data.group);
     });
 });
 

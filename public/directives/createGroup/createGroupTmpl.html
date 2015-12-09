@@ -18,19 +18,10 @@
             <h4>Invite Users </h4>
         </div>
         <div class="input-split">
-            <!--<input class="group-input" type="text">-->
-            <md-autocomplete 
-                class="group-input" 
-                md-selected-item="targetUser" 
-                md-search-text="queryText" 
-                md-items="user in findUser(queryText)" 
-                md-min-length="3"
-                md-item-text="user.name" 
-                placeholder="Search by name">
-                <span md-highlight-text="queryText">{{ user.name }}</span>
-            </md-autocomplete>
-            
-            
+            <div angucomplete-alt id="ex2" placeholder="Search people" pause="300" selected-object="selectedPerson" local-data="users"
+            search-fields="name" title-field="name" minlength="3" input-class="group-input"
+            input-class="form-control form-control-small" match-class="highlight">
+            </div>
         </div>
     </div>
 
@@ -43,6 +34,8 @@
         </div>
     </div>
 
+
+
     <div class="box-row inputs create-btn-container">
         <div class="input-split">
             <div class="create-grp-btn" ng-click="createNewGroup()">
@@ -50,6 +43,9 @@
             </div>
         </div>
     </div>
+
+
+
 
 
 
