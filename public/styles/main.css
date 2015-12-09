@@ -146,7 +146,7 @@ a:visited {
 }
 
 .section .row:hover {
-    background: #2E3740;
+    background: #35404A;
 }
 
 .myGroups-text {
@@ -183,6 +183,14 @@ a:visited {
 
 .join {
     color: #ED6464;
+}
+
+.active {
+    color: #ED6464
+}
+
+.notActive {
+    color: #959595;
 }
 
 .main-content-area {

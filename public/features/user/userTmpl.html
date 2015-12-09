@@ -1,4 +1,3 @@
-<!--<button ng-click="disconnect()">Disconnect Socket???</button>-->
 <div class="main-user-wrapper">
 
     <div class="sidebar-user-view">
@@ -18,10 +17,10 @@
         <div class="sidebar-row section">
             <div class="row">
                 <div class="sub-item">
-                    <h4 class="group-name-text">New Group</h4>
+                    <h4 class="group-name-text" ng-class="createGroupActive ? 'active' : 'notActive'">New Group</h4>
                 </div>
                 <div class="sub-item right">
-                    <h4 class="group-name-text action" ng-click="createGroupBox()">Create</h4>
+                    <h4 class="group-name-text action" ng-class="createGroupActive ? 'active' : 'notActive'" ng-click="createGroupBox()">Create</h4>
                 </div>
             </div>
             <div class="row" ng-repeat="invite in myInvites track by $index">
@@ -55,118 +54,3 @@
     </div>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-
-
-
-
-
-
-<br>
-<div>
-    <a href="/auth/logout">
-        <button>Logout</button>
-    </a>
-</div>
-
-<br>
-<div>
-    <button ng-click="createGroupButtons()">Create Group</button>
-</div>
-<br>
-
-<div>
-    <input type="text" placeholder="Group name..." ng-model="grpName">
-    <button ng-click="createNewGroup()">Submit Group</button>
-</div>
-
-<br> My Groups
-<div>
-    <ul>
-        <li ng-repeat="group in myGroups track by $index">
-            <a href="#/group/{{group._id}}" ng-click="getGroupData(group._id)">  {{group.groupName}}</a>
-            <br> GRP ID: {{group._id}}
-            <button ng-click="getUsers(this, group._id)">Invite User</button>
-            <br>
-            <div ng-show="searchForUser">
-                <br>
-                <header>
-                    <md-autocomplete md-selected-item="targetUser" md-search-text="queryText" md-items="user in findUser(queryText)" md-min-length="3"
-                    md-item-text="user.name" placeholder="Search for a user">
-                        <span md-highlight-text="queryText">{{ user.name }}</span>
-                    </md-autocomplete>
-                    {{selectedUser}}
-                    <br>
-                    <br>
-                    <button ng-click="sendInvite(targetUser.id)">Send Invite</button>
-                </header>
-                <br>
-            </div>
-            <br>
-        </li>
-    </ul>
-</div>
-
-<br> My Invitations
-<div>
-    <br>
-    <button ng-click="getInvites()">Get Invites</button>
-    <ul>
-        <li ng-repeat="invite in myInvites track by $index">
-            {{invite.groupInvitedTo.groupName}}
-            <br> Invited by: {{invite.invitedBy}}
-            <br>
-            <br>
-            <button ng-click="acceptInvite(invite)">Accept Invite</button>
-            <br>
-            <br>
-        </li>
-    </ul>
-</div>
-
-<br>
-<br>
-<br>
-
-<!-- socket.io tests -->
-<!-- 
-<br>
-<br>
-<div>
-    <label>Please enter a message: </label>
-    <input ng-model="msg">
-    <button ng-click="send()">send</button>
-    <br/>
-</div>
-<br> (SOCKET IO TESTS):
-<ul>
-    <li ng-repeat="message in messages track by $index">{{message}}</li>
-</ul>
--->
