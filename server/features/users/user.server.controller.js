@@ -33,10 +33,11 @@ module.exports = {
         User.find().exec(function (err, users) {
             var userData = [];
             for (var i = 0; i < users.length; i++) {
-                // ONLY SEND NAME/ID/GROUPS //
+                // ONLY SEND NAME/ID/IMG/GROUPS //
                 userData.push({
                     name: users[i].google.name,
                     id: users[i]._id,
+                    img: users[i].google.image,
                     groups: users[i].groups
                 })
             }
