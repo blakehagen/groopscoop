@@ -217,9 +217,11 @@ a:visited {
 
     .box-row h3 {
         font-size: 18px;
-        font-weight: 400;
+        font-weight: 800;
         line-height: 60px; 
+        letter-spacing: 1px;
         text-align: center;
+        color: #4D4C4C;
     }
     
 .inputs {
@@ -236,11 +238,22 @@ a:visited {
     margin: 0 80px 0 0;
 }
 
+    .input-split h4 {
+        color: #4D4C4C;
+    }
+
 .group-input {
     width: 270px;
     height: 30px; 
     /*border: #959595;*/
+    padding-left: 14px;
 }
+
+    .group-input select {
+        width: 270px;
+        height: 30px; 
+        
+    }
 
 .create-btn-container {
     height: auto;

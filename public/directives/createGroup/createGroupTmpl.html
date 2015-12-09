@@ -18,9 +18,9 @@
             <h4>Invite Users </h4>
         </div>
         <div class="input-split">
-            <div angucomplete-alt id="ex2" placeholder="Search people" pause="300" selected-object="selectedPerson" local-data="users"
-            search-fields="name" title-field="name" minlength="3" input-class="group-input"
-            input-class="form-control form-control-small" match-class="highlight">
+            <div angucomplete-alt id="inviter" placeholder="Search by name" pause="300" selected-object="selectedPerson" local-data="users"
+            search-fields="name" title-field="name" minlength="3" input-class="group-input" input-class="" match-class="highlight"
+            ng-keyup="addPersonToInviteList($event, id)">
             </div>
         </div>
     </div>
@@ -30,9 +30,15 @@
             <h4> Invites List </h4>
         </div>
         <div class="input-split">
-            <input class="group-input" type="text">
+            <div class="group-input">
+                <select name="repeatSelect" id="repeatSelect" ng-model="data.repeatSelect" 
+                    <option ng-repeat="name in invitesList track by $index">{{name.title}} </option>
+                </select>
+            </div>
         </div>
     </div>
+
+
 
 
 
@@ -43,12 +49,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
 
 
 

@@ -21,12 +21,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     };
     $scope.getAuthUser();
 
-    // $scope.$emit('userLoggedIn', userObj);
  
-    
-
-
-
     // CREATE NEW GROUP //
     $scope.createGroupBox = function () {
         $scope.createNewGroupBox = !$scope.createNewGroupBox;
@@ -54,26 +49,45 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
             socketService.emit('connectedUserGroups', $scope.myGroupIds);
         })
     };
+
+
     
 
-    // INVITE USER TO GROUP //
-    // OPEN SEARCH FIELD //
-    $scope.getUsers = function (idx, grpId) {
-        idx.searchForUser = !idx.searchForUser;
-        $scope.groupId = grpId;
-        // GET USERS IN DB //
-        // userService.searchUsers().then(function (response) {
-        //     $scope.users = response;
-        // })
-    };
     
-    // QUERY USERS //
-    $scope.findUser = function (queryText) {
-        var query = angular.lowercase(queryText);
-        return $scope.users.filter(function (user) {
-            return user.name.toLowerCase().indexOf(query) !== -1;
-        });
+    
+    /////////// SELECT USER AND POST TO INVITES LIST AND SEND ALL INVITES TO GROUP AT ONE TIME ////
+    
+    // Clear input once name is selected //
+    $scope.clearInput = function (id) {
+        if (id) {
+            $scope.$broadcast('angucomplete-alt:clearInput', id);
+        }
+        else {
+            $scope.$broadcast('angucomplete-alt:clearInput');
+        }
     };
+
+    $scope.invitesList = [];
+    $scope.addPersonToInviteList = function (event, id) {
+        if (event.keyCode === 13) {
+            if ($scope.selectedPerson) {
+                var namesInList = $scope.invitesList.map(function (name) {
+                    return name.title;
+                });
+                if (namesInList.indexOf($scope.selectedPerson.title) === -1) {
+                    console.log($scope.selectedPerson);
+                    $scope.invitesList.push($scope.selectedPerson);
+                    $scope.clearInput(id);
+                }
+            }
+            console.log('invites List ', $scope.invitesList);
+        };
+
+    };
+
+    // TO SHOW WHO HAS BEEN SELECTED FOR INVITE FOR THE NEW GROUP //
+ 
+
 
     // POST INVITE TO THE INVITED USER OBJ //
     $scope.sendInvite = function (targetUserId) {
@@ -142,12 +156,6 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
         socketService.removeAllListeners();
         console.log('$Destroy triggered!');
     });
-
- $scope.people = [
-      {firstName: "Daryl", surname: "Rowland", twitter: "@darylrowland", pic: "img/daryl.jpeg"},
-      {firstName: "Alan", surname: "Partridge", twitter: "@alangpartridge", pic: "img/alanp.jpg"},
-      {firstName: "Annie", surname: "Rowland", twitter: "@anklesannie", pic: "img/annie.jpg"}
-    ];
 
 
 
