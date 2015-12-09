@@ -10,7 +10,7 @@
 
 </head>
 
-<body>
+<body ng-controller="socketCtrl">
 
     <ui-view></ui-view>
 
@@ -29,6 +29,7 @@
     <!-- MOMENT.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
     <!-- CONTROLLERS -->
+    <script src="./features/socket/socketCtrl.js"></script>
     <script src="./features/home/homeCtrl.js"></script>
     <script src="./features/user/userCtrl.js"></script>
     <script src="./features/group/groupCtrl.js"></script>
@@ -36,7 +37,6 @@
     <script src="./services/authService.js"></script>
     <script src="./services/userService.js"></script>
     <script src="./services/groupService.js"></script>
-    <script src="./services/socketService.js"></script>
     <!-- DIRECTIVES -->
     <script src="./directives/createGroup/createGroupDirective.js"></script>
 </body>

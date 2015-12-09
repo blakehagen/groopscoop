@@ -88,7 +88,7 @@ a:visited {
     .header img {
         float: right;
         height: 75%;
-        margin: 7px 30px 0 0;
+        margin: 7px 40px 0 0;
     }
 
 .sidebar-user-view {
@@ -239,7 +239,7 @@ a:visited {
 .group-input {
     width: 270px;
     height: 30px; 
-    borer: #959595;
+    /*border: #959595;*/
 }
 
 .create-btn-container {
@@ -259,7 +259,6 @@ a:visited {
         text-align: center;
         line-height: 39px;
     }
-
 
 
 

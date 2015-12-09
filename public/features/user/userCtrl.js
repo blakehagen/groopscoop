@@ -1,7 +1,5 @@
 angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope, authService, userService, groupService, socketService) {
 
-    // var socket = io.connect();
-
     // GET AUTHENTICATED USER AND THEIR GROUPS ON PAGE LOAD //
     $scope.getAuthUser = function () {
         authService.getUser().then(function (user) {
@@ -23,12 +21,19 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     };
     $scope.getAuthUser();
 
+    // $scope.$emit('userLoggedIn', userObj);
+ 
+    
+
+
 
     // CREATE NEW GROUP //
-    // $scope.newGrp = false;
     $scope.createGroupBox = function () {
-        $scope.newGrp = !$scope.newGrp;
-        $scope.createNewGroup = !$scope.createNewGroup;
+        $scope.createNewGroupBox = !$scope.createNewGroupBox;
+        userService.searchUsers().then(function (response) {
+            console.log('users in DB ', response);
+            $scope.users = response;
+        })
     }
 
     $scope.createNewGroup = function () {
@@ -41,7 +46,6 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
         userService.createGroup(grp).then(function (response) {
             console.log('SUCCESS, GROUP CREATED: ', response);
             $scope.grpName = '';
-            $scope.newGrp = !$scope.newGrp;
             $scope.myGroups.push(response);
             $scope.myGroupIds = [];
             for (var i = 0; i < $scope.myGroups.length; i++) {
@@ -58,9 +62,9 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
         idx.searchForUser = !idx.searchForUser;
         $scope.groupId = grpId;
         // GET USERS IN DB //
-        userService.searchUsers().then(function (response) {
-            $scope.users = response;
-        })
+        // userService.searchUsers().then(function (response) {
+        //     $scope.users = response;
+        // })
     };
     
     // QUERY USERS //
@@ -134,5 +138,13 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
         });
     };
 
+    $scope.disconnect = function () {
+        socketService.disconnect();
+    }
+
+    $scope.$on('$destroy', function (event) {
+        socketService.removeAllListeners();
+        console.log('destroy triggered!');
+    });
 
 });

@@ -9,21 +9,29 @@
             <h4>Group Name</h4>
         </div>
         <div class="input-split">
-            <input class="group-input" type="text">
+            <input class="group-input" type="text" ng-model="grpName">
         </div>
-
-
     </div>
-
+    <!--  INVITE USERS AUTO COMPLETE BOX   -->
     <div class="box-row inputs">
         <div class="input-split">
             <h4>Invite Users </h4>
         </div>
         <div class="input-split">
-            <input class="group-input" type="text">
+            <!--<input class="group-input" type="text">-->
+            <md-autocomplete 
+                class="group-input" 
+                md-selected-item="targetUser" 
+                md-search-text="queryText" 
+                md-items="user in findUser(queryText)" 
+                md-min-length="3"
+                md-item-text="user.name" 
+                placeholder="Search by name">
+                <span md-highlight-text="queryText">{{ user.name }}</span>
+            </md-autocomplete>
+            
+            
         </div>
-
-
     </div>
 
     <div class="box-row inputs">
@@ -33,16 +41,14 @@
         <div class="input-split">
             <input class="group-input" type="text">
         </div>
-
     </div>
 
     <div class="box-row inputs create-btn-container">
         <div class="input-split">
-            <div class="create-grp-btn">
+            <div class="create-grp-btn" ng-click="createNewGroup()">
                 <h4>Create Group</h4>
             </div>
         </div>
-
     </div>
 
 

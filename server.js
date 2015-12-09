@@ -39,11 +39,11 @@ io.on('connection', function (socket) {
     socket.on('connectedUserGroups', function (data) {
         // console.log('connectedUserGroups data: ', data);
         var groups = data;
-        console.log(groups);
+        // console.log(groups);
         for (var i = 0; i < groups.length; i++) {
             var group = groups[i];
             socket.join(group);
-            console.log('group ', group);
+            // console.log('group ', group);
         };
         // console.log('socket rooms ', socket.adapter.rooms);
     });
@@ -60,7 +60,7 @@ io.on('connection', function (socket) {
 
     socket.on('sendNewPost', function (data) {
         console.log('on send new post ', data);
-       io.to(data.group).emit('getNewPost', data);
+        io.to(data.group).emit('getNewPost', data);
     });
 });
 

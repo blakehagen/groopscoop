@@ -1,3 +1,4 @@
+<button ng-click="disconnect()">Disconnect Socket???</button>
 <div class="main-user-wrapper">
 
     <div class="sidebar-user-view">
@@ -8,6 +9,7 @@
             <div class="sidebar-sub-item">
                 <h4>{{user.google.name}}</h4>
             </div>
+
         </div>
         <div class="row">
             <h4 class="myGroups-text">MY GROUPS</h4>
@@ -48,15 +50,9 @@
         <img src="./assets/groopscooplogo2-compressor.png" alt="Groop Scoop">
     </div>
 
-    <div class="main-content-area" ng-hide="createNewGroup">
+    <div class="main-content-area" ng-show="createNewGroupBox">
         <create-group></create-group>
     </div>
-
-
-
-
-
-
 
 </div>
 
@@ -86,7 +82,7 @@
 
 
 
-
+<!--
 
 
 
@@ -106,7 +102,7 @@
 </div>
 <br>
 
-<div ng-show="newGrp">
+<div>
     <input type="text" placeholder="Group name..." ng-model="grpName">
     <button ng-click="createNewGroup()">Submit Group</button>
 </div>
@@ -160,6 +156,7 @@
 <br>
 
 <!-- socket.io tests -->
+<!-- 
 <br>
 <br>
 <div>
@@ -172,3 +169,4 @@
 <ul>
     <li ng-repeat="message in messages track by $index">{{message}}</li>
 </ul>
+-->

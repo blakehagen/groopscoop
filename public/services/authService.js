@@ -14,10 +14,6 @@ angular.module('groupScoop').service('authService', function ($http, $q) {
         return deferred.promise
     };
     
-    this.disconnect = function(){
-        
-    }
-    
     
     
 });
