@@ -1,4 +1,4 @@
-angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope, authService, userService, groupService, socketService) {
+angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope, authService, userService, groupService, socketService, $state) {
 
     // // // // // // // // // // // // // // // // // ///
     // // // // // // GET AUTH USER INFO // // // // // //
@@ -108,6 +108,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
             socketService.emit('connectedUserGroups', $scope.myGroupIds);
             // Sends invites to users that were selected //
             sendMultipleInvites();
+            $state.go('group', { id: $scope.newGroupId });
         })
     };
     

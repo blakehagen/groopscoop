@@ -197,7 +197,7 @@ a:visited {
     display: inline-block;
     /*border: 1px solid darkred;*/
     width: calc(100% - 300px);
-    min-height: 100%;
+    /*min-height: 100%;*/
     text-align: center;
     float: right;   
 }

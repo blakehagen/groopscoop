@@ -1,4 +1,7 @@
-angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scope, groupService, socketService) {
+angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scope, groupService, socketService, group) {
+    
+    $scope.groupData = group;
+    
     
     // USER OBJECT INFO FOR USE WITH NEW POSTS //
     var user = {
