@@ -1,4 +1,119 @@
+<div class="main-user-wrapper">
 
+    <div class="sidebar-user-view">
+
+        <div class="sidebar-row center userBox">
+            <div class="sidebar-sub-item">
+                <img ng-src="{{user.google.image}}">
+            </div>
+            <div class="sidebar-sub-item">
+                <h4>{{user.google.name}}</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <h4 class="myGroups-text">MY GROUPS</h4>
+        </div>
+
+        <div class="sidebar-row section">
+            <div class="row">
+                <div class="sub-item">
+                    <h4 class="group-name-text" ng-class="createGroupActive ? 'active' : 'notActive'">New Group</h4>
+                </div>
+                <div class="sub-item right">
+                    <h4 class="group-name-text action" ng-class="createGroupActive ? 'active' : 'notActive'" ng-click="createGroupBox()">Create</h4>
+                </div>
+            </div>
+
+            <!--<div class="row" ng-repeat="invite in myInvites track by $index">
+                <div class="sub-item">
+                    <h4 class="group-name-text">{{invite.groupInvitedTo.groupName}}</h4>
+                </div>
+                <div class="sub-item right">
+                    <h4 class="group-name-text action join" ng-click="acceptInvite(invite)">Join</h4>
+                </div>
+            </div>-->
+        </div>
+
+        <div class="sidebar-row section">
+            <div class="row" ng-repeat="group in user.groups track by $index">
+                <div class="sub-item">
+                    <h4 class="group-name-text">{{group.groupName}}</h4>
+                </div>
+                <div class="sub-item right">
+                    <a href="#/group/{{group._id}}" ng-click="getGroupData(group._id)"><h4 class="group-name-text action">Go to</h4></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="header">
+        <div class="group-title">
+            <h4 ng-cloak>{{groupData.groupNameUpperCase}}</h4>
+        </div>
+
+        <img src="./assets/groopscooplogo2-compressor.png" alt="Groop Scoop">
+    </div>
+
+    <div class="main-content-area">
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
 <br>
 <a href="/#user/{{user._id}}"><button>BACK TO GROUPS</button></a>
 <br>
@@ -17,6 +132,7 @@ Group Template
     <br>
     <br>
         <!-- Posted messages-->
+<!--
         Messages
 <div ng-repeat="post in groupData.posts track by $index">
     <br>
@@ -25,8 +141,4 @@ Group Template
     <br>
     <br>
 </div>
-
-    
-
-
-
+-->

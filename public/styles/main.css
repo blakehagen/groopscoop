@@ -70,7 +70,7 @@ a:visited {
         padding-top: 14px;
     }
 
-/* USER LANDING PAGE AFTER LOGIN */
+/* USER LANDING PAGE AFTER LOGIN (USER VIEW) */
 
 .main-user-wrapper {
     width: 100%;
@@ -81,8 +81,10 @@ a:visited {
 
 .header {
     height: 60px;
-    width: 100%;
+    width: calc(100% - 350px);
     background: #8CB8DA;
+    float: right;
+    text-align: center;
 }
 
     .header img {
@@ -138,6 +140,7 @@ a:visited {
 .section {
     /*border: 1px solid red;*/
     height: auto;
+    /*overflow: auto*/
 }
 
 .section .row {
@@ -279,6 +282,24 @@ a:visited {
         color: #fff;
         text-align: center;
         line-height: 39px;
+    }
+    
+/* GROUP VIEW */
+
+.group-title {
+    height: 100%;
+    text-align: center;
+    margin: 0 auto;
+    display: inline-block;
+
+}
+    
+    .group-title h4 {
+        font-size: 18px;
+        font-weight: 800;
+        line-height: 60px;
+        letter-spacing: 1px;
+        color: #fff;
     }
 
 

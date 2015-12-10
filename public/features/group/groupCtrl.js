@@ -1,5 +1,18 @@
 angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scope, groupService, socketService) {
     
+    // // // // // // // // // // // // // // // // // // // // // // // // // // ///
+    // // // // // // GET GROUP DATA AFTER A GROUP IS SELECTED TO ENTER // // // // // 
+    // // // // // // // // // // // // // // // // // // // // // // // // // // ///
+    
+    // Get data of group that was clicked (via group service) //
+    $scope.getGroupData = function (groupId) {
+        groupService.getGroup(groupId).then(function (group) {
+            $rootScope.groupData = group;
+            $rootScope.groupData.groupNameUpperCase = group.groupName.toUpperCase();
+            console.log('grp data on userCtrl saved to $rootScope ', $rootScope.groupData);
+        });
+    };
+    
     // USER OBJECT INFO FOR USE WITH NEW POSTS //
     var user = {
         id: $rootScope.user._id,
@@ -37,6 +50,15 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
             $rootScope.groupData.posts.unshift(data);
         }
         // $scope.$digest();
+    });
+    
+    // // // // // // // // // // // // // // // // // // // // // // // // // // //
+    // // // // // // DESTROY SOCKET CONNECTIONS TO AVOID DUPLICATES // // // // // 
+    // // // // // // // // // // // // // // // // // // // // // // // // // // //
+  
+    $scope.$on('$destroy', function (event) {
+        socketService.removeAllListeners();
+        console.log('$Destroy triggered!');
     });
 
 

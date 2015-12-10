@@ -10,6 +10,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
             console.log('MY DATA: ', user);
             $rootScope.user = user;
             $scope.user = user;
+            $rootScope.myGroups = user.groups;
             $scope.myGroups = user.groups;
             $scope.myInvites = user.invitations;
             $scope.myGroupIds = [];
@@ -110,6 +111,8 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
             $scope.getGroupData($scope.newGroupId);
             // Sends invites to users that were selected //
             sendMultipleInvites();
+            // Gets updated user object //
+            $scope.getAuthUser();
             // Navigate to new group //
             $state.go('group', { id: $scope.newGroupId });
         })
@@ -186,6 +189,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     $scope.getGroupData = function (groupId) {
         groupService.getGroup(groupId).then(function (group) {
             $rootScope.groupData = group;
+            $rootScope.groupData.groupNameUpperCase = group.groupName.toUpperCase();
             console.log('grp data on userCtrl saved to $rootScope ', $rootScope.groupData);
         });
     };
