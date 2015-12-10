@@ -106,10 +106,10 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
                 $scope.myGroupIds.push($scope.myGroups[i]._id);
             };
             socketService.emit('connectedUserGroups', $scope.myGroupIds);
-            // Sends invites to users that were selected //
-            sendMultipleInvites();
             // Populate new group with group info //
             $scope.getGroupData($scope.newGroupId);
+            // Sends invites to users that were selected //
+            sendMultipleInvites();
             // Navigate to new group //
             $state.go('group', { id: $scope.newGroupId });
         })
@@ -121,6 +121,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     
     // Join a group user has been invited to //
     $scope.acceptInvite = function (invite) {
+        console.log('accepting this invitation: ', invite.groupInvitedTo);
         var acceptedInviteData = {
             inviteData: invite,
             acceptedBy: $scope.user._id
@@ -154,7 +155,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
  
     // Get auth user's groups and updates the newly joined group to the list //
     $scope.updateGroupList = function () {
-        userService.getGroups().then(function (response) {
+        userService.getGroups($scope.user._id).then(function (response) {
             console.log('this is newly added group: ', response);
             // The id below is used to find the group object in database to add the UserID //
             $scope.acceptedGroupId = response._id;

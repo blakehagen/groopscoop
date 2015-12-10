@@ -47,7 +47,7 @@ io.on('connection', function (socket) {
         // console.log('socket rooms ', socket.adapter.rooms);
     });
     socket.on('sendNewPost', function (data) {
-        console.log('on send new post ', data);
+        // console.log('on send new post ', data);
         io.to(data.group).emit('getNewPost', data);
         console.log('sent to ', data.group);
     });

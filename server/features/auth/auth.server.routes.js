@@ -11,7 +11,6 @@ module.exports = function (app, passport) {
         if (req.user) {
             res.redirect('/#/user/' + req.user._id);
         }
-        // res.redirect('/#');
     });
     
     // LOG OUT //

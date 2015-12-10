@@ -1,7 +1,6 @@
 angular.module('groupScoop', ['angucomplete-alt', 'ngMaterial', 'ui.router']).config(function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
-
         .state('home', {
             url: '/',
             templateUrl: './features/home/homeTmpl.html',
@@ -22,6 +21,4 @@ angular.module('groupScoop', ['angucomplete-alt', 'ngMaterial', 'ui.router']).co
 
     $urlRouterProvider
         .otherwise('/');
-
-
 });

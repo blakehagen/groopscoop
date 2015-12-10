@@ -12,9 +12,6 @@ angular.module('groupScoop').service('authService', function ($http, $q) {
             console.log('SERVICE ERR', err);
         })
         return deferred.promise
-    };
-    
-    
-    
+    }; 
 });
 

@@ -76,14 +76,15 @@ angular.module('groupScoop').service('userService', function ($http, $q) {
     };
     
     // UPDATE USER'S GROUP LIST //
-    this.getGroups = function () {
+    this.getGroups = function (userId) {
         var deferred = $q.defer();
         $http({
             method: 'GET',
-            url: '/api/v1/user/groups'
+            url: '/api/v1/user/' + userId + '/groups'
         }).then(function (response) {
-            var newGrp = response.data[response.data.length - 1].groups[response.data[response.data.length - 1].groups.length - 1];
-
+            console.log('response after getting groups: ', response);
+            var newGrp = response.data.groups[response.data.groups.length - 1];
+            console.log('newgrp on service ', newGrp);
             deferred.resolve(newGrp)
         })
         return deferred.promise

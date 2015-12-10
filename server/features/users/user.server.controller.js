@@ -94,7 +94,8 @@ module.exports = {
     
     // GETS ALL GROUPS USER BELONGS TO //
     getGroups: function (req, res, next) {
-        User.find().populate('groups').exec(function (err, groups) {
+        User.findById(req.params.id).populate('groups').exec(function (err, groups) {
+            // console.log('groups: ', groups);
             if (err) {
                 res.status(500);
             }

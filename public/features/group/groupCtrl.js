@@ -27,7 +27,6 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
             $scope.postData.postedBy = user;
             $scope.postData.postId = response._id
             socketService.emit('sendNewPost', $scope.postData);
-
         })
     };
 
@@ -38,18 +37,7 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
             $rootScope.groupData.posts.unshift(data);
         }
         // $scope.$digest();
-    })
-
-    $scope.disconnectSocket = function () {
-        socketService.emit('disconnect');
-        console.log('i sent this');
-
-    }
-
-
-
-
-
+    });
 
 
 });
