@@ -108,6 +108,9 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
             socketService.emit('connectedUserGroups', $scope.myGroupIds);
             // Sends invites to users that were selected //
             sendMultipleInvites();
+            // Populate new group with group info //
+            $scope.getGroupData($scope.newGroupId);
+            // Navigate to new group //
             $state.go('group', { id: $scope.newGroupId });
         })
     };

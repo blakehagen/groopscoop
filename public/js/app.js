@@ -17,13 +17,7 @@ angular.module('groupScoop', ['angucomplete-alt', 'ngMaterial', 'ui.router']).co
         .state('group', {
             url: '/group/:id',
             templateUrl: './features/group/groupTmpl.html',
-            controller: 'groupCtrl',
-            resolve: {
-                group: function(groupService, $stateParams){
-                    return groupService.getGroup($stateParams.id);
-                }
-            }
-  
+            controller: 'groupCtrl'
         })
 
     $urlRouterProvider
