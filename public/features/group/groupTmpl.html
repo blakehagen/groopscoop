@@ -1,6 +1,6 @@
 <div class="main-user-wrapper">
 
-    <div class="sidebar-user-view">
+    <div class="sidebar">
 
         <div class="sidebar-row center userBox">
             <div class="sidebar-sub-item">
@@ -45,20 +45,20 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <div class="header">
-        <div class="group-title">
+        <div class="group-title title">
             <h4 ng-cloak>{{groupData.groupNameUpperCase}}</h4>
         </div>
-
-        <img src="./assets/groopscooplogo2-compressor.png" alt="Groop Scoop">
+        <div class="group-title right">
+            <img src="./assets/groopscooplogo2-compressor.png" alt="Groop Scoop">
+        </div>
     </div>
 
     <div class="main-content-area">
+        <content-directive></content-directive>
     </div>
-
 </div>
 
 

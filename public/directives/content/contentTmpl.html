@@ -1,0 +1,33 @@
+<div class="post-input-content">
+    <div class="post-container">
+        <textarea placeholder="Say something..." ng-model="newMessage"></textarea>
+    </div>
+
+    <div class="post-btn-container">
+        <div class="post-btn" ng-click="postNew()">
+            <h3>Post</h3>
+        </div>
+    </div>
+</div>
+
+<div class="content" ng-repeat="post in groupData.posts track by $index">
+    <div class="img-container">
+        <img ng-src="{{post.postedBy.google.image}}" alt="PostedBy">
+    </div>
+    <div class="content-row post-info">
+        <div class="sub left">
+            <h4>{{post.postedBy.google.name}}</h4>
+        </div>
+        <div class="sub right">
+            <h4>{{post.datePosted}}</h4>
+        </div>
+    </div>
+    <div class="content-row post-text">
+        <h5>{{post.postContent.message}}</h5>
+    </div>
+    <div class="content-row comment">
+        <div class="comment-icon">
+            <img src="./assets/bubble1.png" alt="comments">
+        </div>
+    </div>
+</div>

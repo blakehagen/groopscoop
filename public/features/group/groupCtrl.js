@@ -35,10 +35,12 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
         };
         // SEND NEW POST TO DB //
         groupService.postNewMessage($scope.postData).then(function (response) {
-            // console.log(response);
+            console.log(response);
+            $scope.newMessage = '';
             // TO UPDATE VIEW WHEN NEW POST //
             $scope.postData.postedBy = user;
-            $scope.postData.postId = response._id
+            $scope.postData.postId = response._id;
+            console.log('data emit from grp ctrl: ', $scope.postData);
             socketService.emit('sendNewPost', $scope.postData);
         })
     };
