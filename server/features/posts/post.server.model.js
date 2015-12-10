@@ -14,7 +14,7 @@ var PostSchema = new Schema({
             commentLinkUrl: { type: String },
             commentPostedBy: { type: Schema.Types.ObjectId, ref: 'User' },
             commentDatePosted: { type: String },
-            dateCreatedNonRead: { type: Date, default: new Date() },
+            dateCommentCreatedNonRead: { type: Date, default: new Date() },
         }]
     }
 });

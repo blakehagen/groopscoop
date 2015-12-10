@@ -308,6 +308,7 @@ a:visited {
     }
     
 .post-input-content {
+    max-width: 700px;
     width: 65%;
     margin: 50px auto;
     height: 130px;
@@ -362,6 +363,7 @@ a:visited {
     }
     
 .content {
+    max-width: 700px;
     width: 65%;
     min-height: 135px;
     overflow: auto;
@@ -400,6 +402,10 @@ a:visited {
     display: inline-block;
     margin: 0 20px 0 10px;
 }
+
+    .sub span {
+        cursor: default;
+    }
 
     .sub h4 {
         font-size: 16px;

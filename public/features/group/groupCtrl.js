@@ -29,6 +29,7 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
             postedBy: user.id,
             group: $rootScope.groupData._id,
             datePosted: moment().format('ddd MMM DD YYYY, h:mm a'),
+            dateCreatedNonRead: new Date(),
             postContent: {
                 message: $scope.newMessage
             }
@@ -40,14 +41,15 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
             // TO UPDATE VIEW WHEN NEW POST //
             $scope.postData.postedBy = user;
             $scope.postData.postId = response._id;
-            console.log('data emit from grp ctrl: ', $scope.postData);
+            $scope.postData.dateCreatedNonRead = response.dateCreatedNonRead;
+            // console.log('data emit from grp ctrl: ', $scope.postData);
             socketService.emit('sendNewPost', $scope.postData);
         })
     };
 
     // Listening for New Posts //
     socketService.on('getNewPost', function (data) {
-        console.log('socketdata coming back from server: ', data);
+        // console.log('socketdata coming back from server: ', data);
         if (data.group === $rootScope.groupData._id) {
             $rootScope.groupData.posts.unshift(data);
         }

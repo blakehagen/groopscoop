@@ -19,7 +19,7 @@
             <h4>{{post.postedBy.google.name}}</h4>
         </div>
         <div class="sub right">
-            <h4>{{post.datePosted}}</h4>
+            <h4><span title="{{ post.dateCreatedNonRead | amDateFormat:'ddd, MMM D YYYY, h:mma' }}" am-time-ago="post.dateCreatedNonRead"></span>
         </div>
     </div>
     <div class="content-row post-text">
