@@ -51,7 +51,6 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
         if (data.group === $rootScope.groupData._id) {
             $rootScope.groupData.posts.unshift(data);
         }
-        // $scope.$digest();
     });
     
     // // // // // // // // // // // // // // // // // // // // // // // // // // //

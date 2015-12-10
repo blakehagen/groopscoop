@@ -363,7 +363,7 @@ a:visited {
     
 .content {
     width: 65%;
-    min-height: 165px;
+    min-height: 135px;
     overflow: auto;
     margin: 50px auto;
     background: #fff;
@@ -411,7 +411,7 @@ a:visited {
 .post-text {
     text-align: left;
     height: auto;
-    min-height: 70px;
+    min-height: 40px;
 }
 
     .post-text h5 {

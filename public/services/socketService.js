@@ -1,5 +1,5 @@
 angular.module('groupScoop').factory('socketService', ['$rootScope', function ($rootScope) {
-    var socket = io.connect('http://localhost:3000', { forceNew: true });
+    var socket = io.connect( { forceNew: true });
 
     return {
         removeAllListeners: function (eventName, callback) {
