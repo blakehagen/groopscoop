@@ -55,7 +55,7 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
         }
     });
     
-    // Invite Others //
+    // Invite Others (Getting users from DB to search) //
     $scope.openInviteBox = function () {
         $scope.inviteOthers = !$scope.inviteOthers;
         if ($scope.inviteOthers === true) {
@@ -64,8 +64,24 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
                 console.log('invite others: ', $scope.allUsers);
             })
         }
-
     };
+
+    // Toggle Action to send the invite to selected user //
+    $scope.selectedUserToInvite = function (selected) {
+        if (selected) {
+            $scope.redPlus = !$scope.redPlus;
+            $scope.redPlusToggle = !$scope.redPlusToggle;
+            $scope.grayPlusToggle = ! $scope.grayPlusToggle;
+            console.log('User is selected');
+        }
+    };
+    
+    $scope.sendIndividualInvite = function(){
+        
+    }
+    
+    
+    
 
     
     // // // // // // // // // // // // // // // // // // // // // // // // // // //

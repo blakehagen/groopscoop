@@ -1,8 +1,8 @@
-angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope, authService, userService, groupService, socketService, $state) {
+angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope, authService, userService, groupService, socketService, invitationService, $state) {
 
-    // // // // // // // // // // // // // // // // // ///
-    // // // // // // GET AUTH USER INFO // // // // // //
-    // // // // // // // // // // // // // // // // // //
+    // // // // // // // // // // /
+    // // GET AUTH USER INFO // // 
+    // // // // // // // // // //
 
     // Gets user data on user view page load //
     $scope.getAuthUser = function () {
@@ -27,9 +27,9 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     $scope.getAuthUser();
 
 
-    // // // // // // // // // // // // // // // // // // // // //
-    // // // // // // AUTH USER CREATES NEW GROUP // // // // // //
-    // // // // // // // // // // // // // // // // // // // // //
+    // // // // // // // // // // // // // /
+    // // AUTH USER CREATES NEW GROUP // //
+    // // // // // // // // // // // // // 
     
     // ** NEW GRP FORM INPUT ** 'Create Group' form opens and users pulled from database to search //
     $scope.createGroupBox = function () {
@@ -52,42 +52,14 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
                 });
                 if (namesInList.indexOf($scope.selectedPerson.title) === -1) {
                     $scope.invitesList.push($scope.selectedPerson);
-                    $scope.clearInput(id);
+                    invitationService.clearInputForInvite(id);
                 }
             }
         };
     };
-    
-    // ** NEW GRP FORM INPUT ** Clear 'Invite Users' input once name is selected on form //
-    $scope.clearInput = function (id) {
-        if (id) {
-            $scope.$broadcast('angucomplete-alt:clearInput', id);
-        }
-        else {
-            $scope.$broadcast('angucomplete-alt:clearInput');
-        }
-    };
-    
-    // ** NEW GRP FORM INPUT ** Function that will send invites to server for each invited user //
-    $scope.sendInvite = function (targetUserId) {
-        var invitation = {
-            targetUserId: targetUserId,
-            senderName: $scope.user.google.name,
-            invitedTo: $scope.newGroupId
-        };
-        userService.sendInvite(invitation).then(function (response) {
-            console.log(response);
-        });
-    };
-    
-    // ** NEW GRP FORM INPUT ** Takes the invitesList array and sends out invite to all of them //
-    function sendMultipleInvites() {
-        $scope.invitesList.forEach(function (e) {
-            $scope.sendInvite(e.description.id);
-        });
-    };
 
-    // ** NEW GRP FORM INPUT ** Group object created and on form complettion new group info sent to server //
+
+    // ** NEW GRP FORM INPUT ** Group object created and on form completion new group info sent to server //
     $scope.createNewGroup = function () {
         var grp = {
             groupName: $scope.grpName,
@@ -97,9 +69,9 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
         };
         // New group created on server and returns new group data back //
         userService.createGroup(grp).then(function (newGrpData) {
+            $scope.newGrpData = newGrpData;
             console.log('SUCCESS, GROUP CREATED: ', newGrpData);
             $scope.grpName = '';
-            $scope.newGroupId = newGrpData._id;
             $scope.myGroups.push(newGrpData);
             $scope.myGroupIds = [];
             // Auth user ids sent to socket.io to join rooms //
@@ -108,7 +80,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
             };
             socketService.emit('connectedUserGroups', $scope.myGroupIds);
             // Populate new group with group info //
-            $scope.getGroupData($scope.newGroupId);
+            $scope.getGroupData($scope.newGrpData._id);
             // Sends invites to users that were selected //
             sendMultipleInvites();
             // Gets updated user object //
@@ -118,9 +90,16 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
         })
     };
     
-    // // // // // // // // // // // // // // // // // // // // // //
-    // // // // // // JOIN A GROUP (ACCEPT INVITE) // // // // // //
-    // // // // // // // // // // // // // // // // // // // // // //
+    // ** NEW GRP FORM INPUT ** Takes the invitesList array and sends out invite to all of them //
+    function sendMultipleInvites() {
+        $scope.invitesList.forEach(function (e) {
+            invitationService.sendInviteFromCreateGroup(e.description.id, $scope.newGrpData._id);
+        });
+    };
+    
+    // // // // // // // // // // // // // //
+    // // JOIN A GROUP (ACCEPT INVITE) // //
+    // // // // // // // // // // // // // 
     
     // Join a group user has been invited to //
     $scope.acceptInvite = function (invite) {
@@ -139,9 +118,9 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     };
 
 
-    // // // // // // // // // // // // // // // // // // // /
-    // // // // // // GET AUTH USER INVITES // // // // // //
-    // // // // // // // // // // // // // // // // // // // 
+    // // // // // // // // // // // /
+    // // GET AUTH USER INVITES // //
+    // // // // // // // // // // // 
     
     // Gets auth user's invites //
     $scope.getInvites = function () {
@@ -152,9 +131,9 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     };
     
     
-    // // // // // // // // // // // // // // // // // // 
-    // // // // // // GET AUTH USER GROUPS // // // // // 
-    // // // // // // // // // // // // // // // // // //
+    // // // // // // // // // // // 
+    // // GET AUTH USER GROUPS // // 
+    // // // // // // // // // // // 
  
     // Get auth user's groups and updates the newly joined group to the list //
     $scope.updateGroupList = function () {
@@ -181,9 +160,9 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     };
     
     
-    // // // // // // // // // // // // // // // // // // // // // // // // // // ///
-    // // // // // // GET GROUP DATA AFTER A GROUP IS SELECTED TO ENTER // // // // // 
-    // // // // // // // // // // // // // // // // // // // // // // // // // // ///
+    // // // // // // // // // // // // // // // // // // // // //
+    // // GET GROUP DATA AFTER A GROUP IS SELECTED TO ENTER // //
+    // // // // // // // // // // // // // // // // // // // // 
     
     // Get data of group that was clicked (via group service_ //
     $scope.getGroupData = function (groupId) {
@@ -195,9 +174,9 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     };
     
     
-    // // // // // // // // // // // // // // // // // // // // // // // // // // //
-    // // // // // // DESTROY SOCKET CONNECTIONS TO AVOID DUPLICATES // // // // // 
-    // // // // // // // // // // // // // // // // // // // // // // // // // // //
+    // // // // // // // // // // // // // // // // // // // //
+    // // DESTROY SOCKET CONNECTIONS TO AVOID DUPLICATES // // 
+    // // // // // // // // // // // // // // // // // // //
   
     $scope.$on('$destroy', function (event) {
         socketService.removeAllListeners();
