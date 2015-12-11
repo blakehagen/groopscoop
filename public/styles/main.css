@@ -300,7 +300,7 @@ a:visited {
 }
     
     .group-title h4 {
-        font-size: 18px;
+        font-size: 22px;
         font-weight: 800;
         line-height: 60px;
         letter-spacing: 1px;
@@ -314,7 +314,7 @@ a:visited {
     height: 130px;
     background: #fff;
     border: 1px solid #C9C8C8;
-    border-radius: 4px;
+    border-radius: 6px;
 }
 
 .post-container {
@@ -327,8 +327,8 @@ a:visited {
         height: 100%;
         border: none;
         resize: none;
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
         font-size: 14px;
         font-weight: 100px;
         color: #4D4C4C;
@@ -341,8 +341,8 @@ a:visited {
     width: 100%;
     height: 40px;
     background: #F5F5F5;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
 }
 
 .post-btn {
@@ -365,12 +365,12 @@ a:visited {
 .content {
     max-width: 700px;
     width: 65%;
-    min-height: 135px;
+    min-height: 140px;
     overflow: auto;
     margin: 50px auto;
     background: #fff;
     border: 1px solid #C9C8C8;
-    border-radius: 4px;
+    border-radius: 6px;
 }
 
 .img-container {
@@ -384,6 +384,7 @@ a:visited {
         width: 75%;
         border-radius: 50%;
         margin-top: 14px;
+        margin-left: 10px;
     }
 
 .content-row {
@@ -429,7 +430,7 @@ a:visited {
     }
 
 .comment {
-    height: 40px;  
+    height: 45px;  
 }
 
 .comment-icon {
@@ -439,7 +440,7 @@ a:visited {
 }
 
 .comment-icon img {
-    margin-top: 5px;
+    margin-top: 4px;
     height: 75%;
 }
 
