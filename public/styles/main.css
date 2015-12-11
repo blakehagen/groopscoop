@@ -472,9 +472,12 @@ a:visited {
 
 .plus-box {
     height: 40px;
-    /*border: 1px solid red;*/
     line-height: 50px;
 }
+
+    .plus-box .fa {
+        color: seagreen;
+    }
 
     .plus-box img {
         height: 50%;
@@ -482,12 +485,8 @@ a:visited {
     }
     
 .move-down {
-    padding-top: 8px;
+    margin-top: 9px;
 }
-
-    .move-down img {
-        height: 64%;
-    }
     
 .no-highlight .no-highlight:hover {
     background: none;
@@ -515,10 +514,6 @@ a:visited {
         border-radius: 50%;
         margin: 5px 0 0 5px;
     }
-    
-/*.mbm-left {
-    text-align: left;
-}*/
 
 .mbr-space {
     margin-bottom: 5px;

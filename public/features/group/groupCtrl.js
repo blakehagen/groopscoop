@@ -1,4 +1,4 @@
-angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scope, groupService, socketService, userService) {
+angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scope, groupService, socketService, userService, invitationService) {
     
     // // // // // // // // // // // // // // // // // // // // // // // // // // ///
     // // // // // // GET GROUP DATA AFTER A GROUP IS SELECTED TO ENTER // // // // // 
@@ -56,7 +56,9 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
     });
     
     // Invite Others (Getting users from DB to search) //
+    $scope.redPlus = true;
     $scope.openInviteBox = function () {
+        $scope.grayPlusToggle = true;
         $scope.inviteOthers = !$scope.inviteOthers;
         if ($scope.inviteOthers === true) {
             userService.searchUsers().then(function (usersFromDb) {
@@ -68,16 +70,25 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
 
     // Toggle Action to send the invite to selected user //
     $scope.selectedUserToInvite = function (selected) {
+        console.log(selected);
+        $scope.sendThisUserInvite = selected.description.id;
+        console.log(  $scope.sendThisUserInvite);
         if (selected) {
-            $scope.redPlus = !$scope.redPlus;
-            $scope.redPlusToggle = !$scope.redPlusToggle;
-            $scope.grayPlusToggle = ! $scope.grayPlusToggle;
+            $scope.redPlus = false;
+            $scope.redPlusToggle = true;
+            $scope.grayPlusToggle = false;
             console.log('User is selected');
         }
     };
-    
-    $scope.sendIndividualInvite = function(){
-        
+
+    $scope.sendIndividualInvite = function () {
+        console.log($scope.sendThisUserInvite);
+        invitationService.sendOneInvite($scope.sendThisUserInvite, $rootScope.groupData._id);
+        invitationService.clearInputForInvite();
+        $scope.showInviteSuccess = true;
+        $scope.redPlusToggle = false;
+        $scope.grayPlusToggle = false;
+        $scope.redPlus = true;
     }
     
     

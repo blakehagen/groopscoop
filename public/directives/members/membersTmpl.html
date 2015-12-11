@@ -3,7 +3,7 @@
         <h4 class="myGroups-text">MEMBERS ({{groupData.users.length}})</h4>
     </div>
     <div class="sub-item right">
-        <div class="plus-box" ng-hide="redPlus">
+        <div class="plus-box" ng-show="redPlus">
             <img src="./assets/plussquare.png" alt="Invite" ng-click="openInviteBox()">
         </div>
     </div>
@@ -13,14 +13,15 @@
     <div class="member-search">
         <div angucomplete-alt id="inviteOthersUsers" placeholder="Search by name" pause="300" selected-object="selectedUserToInvite"
         local-data="allUsers" search-fields="name" image-field="img" title-field="name" minlength="3" input-class="input"
-        match-class="highlight" autofocus>
+        match-class="highlight" ng-mode1="targetUser" autofocus>
         </div>
     </div>
 
     <div class="sub-item right">
         <div class="plus-box move-down">
-            <img src="./assets/plussquare_gray.png" ng-hide="grayPlusToggle">
+            <img src="./assets/plussquare_gray.png" ng-show="grayPlusToggle">
             <img src="./assets/plussquare.png" ng-show="redPlusToggle" ng-click="sendIndividualInvite()">
+            <i class="fa fa-check"  ng-show="showInviteSuccess"></i>
         </div>
     </div>
 </div>
