@@ -22,7 +22,12 @@ module.exports = function (passport) {
 
         User.findOne({ 'google.googleId': profile.id }, function (err, user) {
             if (user) {
+                profile._json.image.url = profile._json.image.url.replace('?sz=50', '');
                 console.log('Google user found in db');
+                if (user.google.image !== profile._json.image.url) {
+                    user.google.image = profile._json.image.url;
+                }
+                user.save();
                 done(null, user);
             } else {
                 console.log('Google user not found in db');
