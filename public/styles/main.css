@@ -116,7 +116,6 @@ a:visited {
 }
 
 .sidebar-sub-item {
-    /*border: 1px solid red;*/
     height: 100%;
     display: inline-block;
     vertical-align: top;
@@ -141,12 +140,12 @@ a:visited {
 .section {
     /*border: 1px solid red;*/
     height: auto;
-    /*overflow: auto*/
 }
 
 .section .row {
     /*border: 1px solid green;*/
     height: 50px;
+    width: 100%;
 }
 
 .section .row:hover {
@@ -173,6 +172,7 @@ a:visited {
         /*border: 1px solid purple;*/
         display: inline-block;  
         line-height: 50px;
+        height: 100%;
         margin: 0 30px 0 0;
     }
     
@@ -216,6 +216,7 @@ a:visited {
     border: 1px solid #C9C8C8;
     background: #fff;
     margin: 100px auto;
+    border-radius: 6px;
 }
 
 .box-row {
@@ -223,6 +224,7 @@ a:visited {
     height: 60px;
     text-align: right;
     /*border: 1px solid pink;*/
+    border-radius: 6px;
     background: #F5F5F5;
 }
 
@@ -444,25 +446,32 @@ a:visited {
     height: 75%;
 }
 
+/* MEMBERS DIRECTIVE STYLES */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.circle {
-    width: 40px;
-    border: none;
-    border-radius: 50px;
+.mbr-sml {
+    height: 100%;
+    width: 50px;
+    /*border: 1px solid limegreen;*/
+    vertical-align: top;
+    margin-left: 20px; 
+    display: inline-block;
 }
 
+.mbr-name {
+    width: 250px;
+    text-align: left;
+    margin-left: 0px;
+    line-height: 49px;
+    overflow: hidden;
+}
+
+    .mbr-sml img {
+        height: 80%;
+        border-radius: 50%;
+        margin: 5px 0 0 5px;
+    }
+    
+.mbm-left {
+    text-align: left;
+}
+    

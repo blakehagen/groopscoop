@@ -1,0 +1,19 @@
+<div class="row">
+    <h4 class="myGroups-text">MEMBERS ({{groupData.users.length}})</h4>
+</div>
+
+
+
+
+
+
+<div class="sidebar-row section">
+    <div class="row" ng-repeat="member in groupData.users track by $index">
+        <div class="mbr-sml">
+            <img ng-src="{{member.google.image}}" alt="img">
+        </div>
+        <div class="mbr-sml mbr-name">
+            <h4 class="group-name-text">{{member.google.name}}</h4>
+        </div>
+    </div>
+</div>

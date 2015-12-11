@@ -45,6 +45,9 @@
                 </div>
             </div>
         </div>
+        <div>
+            <group-members></group-members>
+        </div>
     </div>
 
     <div class="header">
@@ -67,78 +70,3 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-<br>
-<a href="/#user/{{user._id}}"><button>BACK TO GROUPS</button></a>
-<br>
-<br>
-Group Template
-    <p>Name: {{groupData.groupName}}</p>
-    <p>ID: {{groupData._id}}</p>
-    <p>Date: {{groupData.createdOn}}</p>
-    <br>
-    <div>
-        Post a message <br>
-        <br>
-        <input type="text" placeholder="Say something..." ng-model="newMessage">
-        <button ng-click="postNew()">Post Message</button>
-    </div>
-    <br>
-    <br>
-        <!-- Posted messages-->
-<!--
-        Messages
-<div ng-repeat="post in groupData.posts track by $index">
-    <br>
-    {{post.postContent.message}}
-    <br>posted by <img class="circle" ng-src="{{post.postedBy.google.image}}">{{post.postedBy.google.name}} on {{post.datePosted}}
-    <br>
-    <br>
-</div>
--->
