@@ -1,5 +1,17 @@
 <div class="row">
-    <h4 class="myGroups-text">MEMBERS ({{groupData.users.length}})</h4>
+    <div class="sub-item">
+        <h4 class="myGroups-text">MEMBERS ({{groupData.users.length}})</h4>
+    </div>
+    <div class="sub-item right">
+        <div class="plus-box">
+            <img src="./assets/plussquare.png" alt="Invite" ng-click="openInviteBox()">
+        </div>
+    </div>
+</div>
+
+<!-- Invite others to Group -->
+<div class="member-search" ng-show="inviteOthers">
+    <input type="text" placeholder="Search by name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" autofocus>
 </div>
 
 
@@ -7,8 +19,12 @@
 
 
 
-<div class="sidebar-row section">
-    <div class="row" ng-repeat="member in groupData.users track by $index">
+
+
+
+
+<div class="sidebar-row section no-highlight">
+    <div class="row no-highlight" ng-repeat="member in groupData.users track by $index">
         <div class="mbr-sml">
             <img ng-src="{{member.google.image}}" alt="img">
         </div>

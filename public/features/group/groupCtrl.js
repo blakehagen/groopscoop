@@ -55,6 +55,12 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
         }
     });
     
+    // Invite Others //
+    $scope.openInviteBox = function () {
+        $scope.inviteOthers = !$scope.inviteOthers;
+    };
+
+    
     // // // // // // // // // // // // // // // // // // // // // // // // // // //
     // // // // // // DESTROY SOCKET CONNECTIONS TO AVOID DUPLICATES // // // // // 
     // // // // // // // // // // // // // // // // // // // // // // // // // // //
