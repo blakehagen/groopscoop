@@ -9,12 +9,11 @@
     </div>
 </div>
 
-<!-- Invite others to Group -->
 <div class="member-search" ng-show="inviteOthers">
-    <input type="text" placeholder="Search by name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" autofocus>
+    <div angucomplete-alt id="inviteOthersUsers" placeholder="Search by name" pause="300" selected-object="selectedPerson" local-data="allUsers" search-fields="name" title-field="name"
+    minlength="3" input-class="input" match-class="highlight" ng-keyup="addPersonToInviteList($event, id)" ng-show="inviteOthers" autofocus>
+    </div>
 </div>
-
-
 
 
 

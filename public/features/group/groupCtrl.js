@@ -1,4 +1,4 @@
-angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scope, groupService, socketService) {
+angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scope, groupService, socketService, userService) {
     
     // // // // // // // // // // // // // // // // // // // // // // // // // // ///
     // // // // // // GET GROUP DATA AFTER A GROUP IS SELECTED TO ENTER // // // // // 
@@ -58,6 +58,13 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
     // Invite Others //
     $scope.openInviteBox = function () {
         $scope.inviteOthers = !$scope.inviteOthers;
+        if ($scope.inviteOthers === true) {
+            userService.searchUsers().then(function (usersFromDb) {
+                $scope.allUsers = usersFromDb;
+                console.log('invite others: ', $scope.allUsers);
+            })
+        }
+
     };
 
     

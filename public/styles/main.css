@@ -12,11 +12,15 @@ html {
 h1,h2,h3,h4,h5,h6 {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
-    cursor: default;
 }
 
 a {
     text-decoration: none;
+    cursor: pointer;
+}
+
+a h4,h5 {
+    cursor: pointer;
 }
 
 a:visited {
@@ -283,6 +287,7 @@ a:visited {
     background: #ED6464;
     border-radius: 4px;
     margin-bottom: 25px;
+    cursor: pointer;
 }
 
     .create-grp-btn h4 {
@@ -519,29 +524,34 @@ a:visited {
         font-weight: 200;
         letter-spacing: 1px;
         line-height: 30px;
+        font-family: 'Open Sans';
     }
     
     .member-search ::-webkit-input-placeholder::after { 
-        font-family: fontAwesome; 
+        font-family: 'Open Sans',fontAwesome; 
         content:'\f002  '; 
         color: #ED6464;
+        float: right;
     }
 
     .member-search ::-moz-placeholder::after { 
-            font-family: fontAwesome; 
+            font-family: 'Open Sans',fontAwesome; 
             content:'\f002  '; 
             color: #ED6464;
+            float: right;
         } /* firefox 19+ */
 
     .member-search :-ms-input-placeholder::after { 
-            font-family: fontAwesome; 
+            font-family: 'Open Sans',fontAwesome; 
             content:'\f002  '; 
             color: #ED6464;
+            float: right;
         } /* ie */
 
-    .member-search input:-moz-placeholder::after { 
-            font-family: fontAwesome; 
+    .member-search input :-moz-placeholder::after { 
+            font-family: 'Open Sans',fontAwesome; 
             content:'\f002  '; 
             color: #ED6464;
+            float: right;
         }
         
