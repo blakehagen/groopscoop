@@ -476,7 +476,6 @@ a:visited {
     
 .no-highlight .no-highlight:hover {
     background: none;
-    
 }
 
 .mbr-sml {
@@ -502,8 +501,12 @@ a:visited {
         margin: 5px 0 0 5px;
     }
     
-.mbm-left {
+/*.mbm-left {
     text-align: left;
+}*/
+
+.mbr-space {
+    margin-bottom: 5px;
 }
 
 .member-search {
