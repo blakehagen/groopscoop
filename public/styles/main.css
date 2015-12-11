@@ -446,6 +446,15 @@ a:visited {
     height: 75%;
 }
 
+.grp {
+    max-height: 250px;
+    overflow: auto;
+}
+
+::-webkit-scrollbar {
+   display: none;
+}
+
 /* MEMBERS DIRECTIVE STYLES */
 
 .mbr-sml {
