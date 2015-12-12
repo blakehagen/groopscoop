@@ -1,4 +1,4 @@
-angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scope, groupService, socketService, userService, invitationService) {
+angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scope, groupService, socketService, userService, invitationService, $timeout) {
     
     // // // // // // // // // // // // // // // // // // // // // // // // // // ///
     // // // // // // GET GROUP DATA AFTER A GROUP IS SELECTED TO ENTER // // // // // 
@@ -58,7 +58,7 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
     // Invite Others (Getting users from DB to search) //
     $scope.redPlus = true;
     $scope.openInviteBox = function () {
-        $scope.grayPlusToggle = true;
+        $scope.grayPlusToggle = !$scope.grayPlusToggle;
         $scope.inviteOthers = !$scope.inviteOthers;
         if ($scope.inviteOthers === true) {
             userService.searchUsers().then(function (usersFromDb) {
@@ -70,10 +70,9 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
 
     // Toggle Action to send the invite to selected user //
     $scope.selectedUserToInvite = function (selected) {
-        console.log(selected);
-        $scope.sendThisUserInvite = selected.description.id;
-        console.log(  $scope.sendThisUserInvite);
         if (selected) {
+            // console.log(selected);
+            $scope.sendThisUserInvite = selected.description.id;
             $scope.redPlus = false;
             $scope.redPlusToggle = true;
             $scope.grayPlusToggle = false;
@@ -82,15 +81,22 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
     };
 
     $scope.sendIndividualInvite = function () {
-        console.log($scope.sendThisUserInvite);
+        // console.log($scope.sendThisUserInvite);
         invitationService.sendOneInvite($scope.sendThisUserInvite, $rootScope.groupData._id);
         invitationService.clearInputForInvite();
         $scope.showInviteSuccess = true;
         $scope.redPlusToggle = false;
         $scope.grayPlusToggle = false;
-        $scope.redPlus = true;
-    }
-    
+        $timeout(function () {
+            $scope.inviteOthers = false;
+            $scope.redPlus = true;
+            $scope.showInviteSuccess = false;
+            console.log('i got here')
+        }, 1500);
+
+
+    };
+
     
     
 
