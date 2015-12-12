@@ -36,11 +36,18 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
         $scope.createNewGroupBox = !$scope.createNewGroupBox;
         $scope.createGroupActive = !$scope.createGroupActive;
         if ($scope.createNewGroupBox === true) {
-            userService.searchUsers().then(function (usersFromDb) {
-                $scope.users = usersFromDb;
-            })
+            $rootScope.getUsersFromDatabase();
         }
     };
+
+    $rootScope.getUsersFromDatabase = function () {
+        userService.searchUsers().then(function (usersFromDb) {
+            $rootScope.users = usersFromDb;
+            console.log('$RS users', $rootScope.users);
+        });
+    };
+
+    $scope.test = 'test';
     
     // ** NEW GRP FORM INPUT ** Creating array of users that will be invited to the new group
     $scope.invitesList = [];

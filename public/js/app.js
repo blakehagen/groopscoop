@@ -13,6 +13,12 @@ angular.module('groupScoop', ['angucomplete-alt', 'ngMaterial', 'ui.router', 'an
             controller: 'userCtrl'
         })
 
+        .state('createGroup', {
+            url: '/user/:id/create',
+            templateUrl: './features/user/createGroupFromGroupViewTmpl.html',
+            controller: 'userCtrl'
+        })
+
         .state('group', {
             url: '/group/:id',
             templateUrl: './features/group/groupTmpl.html',

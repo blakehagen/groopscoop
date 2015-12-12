@@ -10,29 +10,31 @@
         </div>
 
         <div class="row">
-            <div class="sub-item">
-                <h4 class="myGroups-text">MY GROUPS ({{user.groups.length}})</h4>
-            </div>
-            <div class="sub-item right">
-                <div class="plus-box">
-                    <a href="#/user/{{user._id}}/create"><img src="./assets/plussquare.png" alt="Invite" ng-click="getUsersFromDatabase()"></a>
-                </div>
-            </div>
+            <h4 class="myGroups-text">MY GROUPS ({{user.groups.length}})</h4>
         </div>
 
         <div class="sidebar-row section">
-            <!--<div class="row" ng-repeat="invite in myInvites track by $index">
+            <div class="row">
+                <div class="sub-item">
+                    <h4 class="group-name-text active"> New Group</h4>
+                </div>
+                <div class="sub-item right">
+                    <h4 class="group-name-text action active" >Create</h4>
+                </div>
+            </div>
+
+            <div class="row" ng-repeat="invite in myInvites track by $index">
                 <div class="sub-item">
                     <h4 class="group-name-text">{{invite.groupInvitedTo.groupName}}</h4>
                 </div>
                 <div class="sub-item right">
                     <h4 class="group-name-text action join" ng-click="acceptInvite(invite)">Join</h4>
                 </div>
-            </div>-->
+            </div>
         </div>
 
         <div class="sidebar-row section grp-section">
-            <div class="row" ng-repeat="group in user.groups track by $index">
+            <div class="row" ng-repeat="group in myGroups track by $index">
                 <div class="sub-item">
                     <h4 class="group-name-text">{{group.groupName}}</h4>
                 </div>
@@ -41,21 +43,15 @@
                 </div>
             </div>
         </div>
-        <div>
-            <group-members></group-members>
-        </div>
     </div>
 
     <div class="header">
-        <div class="group-title title">
-            <h4 ng-cloak>{{groupData.groupNameUpperCase}}</h4>
-        </div>
         <div class="group-title right">
             <img src="./assets/groopscooplogo2-compressor.png" alt="Groop Scoop">
         </div>
     </div>
 
-    <div class="main-content-area" ng-hide="createGroupFromGroupView">
-        <content-directive></content-directive>
+    <div class="main-content-area">
+        <create-group></create-group>
     </div>
 </div>
