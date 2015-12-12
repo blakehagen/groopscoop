@@ -1,8 +1,8 @@
 angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scope, groupService, socketService, userService, invitationService, $timeout) {
     
-    // // // // // // // // // // // // // // // // // // // // // // // // // // ///
-    // // // // // // GET GROUP DATA AFTER A GROUP IS SELECTED TO ENTER // // // // // 
-    // // // // // // // // // // // // // // // // // // // // // // // // // // ///
+    // // // // // // // // // // // // // // // // // // // // //
+    // // GET GROUP DATA AFTER A GROUP IS SELECTED TO ENTER // //
+    // // // // // // // // // // // // // // // // // // // // //
     
     // Get data of group that was clicked (via group service) //
     $scope.getGroupData = function (groupId) {
@@ -91,14 +91,13 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
             $scope.inviteOthers = false;
             $scope.redPlus = true;
             $scope.showInviteSuccess = false;
-            console.log('i got here')
-        }, 1500);
+        }, 800);
     };
 
 
-    // // // // // // // // // // // // // // // // // // // // // // // // // // //
-    // // // // // // DESTROY SOCKET CONNECTIONS TO AVOID DUPLICATES // // // // // 
-    // // // // // // // // // // // // // // // // // // // // // // // // // // //
+    // // // // // // // // // // // // // // // // // // // /
+    // // DESTROY SOCKET CONNECTIONS TO AVOID DUPLICATES // //
+    // // // // // // // // // // // // // // // // // // // 
   
     $scope.$on('$destroy', function (event) {
         socketService.removeAllListeners();
