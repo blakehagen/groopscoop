@@ -58,7 +58,6 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
         };
     };
 
-
     // ** NEW GRP FORM INPUT ** Group object created and on form completion new group info sent to server //
     $scope.createNewGroup = function () {
         if (!$scope.grpName) {
@@ -185,7 +184,4 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
         socketService.removeAllListeners();
         console.log('$Destroy triggered!');
     });
-
-
-
 });
