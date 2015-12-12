@@ -15,7 +15,7 @@ angular.module('groupScoop', ['angucomplete-alt', 'ngMaterial', 'ui.router', 'an
 
         .state('createGroup', {
             url: '/user/:id/create',
-            templateUrl: './features/user/createGroupFromGroupViewTmpl.html',
+            templateUrl: './features/user/createGroupRouteTmpl.html',
             controller: 'userCtrl'
         })
 

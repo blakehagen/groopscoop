@@ -1,7 +1,5 @@
 <div class="main-user-wrapper">
-
     <div class="sidebar">
-
         <div class="sidebar-row center userBox">
             <div class="sidebar-sub-item">
                 <img ng-src="{{user.google.image}}">
@@ -10,21 +8,18 @@
                 <h4>{{user.google.name}}</h4>
             </div>
         </div>
-
         <div class="row">
             <h4 class="myGroups-text">MY GROUPS ({{user.groups.length}})</h4>
         </div>
-
         <div class="sidebar-row section">
             <div class="row">
                 <div class="sub-item">
                     <h4 class="group-name-text" ng-class="createGroupActive ? 'active' : 'notActive'">New Group</h4>
                 </div>
                 <div class="sub-item right">
-                    <h4 class="group-name-text action" ng-class="createGroupActive ? 'active' : 'notActive'" ng-click="createGroupBox()">Create</h4>
+                      <a href="#/user/{{user._id}}/create"><h4 class="group-name-text action" ng-class="createGroupActive ? 'active' : 'notActive'" ng-click="getUsersFromDatabase()">Create</h4></a>
                 </div>
             </div>
-
             <div class="row" ng-repeat="invite in myInvites track by $index">
                 <div class="sub-item">
                     <h4 class="group-name-text">{{invite.groupInvitedTo.groupName}}</h4>
@@ -34,7 +29,6 @@
                 </div>
             </div>
         </div>
-
         <div class="sidebar-row section grp-section">
             <div class="row" ng-repeat="group in myGroups track by $index">
                 <div class="sub-item">
@@ -45,16 +39,10 @@
                 </div>
             </div>
         </div>
-
     </div>
-
     <div class="header">
         <div class="group-title right">
             <img src="./assets/groopscooplogo2-compressor.png" alt="Groop Scoop">
         </div>
-    </div>
-
-    <div class="main-content-area" ng-show="createNewGroupBox">
-        <create-group></create-group>
     </div>
 </div>

@@ -26,19 +26,9 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     // Invoke the get user function //
     $scope.getAuthUser();
 
-
     // // // // // // // // // // // // // /
     // // AUTH USER CREATES NEW GROUP // //
     // // // // // // // // // // // // // 
-    
-    // ** NEW GRP FORM INPUT ** 'Create Group' form opens and users pulled from database to search //
-    $scope.createGroupBox = function () {
-        $scope.createNewGroupBox = !$scope.createNewGroupBox;
-        $scope.createGroupActive = !$scope.createGroupActive;
-        if ($scope.createNewGroupBox === true) {
-            $rootScope.getUsersFromDatabase();
-        }
-    };
 
     $rootScope.getUsersFromDatabase = function () {
         userService.searchUsers().then(function (usersFromDb) {
@@ -46,8 +36,6 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
             console.log('$RS users', $rootScope.users);
         });
     };
-
-    $scope.test = 'test';
     
     // ** NEW GRP FORM INPUT ** Creating array of users that will be invited to the new group
     $scope.invitesList = [];

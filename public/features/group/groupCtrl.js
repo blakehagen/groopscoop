@@ -97,7 +97,6 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
         }, 800);
     };
 
-
     // // // // // // // // // // // // // // // // // // // /
     // // DESTROY SOCKET CONNECTIONS TO AVOID DUPLICATES // //
     // // // // // // // // // // // // // // // // // // // 
@@ -106,6 +105,4 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
         socketService.removeAllListeners();
         console.log('$Destroy triggered!');
     });
-
-
 });

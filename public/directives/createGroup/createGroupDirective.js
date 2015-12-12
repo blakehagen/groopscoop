@@ -1,6 +1,6 @@
 angular.module('groupScoop').directive('createGroup', function(){
    return {
-       templateUrl: '/directives/createGroup/createGroupTmpl.html'
+       templateUrl: '/directives/createGroup/createGroupDirectiveTmpl.html'
    } 
     
 });
