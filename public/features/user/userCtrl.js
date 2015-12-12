@@ -61,6 +61,9 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
 
     // ** NEW GRP FORM INPUT ** Group object created and on form completion new group info sent to server //
     $scope.createNewGroup = function () {
+        if (!$scope.grpName) {
+            return false;
+        }
         var grp = {
             groupName: $scope.grpName,
             createdOn: moment().format('ddd MMM DD YYYY, h:mm a'),

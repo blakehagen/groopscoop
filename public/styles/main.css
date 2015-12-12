@@ -149,6 +149,11 @@ a:visited {
     height: auto;
 }
 
+.grp-section {
+    max-height: 250px;
+    overflow: auto;
+}
+
 .section .row {
     /*border: 1px solid green;*/
     height: 50px;

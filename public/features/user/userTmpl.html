@@ -12,7 +12,7 @@
         </div>
 
         <div class="row">
-            <h4 class="myGroups-text">MY GROUPS</h4>
+            <h4 class="myGroups-text">MY GROUPS ({{user.groups.length}})</h4>
         </div>
 
         <div class="sidebar-row section">
@@ -35,7 +35,7 @@
             </div>
         </div>
 
-        <div class="sidebar-row section">
+        <div class="sidebar-row section grp-section">
             <div class="row" ng-repeat="group in myGroups track by $index">
                 <div class="sub-item">
                     <h4 class="group-name-text">{{group.groupName}}</h4>

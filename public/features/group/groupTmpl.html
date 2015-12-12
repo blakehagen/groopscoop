@@ -11,20 +11,22 @@
             </div>
         </div>
 
-        <div class="row">
+        <!--<div class="row">
             <h4 class="myGroups-text">MY GROUPS</h4>
+        </div>-->
+
+        <div class="row">
+            <div class="sub-item">
+                <h4 class="myGroups-text">MY GROUPS ({{user.groups.length}})</h4>
+            </div>
+            <div class="sub-item right">
+                <div class="plus-box">
+                    <img src="./assets/plussquare.png" alt="Invite">
+                </div>
+            </div>
         </div>
 
         <div class="sidebar-row section">
-            <div class="row">
-                <div class="sub-item">
-                    <h4 class="group-name-text" ng-class="createGroupActive ? 'active' : 'notActive'">New Group</h4>
-                </div>
-                <div class="sub-item right">
-                    <h4 class="group-name-text action" ng-class="createGroupActive ? 'active' : 'notActive'" ng-click="createGroupBox()">Create</h4>
-                </div>
-            </div>
-
             <!--<div class="row" ng-repeat="invite in myInvites track by $index">
                 <div class="sub-item">
                     <h4 class="group-name-text">{{invite.groupInvitedTo.groupName}}</h4>
@@ -35,7 +37,7 @@
             </div>-->
         </div>
 
-        <div class="sidebar-row section">
+        <div class="sidebar-row section grp-section">
             <div class="row" ng-repeat="group in user.groups track by $index">
                 <div class="sub-item">
                     <h4 class="group-name-text">{{group.groupName}}</h4>
@@ -63,10 +65,3 @@
         <content-directive></content-directive>
     </div>
 </div>
-
-
-
-
-
-
-
