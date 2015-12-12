@@ -13,6 +13,13 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
         });
     };
     
+    // Check if groups > 5 to show scroll icon //
+    if ($rootScope.user.groups.length > 5) {
+        $scope.scrollGrps = true;
+    } else {
+        $scope.scrollGrps = false;
+    };
+    
     // USER OBJECT INFO FOR USE WITH NEW POSTS //
     var user = {
         id: $rootScope.user._id,

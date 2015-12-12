@@ -164,6 +164,8 @@ a:visited {
     overflow: auto;
 }
 
+
+
 .section .row {
     /*border: 1px solid green;*/
     height: 50px;
@@ -182,6 +184,11 @@ a:visited {
     line-height: 40px;
     letter-spacing: 1px;
 }
+
+    .myGroups-text .fa-chevron-down {
+        color: #959595;
+        font-size: 12px;
+    }
 
 .group-name-text {
     color: #959595;

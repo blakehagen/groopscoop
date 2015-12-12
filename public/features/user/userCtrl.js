@@ -9,6 +9,12 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
         authService.getUser().then(function (user) {
             console.log('MY DATA: ', user);
             $rootScope.user = user;
+            // Check if groups > 5 to show scroll icon //
+            if ($rootScope.user.groups.length > 5) {
+                $scope.scrollGrps = true;
+            } else {
+                $scope.scrollGrps = false;
+            };
             $scope.user = user;
             $rootScope.myGroups = user.groups;
             $scope.myGroups = user.groups;
@@ -23,8 +29,10 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
             console.log('Error', error);
         });
     };
+    
     // Invoke the get user function //
     $scope.getAuthUser();
+
 
     // // // // // // // // // // // // // /
     // // AUTH USER CREATES NEW GROUP // //
