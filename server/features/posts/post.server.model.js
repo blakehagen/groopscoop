@@ -7,7 +7,7 @@ var PostSchema = new Schema({
     datePosted: { type: String },
     dateCreatedNonRead: { type: Date, default: new Date() },
     postContent: {
-        message: { type: String },
+        message: { type: String, required: true },
         linkUrl: { type: String },
         comments: [{
             commentMsg: { type: String },

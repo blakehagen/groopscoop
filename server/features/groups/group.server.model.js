@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var GroupSchema = new Schema({
-    groupName: { type: String },
+    groupName: { type: String, require: true },
     createdOn: { type: String },
     dateCreatedNonRead: { type: Date, default: new Date() },
 
