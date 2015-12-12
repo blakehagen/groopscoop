@@ -3,11 +3,18 @@
     box-sizing: border-box;  
 }
 
+*:focus {
+    outline: 0;
+}
+
 html {
     margin: 0;
     min-height: 100%;
     width: 100%;
 }
+
+input:focus { outline: none; }
+div:focus { outline: none; }
 
 h1,h2,h3,h4,h5,h6 {
     margin: 0;
