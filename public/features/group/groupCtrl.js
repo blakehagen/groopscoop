@@ -93,14 +93,9 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
             $scope.showInviteSuccess = false;
             console.log('i got here')
         }, 1500);
-
-
     };
 
-    
-    
 
-    
     // // // // // // // // // // // // // // // // // // // // // // // // // // //
     // // // // // // DESTROY SOCKET CONNECTIONS TO AVOID DUPLICATES // // // // // 
     // // // // // // // // // // // // // // // // // // // // // // // // // // //
