@@ -25,6 +25,9 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
 
     // POST NEW MESSAGE TO GROUP //
     $scope.postNew = function () {
+        if (!$scope.newMessage) {
+            return false;
+        }
         $scope.postData = {
             postedBy: user.id,
             group: $rootScope.groupData._id,
