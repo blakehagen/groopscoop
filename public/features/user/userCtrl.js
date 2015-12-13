@@ -47,20 +47,34 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     
     // ** NEW GRP FORM INPUT ** Creating array of users that will be invited to the new group
     $scope.invitesList = [];
-    $scope.addPersonToInviteList = function (event, id) {
-        if (event.keyCode === 13) {
-            if ($scope.selectedPerson) {
-                var namesInList = $scope.invitesList.map(function (name) {
-                    return name.title;
-                });
-                if (namesInList.indexOf($scope.selectedPerson.title) === -1) {
-                    $scope.invitesList.push($scope.selectedPerson);
-                    invitationService.clearInputForInvite(id);
-                }
+    $scope.addUserToInviteList = function (id) {
+        if ($scope.selectedPerson) {
+            $scope.inviteBox = true;
+            console.log($scope.selectedPerson);
+            var namesInList = $scope.invitesList.map(function (name) {
+                return name.title;
+            });
+            if (namesInList.indexOf($scope.selectedPerson.title) === -1) {
+                $scope.invitesList.push($scope.selectedPerson);
+                invitationService.clearInputForInvite(id);
+                $scope.selectedPerson = '';
             }
-        };
+        }
+        console.log('invitesList ', $scope.invitesList);
     };
 
+    $scope.removeNameFromInviteList = function (name) {
+        for (var i = 0; i < $scope.invitesList.length; i++) {
+            if (name.invite.description.id === $scope.invitesList[i].description.id) {
+                $scope.invitesList.splice(i, 1);
+            }
+        }
+        console.log('invitesList ', $scope.invitesList);
+    }
+
+    
+    
+    
     // ** NEW GRP FORM INPUT ** Group object created and on form completion new group info sent to server //
     $scope.createNewGroup = function () {
         if (!$scope.grpName) {

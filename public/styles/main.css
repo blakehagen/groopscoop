@@ -248,65 +248,127 @@ a:visited {
     left: 50%;
     vertical-align: middle;
     width: 600px;
-    height: 400px;
     border: 1px solid #C9C8C8;
     background: #fff;
-    margin: -200px 0 0 -300px;
-
+    margin: -170px 0 0 -300px;
     border-radius: 6px;
 }
 
 .box-row {
     width: 100%;
-    height: 60px;
     text-align: right;
     /*border: 1px solid pink;*/
-    border-radius: 6px;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
     background: #F5F5F5;
-}
-
-.space {
-    margin-bottom: 8px;
 }
 
     .box-row h3 {
         font-size: 18px;
         font-weight: 800;
-        line-height: 60px; 
+        line-height: 68px; 
         letter-spacing: 1px;
         text-align: center;
         color: #4D4C4C;
     }
     
 .inputs {
-    height: 80px;
+    height: 70px;
     background: none;
 }
+
+.invite-box {
+    width: 100%;
+    /*border: 1px solid deepskyblue;*/
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.invitee {
+        display: inline-block;
+        /*border: 1px solid rebeccapurple;*/
+        margin: 0px 14px;
+        display: inline-block;
+    }
+    
+    .invitee h6 {
+        font-size: 14px;
+        font-weight: 100;
+        color: #4D4C4C;
+        cursor: pointer;
+    }
+    
+      .invitee:hover h6 {
+        text-decoration: line-through;
+      }
 
 .input-split {
     height: 100%;
     /*border: 1px solid green;*/
     display: inline-block;
     vertical-align: top;
-    line-height: 78px;
-    margin: 0 80px 0 0;
+    line-height: 70px;
+}
+
+.top {
+    line-height: 20px;
+}
+
+.input-split-holder {
+    width: 371px;
+    text-align: left;
+    margin-right: 20px;
+    /*border: 1px solid hotpink;*/
+    display: inline-block;
+    vertical-align: top;
 }
 
     .input-split h4 {
         color: #4D4C4C;
+        margin-right: 20px;
+    }
+    
+.add-btn-holder {
+    width: 120px;
+    height: 100%;
+    /*border: 1px solid orange;*/
+    text-align: left;
+    line-height: 68px;
+}
+
+    .add-btn-holder img {
+        width: 16px;
+        vertical-align: middle;
+        margin-left: 10px;
+        cursor: pointer;
     }
 
 .group-input {
     width: 270px;
     height: 30px; 
-    /*border: #959595;*/
+    border: 1px solid #C9C8C8;
     padding-left: 14px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #000;
+    font-weight: 200;
+    letter-spacing: 1px;
+    line-height: 30px;
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 20px;
 }
+
+    .group-input .input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 5px;
+        letter-spacing: 1px;
+    }
 
     .group-input select {
         width: 270px;
         height: 30px; 
-        
     }
 
 .create-btn-container {
@@ -318,7 +380,7 @@ a:visited {
     height: 40px;
     background: #ED6464;
     border-radius: 4px;
-    margin-bottom: 25px;
+    margin: 0 0 20px 0;
     cursor: pointer;
 }
 
@@ -326,6 +388,7 @@ a:visited {
         color: #fff;
         text-align: center;
         line-height: 39px;
+        margin: 0;
     }
     
 /* GROUP VIEW */
@@ -565,10 +628,10 @@ a:visited {
         border-radius: 5px;
         padding-left: 10px;
         font-size: 14px;
-        font-weight: 200;
+        font-weight: 100;
         letter-spacing: 1px;
         line-height: 30px;
-        font-family: 'Open Sans';
+        font-family: 'Open Sans', sans-serif;
     }
     
     .member-search ::-webkit-input-placeholder::after { 
