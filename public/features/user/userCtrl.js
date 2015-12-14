@@ -19,7 +19,8 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
             $scope.user = user;
             $rootScope.myGroups = user.groups;
             $scope.myGroups = user.groups;
-            $scope.myInvites = user.invitations;
+            // $scope.myInvites = user.invitations;
+            $rootScope.myInvites = user.invitations;
             $scope.myGroupIds = [];
             // Auth user ids sent to socket.io to join rooms //
             for (var i = 0; i < $scope.myGroups.length; i++) {
@@ -100,11 +101,11 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
             };
             socketService.emit('connectedUserGroups', $scope.myGroupIds);
             // Populate new group with group info //
-        //    groupService.getGroup($scope.newGrpData._id).then(function (group) {
-        //     $rootScope.groupData = group;
-        //     $rootScope.groupData.groupNameUpperCase = group.groupName.toUpperCase();
-        //     console.log('grp data on userCtrl saved to $rootScope ', $rootScope.groupData);
-        // });
+            //    groupService.getGroup($scope.newGrpData._id).then(function (group) {
+            //     $rootScope.groupData = group;
+            //     $rootScope.groupData.groupNameUpperCase = group.groupName.toUpperCase();
+            //     console.log('grp data on userCtrl saved to $rootScope ', $rootScope.groupData);
+            // });
             // Sends invites to users that were selected //
             sendMultipleInvites();
             // Gets updated user object //
@@ -121,12 +122,20 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
         });
     };
     
+    // Listening for New Invitations //
+    socketService.on('invitationGet', function (data) {
+        // console.log('invitation socket data coming back from server: ', data);
+        if (data._id === $rootScope.user._id) {
+            $rootScope.myInvites.unshift(data.invitations[data.invitations.length - 1]);
+        }
+    });
+    
     // // // // // // // // // // // // // //
     // // JOIN A GROUP (ACCEPT INVITE) // //
     // // // // // // // // // // // // // 
     
     // Join a group user has been invited to //
-    $scope.acceptInvite = function (invite) {
+    $rootScope.acceptInvite = function (invite) {
         // console.log('accepting this invitation: ', invite.groupInvitedTo);
         var acceptedInviteData = {
             inviteData: invite,
@@ -154,7 +163,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     $scope.getInvites = function () {
         userService.getInvitations($scope.user._id).then(function (response) {
             // console.log('MY INVITATIONS: ', response);
-            $scope.myInvites = response;
+            $rootScope.myInvites = response;
         });
     };
     

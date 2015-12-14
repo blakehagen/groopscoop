@@ -12,7 +12,7 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
             console.log('grp data on userCtrl saved to $rootScope ', $rootScope.groupData);
         });
     };
-    
+
     $scope.getGroupData($stateParams.id);
     
     // Check if groups > 5 to show scroll icon //
@@ -67,6 +67,15 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
         }
     });
     
+    // Listening for New Invitations //
+    socketService.on('invitationGet', function (data) {
+        // console.log('invitation socket data coming back from server: ', data);
+        if(data._id ===  $rootScope.user._id){
+            $rootScope.myInvites.unshift(data.invitations[data.invitations.length-1]);
+        }
+    });
+    
+    
     // Invite Others (Getting users from DB to search) //
     $scope.redPlus = true;
     $scope.openInviteBox = function () {
@@ -104,6 +113,11 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
             $scope.showInviteSuccess = false;
         }, 800);
     };
+    
+    
+    
+    
+    
 
     // // // // // // // // // // // // // // // // // // // /
     // // DESTROY SOCKET CONNECTIONS TO AVOID DUPLICATES // //

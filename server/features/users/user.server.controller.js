@@ -54,11 +54,11 @@ module.exports = {
         User.findByIdAndUpdate(inviteData.targetUserId, { $push: { invitations: { 
             groupInvitedTo: inviteData.invitedTo,
             invitedBy: inviteData.senderName }
-            }}, function (err, result) {
+            }},{new: true}).populate('invitations.groupInvitedTo').exec(function (err, result) {
             if (err) {
                 res.status(500).json(err);
             }
-            res.status(200).send("INVITE SEND SUCCESS!");
+            res.status(200).json(result);
         });
     },
     

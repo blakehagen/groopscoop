@@ -1,4 +1,4 @@
-angular.module('groupScoop').service('invitationService', function ($rootScope, userService) {
+angular.module('groupScoop').service('invitationService', function ($rootScope, userService, socketService) {
     
     // ** NEW GRP FORM INPUT ** Clear 'Invite Users' input once name is selected on form //
     this.clearInputForInvite = function (id) {
@@ -18,8 +18,10 @@ angular.module('groupScoop').service('invitationService', function ($rootScope, 
             invitedTo: groupInvitedToId
         };
         userService.sendInvite(invitation).then(function (response) {
-            console.log(response);
+            // console.log(response.data);
+            socketService.emit('invitationSend', response.data);
         });
+
     };
 
 
@@ -30,7 +32,8 @@ angular.module('groupScoop').service('invitationService', function ($rootScope, 
             invitedTo: groupInvitedToId
         };
         userService.sendInvite(invitation).then(function (response) {
-            console.log(response);
+            // console.log(response);
+            socketService.emit('invitationSend', response.data);
         });
     }
 

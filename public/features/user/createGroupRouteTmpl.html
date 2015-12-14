@@ -16,21 +16,7 @@
             </div>
         </div>
 
-        <div class="row">
-            <h4 class="myGroups-text">MY GROUPS ({{user.groups.length}}) &nbsp;<i class="fa fa-chevron-down" ng-show="scrollGrps" ng-cloak></i>
-</h4>
-        </div>
-
         <div class="sidebar-row section">
-            <div class="row">
-                <div class="sub-item">
-                    <h4 class="group-name-text active"> New Group</h4>
-                </div>
-                <div class="sub-item right">
-                    <h4 class="group-name-text action active">Create</h4>
-                </div>
-            </div>
-
             <div class="row" ng-repeat="invite in myInvites track by $index">
                 <div class="sub-item">
                     <h4 class="group-name-text">{{invite.groupInvitedTo.groupName}}</h4>
@@ -39,6 +25,31 @@
                     <h4 class="group-name-text action join" ng-click="acceptInvite(invite)">Join</h4>
                 </div>
             </div>
+        </div>
+
+        <div class="row">
+            <h4 class="myGroups-text">MY GROUPS ({{user.groups.length}}) &nbsp;<i class="fa fa-chevron-down" ng-show="scrollGrps" ng-cloak></i>
+</h4>
+        </div>
+
+        <div class="sidebar-row section">
+            <!--<div class="row">
+                <div class="sub-item">
+                    <h4 class="group-name-text active"> New Group</h4>
+                </div>
+                <div class="sub-item right">
+                    <h4 class="group-name-text action active">Create</h4>
+                </div>
+            </div>-->
+
+            <!--<div class="row" ng-repeat="invite in myInvites track by $index">
+                <div class="sub-item">
+                    <h4 class="group-name-text">{{invite.groupInvitedTo.groupName}}</h4>
+                </div>
+                <div class="sub-item right">
+                    <h4 class="group-name-text action join" ng-click="acceptInvite(invite)">Join</h4>
+                </div>
+            </div>-->
         </div>
 
         <div class="sidebar-row section grp-section">

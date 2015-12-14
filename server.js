@@ -49,8 +49,11 @@ io.on('connection', function (socket) {
     socket.on('sendNewPost', function (data) {
         // console.log('on send new post ', data);
         io.to(data.group).emit('getNewPost', data);
-        console.log('sent to ', data.group);
     });
+    socket.on('invitationSend', function(data){
+        io.emit('invitationGet', data);
+        
+    })
 });
 
 

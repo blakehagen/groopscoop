@@ -37,11 +37,12 @@ angular.module('groupScoop').service('userService', function ($http, $q) {
                 invitation: invitation
             }
         }).then(function (response) {
-            var success = {
-                msg: response.data,
-                status: response.status
-            };
-            deferred.resolve(success);
+            // console.log(response);
+            // var success = {
+            //     msg: response.data,
+            //     status: response.status
+            // };
+            deferred.resolve(response);
         })
         return deferred.promise
     };
@@ -82,19 +83,11 @@ angular.module('groupScoop').service('userService', function ($http, $q) {
             method: 'GET',
             url: '/api/v1/user/' + userId + '/groups'
         }).then(function (response) {
-            console.log('response after getting groups: ', response);
             var newGrp = response.data.groups[response.data.groups.length - 1];
-            console.log('newgrp on service ', newGrp);
             deferred.resolve(newGrp)
         })
         return deferred.promise
     };
-
-
-
-
-
-
 
 
 });
