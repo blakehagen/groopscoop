@@ -100,7 +100,11 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
             };
             socketService.emit('connectedUserGroups', $scope.myGroupIds);
             // Populate new group with group info //
-            $scope.getGroupData($scope.newGrpData._id);
+        //    groupService.getGroup($scope.newGrpData._id).then(function (group) {
+        //     $rootScope.groupData = group;
+        //     $rootScope.groupData.groupNameUpperCase = group.groupName.toUpperCase();
+        //     console.log('grp data on userCtrl saved to $rootScope ', $rootScope.groupData);
+        // });
             // Sends invites to users that were selected //
             sendMultipleInvites();
             // Gets updated user object //
