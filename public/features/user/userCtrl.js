@@ -134,6 +134,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
             $scope.updateGroupList();
             // Calls getInvites function to remove the newly accepted invite from user's data //
             $scope.getInvites();
+            $state.go('group', { id: response.data.groupInvitedTo._id });
         });
     };
 
@@ -202,12 +203,12 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
         socketService.removeAllListeners();
         console.log('$Destroy triggered!');
     });
-    
-    
-    
-    
 
-    
-    
-    
+
+
+
+
+
+
+
 });
