@@ -127,13 +127,13 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     
     // Join a group user has been invited to //
     $scope.acceptInvite = function (invite) {
-        console.log('accepting this invitation: ', invite.groupInvitedTo);
+        // console.log('accepting this invitation: ', invite.groupInvitedTo);
         var acceptedInviteData = {
             inviteData: invite,
             acceptedBy: $scope.user._id
         };
         userService.acceptInvitation(acceptedInviteData).then(function (response) {
-            console.log('Auth\'d user accepted an invite from someone else ', response);
+            // console.log('Auth\'d user accepted an invite from someone else ', response);
             // Adds newly joined group to user's groups //
             $scope.updateGroupList();
             $scope.getInvites();
@@ -153,7 +153,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     // Gets auth user's invites //
     $scope.getInvites = function () {
         userService.getInvitations($scope.user._id).then(function (response) {
-            console.log('MY INVITATIONS: ', response);
+            // console.log('MY INVITATIONS: ', response);
             $scope.myInvites = response;
         });
     };

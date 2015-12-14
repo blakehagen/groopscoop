@@ -88,7 +88,6 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
             $scope.redPlus = false;
             $scope.redPlusToggle = true;
             $scope.grayPlusToggle = false;
-            console.log('User is selected');
         }
     };
 
