@@ -149,6 +149,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
             // Sends auth user id to update the group object in the database //
             groupService.updateGroup(invite.groupInvitedTo._id, $scope.user._id).then(function (response) {
                 console.log('userId added to Group Object ', response);
+                socketService.emit('userJoinedGrp', invite.groupInvitedTo._id)
             })
             $state.go('group', { id: invite.groupInvitedTo._id });
         });

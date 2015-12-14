@@ -52,7 +52,10 @@ io.on('connection', function (socket) {
     });
     socket.on('invitationSend', function(data){
         io.emit('invitationGet', data);
-        
+    });
+    socket.on('userJoinedGrp', function(updatedGrpId){
+        // console.log('userjoinedgrp: ', updatedGrpId);
+        io.to(updatedGrpId).emit('userAdded', updatedGrpId);
     })
 });
 

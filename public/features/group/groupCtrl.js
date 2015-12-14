@@ -70,8 +70,16 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
     // Listening for New Invitations //
     socketService.on('invitationGet', function (data) {
         // console.log('invitation socket data coming back from server: ', data);
-        if(data._id ===  $rootScope.user._id){
-            $rootScope.myInvites.unshift(data.invitations[data.invitations.length-1]);
+        if (data._id === $rootScope.user._id) {
+            $rootScope.myInvites.unshift(data.invitations[data.invitations.length - 1]);
+        }
+    });
+    
+    // Listening for New Members of Grp //
+    socketService.on('userAdded', function (data) {
+        // console.log('invitation socket data coming back from server: ', data);
+        if (data === $stateParams.id) {
+            $scope.getGroupData($stateParams.id);
         }
     });
     
