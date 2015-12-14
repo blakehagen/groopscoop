@@ -74,9 +74,6 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
         console.log('invitesList ', $scope.invitesList);
     }
 
-    
-    
-    
     // ** NEW GRP FORM INPUT ** Group object created and on form completion new group info sent to server //
     $scope.createNewGroup = function () {
         if (!$scope.grpName) {
@@ -100,12 +97,6 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
                 $scope.myGroupIds.push($scope.myGroups[i]._id);
             };
             socketService.emit('connectedUserGroups', $scope.myGroupIds);
-            // Populate new group with group info //
-            //    groupService.getGroup($scope.newGrpData._id).then(function (group) {
-            //     $rootScope.groupData = group;
-            //     $rootScope.groupData.groupNameUpperCase = group.groupName.toUpperCase();
-            //     console.log('grp data on userCtrl saved to $rootScope ', $rootScope.groupData);
-            // });
             // Sends invites to users that were selected //
             sendMultipleInvites();
             // Gets updated user object //
