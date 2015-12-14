@@ -1,6 +1,6 @@
 <div class="row">
     <div class="sub-item">
-        <h4 class="myGroups-text">MEMBERS ({{groupData.users.length}})</h4>
+        <h4 class="myGroups-text">MEMBERS ({{groupData.users.length}}) &nbsp;<i class="fa fa-chevron-down" ng-show="scrollMbr" ng-cloak></i></h4>
     </div>
     <div class="sub-item right">
         <div class="plus-box" ng-show="redPlus">
@@ -32,7 +32,7 @@
 
 
 
-<div class="sidebar-row section no-highlight">
+<div class="sidebar-row section mbr-section no-highlight">
     <div class="row no-highlight mbr-space" ng-repeat="member in groupData.users track by $index">
         <div class="mbr-sml">
             <img ng-src="{{member.google.image}}" alt="img">

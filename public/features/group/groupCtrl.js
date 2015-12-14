@@ -10,6 +10,12 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
             $rootScope.groupData = group;
             $rootScope.groupData.groupNameUpperCase = group.groupName.toUpperCase();
             console.log('grp data on userCtrl saved to $rootScope ', $rootScope.groupData);
+            // Check if Members of Grp > 5 to show scroll icon //
+            if ($rootScope.groupData.users.length > 5) {
+                $scope.scrollMbr = true;
+            } else {
+                $scope.scrollMbr = false;
+            };
         });
     };
 

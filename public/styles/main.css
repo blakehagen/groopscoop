@@ -11,6 +11,7 @@ html {
     margin: 0;
     min-height: 100%;
     min-width: 100%;
+    background: #D4D8DF;
 }
 
 input:focus { outline: none; }
@@ -89,7 +90,6 @@ a:visited {
     height: 100%;
     overflow: auto;
     background: #D4D8Df;
-    /*border: 1px solid red;*/
 }
 
 .header {
@@ -113,6 +113,7 @@ a:visited {
     position: absolute;
     width: 350px;
     min-height: 100%;
+    height: auto;
     background: #262E35;
 }
 
@@ -257,10 +258,12 @@ a:visited {
     position: relative;
     display: inline-block;
     width: calc(100% - 350px);
-    height: 100vh;
+    height: 100%;
     overflow: scroll;
     text-align: center;
+    background: #D4D8DF;
     float: right;   
+    /*border: 1px solid green;*/
 }
 
 /* CREATE NEW GROUP BOX */
@@ -632,6 +635,11 @@ a:visited {
 
 .mbr-space {
     margin-bottom: 5px;
+}
+
+.mbr-section {
+    /*max-height: 275px;
+    overflow: auto;*/
 }
 
 .member-search {
