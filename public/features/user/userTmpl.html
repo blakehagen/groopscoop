@@ -5,7 +5,14 @@
                 <img ng-src="{{user.google.image}}">
             </div>
             <div class="sidebar-sub-item">
-                <h4>{{user.google.name}}</h4>
+                <div class="usr-name-logout">
+                    <div class="rows">
+                        <h4>{{user.google.name}}</h4>
+                    </div>
+                    <div class="rows icon">
+                        <a href="/auth/logout"><h6>Sign out</h6></a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -20,7 +27,7 @@
                     <h4 class="group-name-text" ng-class="createGroupActive ? 'active' : 'notActive'">New Group</h4>
                 </div>
                 <div class="sub-item right">
-                      <a href="#/user/{{user._id}}/create"><h4 class="group-name-text action" ng-class="createGroupActive ? 'active' : 'notActive'" ng-click="getUsersFromDatabase()">Create</h4></a>
+                    <a href="#/user/{{user._id}}/create"><h4 class="group-name-text action" ng-class="createGroupActive ? 'active' : 'notActive'" ng-click="getUsersFromDatabase()">Create</h4></a>
                 </div>
             </div>
             <div class="row" ng-repeat="invite in myInvites track by $index">

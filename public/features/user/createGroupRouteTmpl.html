@@ -5,7 +5,14 @@
                 <img ng-src="{{user.google.image}}">
             </div>
             <div class="sidebar-sub-item">
-                <h4>{{user.google.name}}</h4>
+                <div class="usr-name-logout">
+                    <div class="rows">
+                        <h4>{{user.google.name}}</h4>
+                    </div>
+                    <div class="rows icon">
+                        <a href="/auth/logout"><h6>Sign out</h6></a>
+                    </div>
+                </div>
             </div>
         </div>
 
