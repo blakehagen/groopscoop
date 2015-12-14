@@ -88,7 +88,7 @@ module.exports = {
                     res.send(500);
                 }
             })
-            res.status(200).send('INVITE ACCEPTED!');
+            res.status(200).send(result._id);
         });
     },
     

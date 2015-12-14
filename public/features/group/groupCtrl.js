@@ -1,4 +1,4 @@
-angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scope, groupService, socketService, userService, invitationService, $timeout) {
+angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scope, groupService, socketService, userService, invitationService, $timeout, $stateParams) {
     
     // // // // // // // // // // // // // // // // // // // // //
     // // GET GROUP DATA AFTER A GROUP IS SELECTED TO ENTER // //
@@ -12,6 +12,8 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
             console.log('grp data on userCtrl saved to $rootScope ', $rootScope.groupData);
         });
     };
+    
+    $scope.getGroupData($stateParams.id);
     
     // Check if groups > 5 to show scroll icon //
     if ($rootScope.user.groups.length > 5) {

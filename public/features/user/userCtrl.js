@@ -129,12 +129,15 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
             acceptedBy: $scope.user._id
         };
         userService.acceptInvitation(acceptedInviteData).then(function (response) {
-            console.log('I (auth\'d user) accepted an invite from someone else ', response);
+            console.log('Auth\'d user accepted an invite from someone else ', response);
             // Adds newly joined group to user's groups //
             $scope.updateGroupList();
-            // Calls getInvites function to remove the newly accepted invite from user's data //
             $scope.getInvites();
-            $state.go('group', { id: response.data.groupInvitedTo._id });
+            // Sends auth user id to update the group object in the database //
+            groupService.updateGroup(invite.groupInvitedTo._id, $scope.user._id).then(function (response) {
+                console.log('userId added to Group Object ', response);
+            })
+            $state.go('group', { id: invite.groupInvitedTo._id });
         });
     };
 
@@ -163,7 +166,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
             // The id below is used to find the group object in database to add the UserID //
             $scope.acceptedGroupId = response._id;
             // Sends the userId to update the group object in the database //
-            $scope.updateGroupObj();
+            // $scope.updateGroupObj();
             $scope.myGroups.push(response);
             // Auth user ids sent to socket.io to join rooms //
             for (var i = 0; i < $scope.myGroups.length; i++) {
@@ -173,26 +176,18 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
         });
     };
     
-    // Sends auth user id to update the group object in the database (via group service) //
-    $scope.updateGroupObj = function () {
-        groupService.updateGroup($scope.acceptedGroupId, $scope.user._id).then(function (response) {
-            console.log('userId added to Group Object ', response);
-        })
-    };
-    
-    
     // // // // // // // // // // // // // // // // // // // // //
     // // GET GROUP DATA AFTER A GROUP IS SELECTED TO ENTER // //
     // // // // // // // // // // // // // // // // // // // // 
     
     // Get data of group that was clicked (via group service_ //
-    $scope.getGroupData = function (groupId) {
-        groupService.getGroup(groupId).then(function (group) {
-            $rootScope.groupData = group;
-            $rootScope.groupData.groupNameUpperCase = group.groupName.toUpperCase();
-            console.log('grp data on userCtrl saved to $rootScope ', $rootScope.groupData);
-        });
-    };
+    // $scope.getGroupData = function (groupId) {
+    //     groupService.getGroup(groupId).then(function (group) {
+    //         $rootScope.groupData = group;
+    //         $rootScope.groupData.groupNameUpperCase = group.groupName.toUpperCase();
+    //         console.log('grp data on userCtrl saved to $rootScope ', $rootScope.groupData);
+    //     });
+    // };
     
     
     // // // // // // // // // // // // // // // // // // // //
