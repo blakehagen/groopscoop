@@ -106,7 +106,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
             // Gets updated user object //
             $scope.getAuthUser();
             // Navigate to new group //
-            $state.go('group', { id: $scope.newGroupId });
+            $state.go('group', { id: $scope.newGrpData._id });
         })
     };
     
