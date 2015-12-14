@@ -173,7 +173,7 @@ a:visited {
 }
 
 .section .row:hover {
-    background: #35404A;
+    background: #2E3740;
 }
 
 .myGroups-text {
@@ -224,6 +224,10 @@ a:visited {
 
 .active {
     color: #ED6464;
+}
+
+.grp-name-active {
+    background: #35404A;
 }
 
 .notActive {
@@ -287,7 +291,7 @@ a:visited {
 .invitee {
         display: inline-block;
         /*border: 1px solid rebeccapurple;*/
-        margin: 0px 14px;
+        margin: 0px 12px 0 0;
         display: inline-block;
     }
     
@@ -488,9 +492,9 @@ a:visited {
 }
 
     .img-container img {
-        width: 75%;
+        width: 80%;
         border-radius: 50%;
-        margin-top: 14px;
+        margin-top: 24px;
         margin-left: 10px;
     }
 

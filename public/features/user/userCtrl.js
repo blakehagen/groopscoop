@@ -8,6 +8,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     $scope.getAuthUser = function () {
         authService.getUser().then(function (user) {
             console.log('MY DATA: ', user);
+            $rootScope.getUsersFromDatabase();
             $rootScope.user = user;
             // Check if groups > 5 to show scroll icon //
             if ($rootScope.user.groups.length > 5) {
@@ -201,4 +202,12 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
         socketService.removeAllListeners();
         console.log('$Destroy triggered!');
     });
+    
+    
+    
+    
+
+    
+    
+    
 });
