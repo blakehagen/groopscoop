@@ -638,8 +638,8 @@ a:visited {
 }
 
 .mbr-section {
-    /*max-height: 275px;
-    overflow: auto;*/
+    max-height: 275px;
+    overflow: auto;
 }
 
 .member-search {
