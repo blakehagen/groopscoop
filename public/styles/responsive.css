@@ -1,0 +1,111 @@
+/* MEDIA QUERIES */
+
+@media (max-width: 1200px){
+    .post-input-content {
+        width: 80%;
+    }
+    
+    .content {
+        width: 80%;
+    }
+}
+
+@media (max-width: 1000px){
+    .post-input-content {
+        width: 94%;
+    }
+    
+    .content {
+        width: 94%;
+    }
+    
+    .header {
+        text-align: left;
+    }
+    
+    .title {
+        margin-left: 20px;
+    }
+    
+    .img-left {
+        float: left;
+        margin-left: 20px;
+    }
+    
+    .create-group-box {
+        position: static;
+        border: 1px solid #C9C8C8;
+        background: #fff;
+        width: 95%;
+        margin: 200px auto;
+        border-radius: 6px;
+        vertical-align: middle;
+    }  
+}
+
+@media (max-width: 940px){
+    .add-btn-holder {
+        width: 90px;
+    }
+    
+    .input-split-holder {
+        margin-right: -4px;
+    }
+}
+
+@media (max-width: 900px){
+    .img-container img {
+        width: 70%;
+    }
+    
+    .sub h4 {
+        font-size: 14px;
+    }
+    
+    .sml-txt {
+        font-size: 12px;
+    }
+    
+    .comment-icon img {
+        margin-top: 12px;
+        height: 50%;
+    }
+}
+
+@media (max-width: 890px){
+    .add-btn-holder {
+        width: 40px;
+    }
+    
+    .box-row {
+        text-align: center;
+    }
+    
+    .input-split-holder {
+        margin-right: 26px;
+        width: 60%;
+    }
+    
+    .group-input {
+        width: 210px;
+    }
+    
+    .create-grp-btn {
+        margin: 0 0 20px 54px;
+    }
+    
+    .angucomplete-dropdown {
+        width: 270px;
+    }
+}
+    
+@media (max-width: 830px){
+    .sml-txt {
+        font-size: 10px;
+    }
+    
+    .main-wrapper {
+        position: fixed;
+        width: 100%;
+    }
+}
