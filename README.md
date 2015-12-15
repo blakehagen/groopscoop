@@ -1,0 +1,1 @@
+GroopScoop is a real-time group chat application. Log in with your Google+ account, create groups and invite other users to your groups. Uses the MEAN stack and socket.io. Styles with pure CSS. Happy Grooping!
