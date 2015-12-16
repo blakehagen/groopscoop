@@ -5,9 +5,9 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     // // // // // // // // // //
 
     // Gets user data on user view page load //
-    $scope.getAuthUser = function () {
+    $rootScope.getAuthUser = function () {
         authService.getUser().then(function (user) {
-            console.log('MY DATA: ', user);
+            // console.log('MY DATA: ', user);
             $rootScope.getUsersFromDatabase();
             $rootScope.user = user;
             // Check if groups > 5 to show scroll icon //
@@ -19,7 +19,6 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
             $scope.user = user;
             $rootScope.myGroups = user.groups;
             $scope.myGroups = user.groups;
-            // $scope.myInvites = user.invitations;
             $rootScope.myInvites = user.invitations;
             $scope.myGroupIds = [];
             // Auth user ids sent to socket.io to join rooms //
@@ -52,7 +51,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     $scope.addUserToInviteList = function (id) {
         if ($scope.selectedPerson) {
             $scope.inviteBox = true;
-            console.log($scope.selectedPerson);
+            // console.log($scope.selectedPerson);
             var namesInList = $scope.invitesList.map(function (name) {
                 return name.title;
             });
@@ -62,7 +61,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
                 $scope.selectedPerson = '';
             }
         }
-        console.log('invitesList ', $scope.invitesList);
+        // console.log('invitesList ', $scope.invitesList);
     };
 
     $scope.removeNameFromInviteList = function (name) {
@@ -71,7 +70,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
                 $scope.invitesList.splice(i, 1);
             }
         }
-        console.log('invitesList ', $scope.invitesList);
+        // console.log('invitesList ', $scope.invitesList);
     }
 
     // ** NEW GRP FORM INPUT ** Group object created and on form completion new group info sent to server //
@@ -88,7 +87,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
         // New group created on server and returns new group data back //
         userService.createGroup(grp).then(function (newGrpData) {
             $scope.newGrpData = newGrpData;
-            console.log('SUCCESS, GROUP CREATED: ', newGrpData);
+            // console.log('SUCCESS, GROUP CREATED: ', newGrpData);
             $scope.grpName = '';
             $scope.myGroups.push(newGrpData);
             $scope.myGroupIds = [];
@@ -139,7 +138,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
             $scope.getInvites();
             // Sends auth user id to update the group object in the database //
             groupService.updateGroup(invite.groupInvitedTo._id, $scope.user._id).then(function (response) {
-                console.log('userId added to Group Object ', response);
+                // console.log('userId added to Group Object ', response);
                 socketService.emit('userJoinedGrp', invite.groupInvitedTo._id)
             })
             $state.go('group', { id: invite.groupInvitedTo._id });
@@ -167,7 +166,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     // Get auth user's groups and updates the newly joined group to the list //
     $scope.updateGroupList = function () {
         userService.getGroups($scope.user._id).then(function (response) {
-            console.log('this is newly added group: ', response);
+            // console.log('this is newly added group: ', response);
             // The id below is used to find the group object in database to add the UserID //
             $scope.acceptedGroupId = response._id;
             // Sends the userId to update the group object in the database //

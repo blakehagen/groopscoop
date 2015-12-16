@@ -1,5 +1,5 @@
 angular.module('groupScoop').controller('homeCtrl', function ($scope, socketService) {
-   
+    
     // // // // // // // // // // // // // // // // // // // // // // // // // // //
     // // // // // // DESTROY SOCKET CONNECTIONS TO AVOID DUPLICATES // // // // // 
     // // // // // // // // // // // // // // // // // // // // // // // // // // //

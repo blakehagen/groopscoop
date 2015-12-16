@@ -60,7 +60,7 @@ io.on('connection', function (socket) {
 });
 
 // PORT //
-var port = process.env.PORT || 80;
+var port = process.env.PORT || 3000;
 
 http.listen(port, function () {
     console.log('Listenting on port ' + port);

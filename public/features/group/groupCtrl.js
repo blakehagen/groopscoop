@@ -1,5 +1,9 @@
-angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scope, groupService, socketService, userService, invitationService, $timeout, $stateParams) {
+angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scope, groupService, socketService, userService, invitationService, $timeout, $stateParams, $location) {
     
+ if(!$rootScope.user){
+     $location.path('/');
+ };
+   
     // // // // // // // // // // // // // // // // // // // // //
     // // GET GROUP DATA AFTER A GROUP IS SELECTED TO ENTER // //
     // // // // // // // // // // // // // // // // // // // // //
@@ -9,7 +13,7 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
         groupService.getGroup(groupId).then(function (group) {
             $rootScope.groupData = group;
             $rootScope.groupData.groupNameUpperCase = group.groupName.toUpperCase();
-            console.log('grp data on userCtrl saved to $rootScope ', $rootScope.groupData);
+            // console.log('grp data on userCtrl saved to $rootScope ', $rootScope.groupData);
             // Check if Members of Grp > 5 to show scroll icon //
             if ($rootScope.groupData.users.length > 5) {
                 $scope.scrollMbr = true;
@@ -54,7 +58,7 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
         };
         // SEND NEW POST TO DB //
         groupService.postNewMessage($scope.postData).then(function (response) {
-            console.log(response);
+            // console.log(response);
             $scope.newMessage = '';
             // TO UPDATE VIEW WHEN NEW POST //
             $scope.postData.postedBy = user;
@@ -98,7 +102,7 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
         if ($scope.inviteOthers === true) {
             userService.searchUsers().then(function (usersFromDb) {
                 $scope.allUsers = usersFromDb;
-                console.log('invite others: ', $scope.allUsers);
+                // console.log('invite others: ', $scope.allUsers);
             })
         }
     };
@@ -128,11 +132,6 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
         }, 800);
     };
     
-    
-    
-    
-    
-
     // // // // // // // // // // // // // // // // // // // /
     // // DESTROY SOCKET CONNECTIONS TO AVOID DUPLICATES // //
     // // // // // // // // // // // // // // // // // // // 
