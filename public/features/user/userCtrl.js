@@ -42,7 +42,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     $rootScope.getUsersFromDatabase = function () {
         userService.searchUsers().then(function (usersFromDb) {
             $rootScope.users = usersFromDb;
-            console.log('$RS users', $rootScope.users);
+            // console.log('$RS users', $rootScope.users);
         });
     };
     
