@@ -1,8 +1,8 @@
 angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scope, groupService, socketService, userService, invitationService, $timeout, $stateParams, $location) {
     
- if(!$rootScope.user){
-     $location.path('/');
- };
+//  if(!$rootScope.user){
+//      $location.path('/');
+//  };
    
     // // // // // // // // // // // // // // // // // // // // //
     // // GET GROUP DATA AFTER A GROUP IS SELECTED TO ENTER // //
@@ -53,25 +53,27 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
             datePosted: moment().format('ddd MMM DD YYYY, h:mm a'),
             dateCreatedNonRead: new Date(),
             postContent: {
-                message: $scope.newMessage
+                message: $scope.newMessage,
+                linkUrl: $scope.linkUrl
             }
         };
         // SEND NEW POST TO DB //
         groupService.postNewMessage($scope.postData).then(function (response) {
-            // console.log(response);
+            console.log(response);
             $scope.newMessage = '';
+            $scope.linkUrl = '';
             // TO UPDATE VIEW WHEN NEW POST //
             $scope.postData.postedBy = user;
             $scope.postData.postId = response._id;
             $scope.postData.dateCreatedNonRead = response.dateCreatedNonRead;
-            // console.log('data emit from grp ctrl: ', $scope.postData);
+            console.log('data emit from grp ctrl: ', $scope.postData);
             socketService.emit('sendNewPost', $scope.postData);
         })
     };
 
     // Listening for New Posts //
     socketService.on('getNewPost', function (data) {
-        // console.log('socketdata coming back from server: ', data);
+        console.log('socketdata coming back from server: ', data);
         if (data.group === $rootScope.groupData._id) {
             $rootScope.groupData.posts.unshift(data);
         }

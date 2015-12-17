@@ -4,26 +4,38 @@
     </div>
 
     <div class="post-btn-container">
-        <div class="post-btn" ng-click="postNew()">
-            <h3>Post</h3>
+        <div class="btn-container-item">
+            <input placeholder="Add Link" type="text" ng-model="linkUrl" />
         </div>
-    </div>
-</div>
 
-<div class="content" ng-repeat="post in groupData.posts track by $index">
-    <div class="img-container">
-        <img ng-src="{{post.postedBy.google.image}}" alt="PostedBy">
-    </div>
-    <div class="content-row post-info">
-        <div class="sub left">
-            <h4>{{post.postedBy.google.name}}</h4>
+        <div class="btn-container-item">
+            <div class="post-btn">
+                <h3>Add Link</h3>
+            </div>
         </div>
-        <div class="sub right">
-            <h4><span class="sml-txt" title="{{ post.dateCreatedNonRead | amDateFormat:'ddd, MMM D YYYY, h:mma' }}" am-time-ago="post.dateCreatedNonRead"></span>
+        <div class="btn-container-item">
+            <div class="post-btn" ng-click="postNew()">
+                <h3>Post</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="content" ng-repeat="post in groupData.posts track by $index">
+        <div class="img-container">
+            <img ng-src="{{post.postedBy.google.image}}" alt="PostedBy">
+        </div>
+        <div class="content-row post-info">
+            <div class="sub left">
+                <h4>{{post.postedBy.google.name}}</h4>
+            </div>
+            <div class="sub right">
+                <h4><span class="sml-txt" title="{{ post.dateCreatedNonRead | amDateFormat:'ddd, MMM D YYYY, h:mma' }}" am-time-ago="post.dateCreatedNonRead"></span>
         </div>
     </div>
     <div class="content-row post-text">
         <h5>{{post.postContent.message}}</h5>
+        <h5><a ng-href="{{post.postContent.linkUrl}}" target="_blank">{{post.postContent.linkUrl}}</a></h5>
+        
     </div>
     <div class="content-row comment">
         <div class="comment-icon">

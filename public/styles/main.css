@@ -486,7 +486,22 @@ a:visited {
     background: #F5F5F5;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
+    /*border: 1px solid green;*/
+    text-align: right;
 }
+
+.btn-container-item {
+    display: inline-block;
+    height: 100%;
+    text-align: center;
+    vertical-align: top;
+}
+
+    .btn-container-item input {
+        width: 300px;
+        background: #fff;
+        margin: 9px 0 0 6px;
+    }
 
 .post-btn {
     width: 88px;
@@ -496,6 +511,7 @@ a:visited {
     float: right;
     margin: 6px 6px 0 0;
     cursor: pointer;
+    text-align: center; 
 }
     
     .post-btn h3 {
@@ -507,7 +523,7 @@ a:visited {
     
 .content {
     max-width: 700px;
-    width: 65%;
+    /*width: 65%;*/
     min-height: 140px;
     overflow: auto;
     margin: 50px auto;
@@ -570,6 +586,12 @@ a:visited {
         color: #4D4C4C;
         letter-spacing: 0.5px;
         padding: 10px 20px 10px 10px;
+        cursor: default;
+    }
+    
+    .post-text a {
+        display: block;
+        color: #8CB8DA;
     }
 
 .comment {

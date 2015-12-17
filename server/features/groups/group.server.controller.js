@@ -1,6 +1,10 @@
 var Group = require('./group.server.model');
 var User = require('../users/user.server.model');
 var Post = require('../posts/post.server.model');
+var rp = require('request-promise');
+var embedly = require('../../config/keys/embedlyKeys');
+
+
 
 module.exports = {
     
@@ -41,7 +45,17 @@ module.exports = {
                     res.status(500);
                 }
             })
-            res.status(200).send(post);
+            var options = {
+                uri: 'http://api.embed.ly/1/oembed?key=' + embedly.embedly.key + '&url=' + post.postContent.linkUrl,
+                json: true
+            };
+            rp(options).then(function (data){
+                // console.log('embedly data on serverside: ', data);
+                res.status(200).json([post, data])
+            }).catch(function(err){
+                res.status(500);    
+            });
+            // res.status(200).send(post);
         })
     }
         

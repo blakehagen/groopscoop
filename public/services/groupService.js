@@ -43,6 +43,17 @@ angular.module('groupScoop').service('groupService', function ($http, $q) {
         return deferred.promise
     };
     
+    // Link test? //
+    
+    // this.getLink = function(url){
+    //     var deferred = $q.defer();
+    //     $http({
+    //         method: 'GET',
+    //         url: 
+    //     })
+    // }
+    
+    
 
 
 

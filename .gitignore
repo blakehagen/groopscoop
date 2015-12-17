@@ -1,4 +1,5 @@
 /node_modules
 /server/config/keys/googleAuthKeys.js
+/server/config/keys/embedlyKeys.js
 .DS_Store
 .vscode
