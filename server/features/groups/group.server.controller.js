@@ -30,34 +30,103 @@ module.exports = {
         })
     },
     
-    addNewPost: function(req, res, next){
-        var post = new Post(req.body);
-        post.save(function (err, post) {
-            Group.findByIdAndUpdate(req.params.groupId, { $push: {
-            posts: post._id }}, function(err, result){
-                if(err){
-                    res.status(500);
-                }
+        addNewPost: function(req, res, next){
+            var post = new Post(req.body);
+            if(post.postContent.linkUrl){
+                 console.log('true!');
+                    var options = {
+                    uri: 'http://api.embed.ly/1/oembed?key=' + embedly.embedly.key + '&url=' + post.postContent.linkUrl,
+                    json: true
+                };
+                rp(options).then(function (data){
+                    var embedlyData = data;
+                    // console.log('embedly data on serverside: ', embedlyData);
+                    post.postContent.embedlyImg = embedlyData.thumbnail_url;
+                    post.postContent.embedlyHtml = embedlyData.html;
+                    post.postContent.embedlyType = embedlyData.type;
+                    console.log('new post if linkUrl ', post);
+                    post.save(function (err, post) {
+                        Group.findByIdAndUpdate(req.params.groupId, { $push: {
+                        posts: post._id }}, function(err, result){
+                            if(err){
+                                    res.status(500);
+                                }
+                            })
+                        User.findByIdAndUpdate(post.postedBy, { $push: {
+                        posts: post._id }}, function(err, result){
+                            if(err){
+                                res.status(500);
+                            }
+                        })
+                    })
+                    res.status(200).send(post);
+                }).catch(function(err){
+                    res.status(500);    
+                });
+
+            } 
+            else {
+            // console.log('new post ', post);
+            post.save(function (err, post) {
+                Group.findByIdAndUpdate(req.params.groupId, { $push: {
+                posts: post._id }}, function(err, result){
+                    if(err){
+                        res.status(500);
+                    }
+                })
+                User.findByIdAndUpdate(post.postedBy, { $push: {
+                posts: post._id }}, function(err, result){
+                    if(err){
+                        res.status(500);
+                    }
+                })
+                res.status(200).send(post);
             })
-            User.findByIdAndUpdate(post.postedBy, { $push: {
-            posts: post._id }}, function(err, result){
-                if(err){
-                    res.status(500);
-                }
-            })
-            var options = {
-                uri: 'http://api.embed.ly/1/oembed?key=' + embedly.embedly.key + '&url=' + post.postContent.linkUrl,
-                json: true
-            };
-            rp(options).then(function (data){
-                // console.log('embedly data on serverside: ', data);
-                res.status(200).json([post, data])
-            }).catch(function(err){
-                res.status(500);    
-            });
-            // res.status(200).send(post);
-        })
+        }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // addNewPost: function(req, res, next){
+    //     var post = new Post(req.body);
+    //     post.save(function (err, post) {
+    //         Group.findByIdAndUpdate(req.params.groupId, { $push: {
+    //         posts: post._id }}, function(err, result){
+    //             if(err){
+    //                 res.status(500);
+    //             }
+    //         })
+    //         User.findByIdAndUpdate(post.postedBy, { $push: {
+    //         posts: post._id }}, function(err, result){
+    //             if(err){
+    //                 res.status(500);
+    //             }
+    //         })
+    //         if(post.postContent.linkUrl){
+    //                 var options = {
+    //                 uri: 'http://api.embed.ly/1/oembed?key=' + embedly.embedly.key + '&url=' + post.postContent.linkUrl,
+    //                 json: true
+    //             };
+    //             rp(options).then(function (data){
+    //                 console.log('embedly data on serverside: ', data);
+                    
+    //                 res.status(200).json([post, data])
+    //             }).catch(function(err){
+    //                 res.status(500);    
+    //             });
+    //         } else {
+    //           res.status(200).send(post);
+    //         }
+    //     })
+    // }
         
     
     
