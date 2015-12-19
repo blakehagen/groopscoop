@@ -1,4 +1,4 @@
-angular.module('groupScoop', ['angucomplete-alt', 'ngMaterial', 'ui.router', 'angularMoment', 'ngSanitize']).config(function ($stateProvider, $urlRouterProvider) {
+angular.module('groupScoop', ['angucomplete-alt', 'ngMaterial', 'ui.router', 'angularMoment', 'ngSanitize', 'ngEmbed']).config(function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
         .state('home', {

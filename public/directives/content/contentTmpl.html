@@ -33,13 +33,16 @@
             <h4><span class="sml-txt" title="{{ post.dateCreatedNonRead | amDateFormat:'ddd, MMM D YYYY, h:mma' }}" am-time-ago="post.dateCreatedNonRead"></span>
         </div>
    </div>
-        <div class="content-row post-text">
-            <h5>{{post.postContent.message}}</h5>
-            <a ng-href="{{post.postContent.linkUrl}}" target="_blank"><img ng-if="!!post.postContent.embedlyImg" ng-src="{{post.postContent.embedlyImg}}"></a>
+    <div class="content-row post-text">
+        <h5>{{post.postContent.message}}</h5>
+        <a ng-href="{{post.postContent.linkUrl}}" target="_blank"><img ng-if="!!post.postContent.embedlyImg && post.postContent.embedlyType !== 'link'" ng-src="{{post.postContent.embedlyImg}}"></a>
+        <a ng-href="{{post.postContent.linkUrl}}" target="_blank"><img ng-if="!post.postContent.embedlyImg && post.postContent.embedlyType === 'photo'" ng-src="{{post.postContent.linkUrl}}"></a>
+        <a ng-href="{{post.postContent.linkUrl}}" target="_blank"><h5 id="pointer" ng-if="post.postContent.embedlyType === 'link'">{{post.postContent.linkUrl}}</h5></a>
+
+    </div>
+    <div class="content-row comment">
+        <div class="comment-icon">
+            <img src="./assets/bubble1.png" alt="comments">
         </div>
-        <div class="content-row comment">
-            <div class="comment-icon">
-                <img src="./assets/bubble1.png" alt="comments">
-            </div>
-        </div>
+    </div>
 </div>
