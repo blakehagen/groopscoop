@@ -73,9 +73,15 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
             $scope.postData.postId = response._id;
             $scope.postData.dateCreatedNonRead = response.dateCreatedNonRead;
             $scope.postData.postContent.embedlyImg = response.postContent.embedlyImg;
-            $scope.postData.postContent.embedlyHtml = response.postContent.embedlyHtml;
             $scope.postData.postContent.embedlyType = response.postContent.embedlyType;
-            // console.log('sending this data to socketIO ', $scope.postData);
+            if ($scope.postData.postContent.embedlyImg) {
+                if ($scope.postData.postContent.embedlyImg.toLowerCase().match(/\.(gif)/g)) {
+                    $scope.postData.postContent.embedlyType = 'gif'
+                }
+            }
+
+
+            console.log('sending this data to socketIO ', $scope.postData);
             socketService.emit('sendNewPost', $scope.postData);
             $scope.postData = {};
         })

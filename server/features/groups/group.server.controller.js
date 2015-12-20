@@ -40,16 +40,27 @@ module.exports = {
                 rp(options).then(function (data){
                     var embedlyData = data;
                     // console.log('embedly data on serverside: ', embedlyData);
+                    // if(embedlyData.url.toLowerCase().match(/\.(gif)/g)){
+                    //     post.postContent.embedlyImg = embedlyData.url;
+                    // }
                     post.postContent.embedlyImg = embedlyData.thumbnail_url;
-                    post.postContent.embedlyHtml = embedlyData.html;
+                    // post.postContent.embedlyHtml = embedlyData.html;
                     post.postContent.embedlyType = embedlyData.type;
-                    // console.log('new post if linkUrl ', post);
-                     if (post.postContent.embedlyImg.toLowerCase().match(/\.(gif)/g)) {
-                        post.postContent.embedlyType = 'gif';
-                     }
-                     if (post.postContent.linkUrl.toLowerCase().match(/\.(gif)/g)) {
-                        post.postContent.embedlyType = 'gif';
-                     }
+                    console.log('new post if linkUrl ', post.postContent);
+                    //  if (post.postContent.embedlyImg.toLowerCase().match(/\.(gif)/g)) {
+                    //     post.postContent.embedlyType = 'gif';
+                    //     console.log('1');
+                    //  }
+                    //  else if (embedlyData.url.toLowerCase().match(/\.(gif)/g)) {
+                    //     post.postContent.embedlyType = 'gif';
+                    //     post.postContent.embedlyImg = embedlyData.url;
+                    //     console.log('2');
+                    //  }
+                    //  else if (post.postContent.linkUrl.toLowerCase().match(/\.(gif)/g)) {
+                    //     post.postContent.embedlyType = 'gif';
+                    //     console.log('3');
+                    //  }
+                     console.log('postContent: ', post.postContent);
                     post.save(function (err, post) {
                         Group.findByIdAndUpdate(req.params.groupId, { $push: {
                         posts: post._id }}, function(err, result){
@@ -64,6 +75,7 @@ module.exports = {
                             }
                         })
                     })
+                    console.log('4');
                     res.status(200).send(post);
                 }).catch(function(err){
                     res.status(500);    
