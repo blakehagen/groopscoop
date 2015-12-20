@@ -33,7 +33,6 @@ module.exports = {
         addNewPost: function(req, res, next){
             var post = new Post(req.body);
             if(post.postContent.linkUrl){
-                 console.log('true!');
                     var options = {
                     uri: 'http://api.embed.ly/1/oembed?key=' + embedly.embedly.key + '&url=' + post.postContent.linkUrl,
                     json: true
@@ -45,6 +44,12 @@ module.exports = {
                     post.postContent.embedlyHtml = embedlyData.html;
                     post.postContent.embedlyType = embedlyData.type;
                     // console.log('new post if linkUrl ', post);
+                     if (post.postContent.embedlyImg.toLowerCase().match(/\.(gif)/g)) {
+                        post.postContent.embedlyType = 'gif';
+                     }
+                     if (post.postContent.linkUrl.toLowerCase().match(/\.(gif)/g)) {
+                        post.postContent.embedlyType = 'gif';
+                     }
                     post.save(function (err, post) {
                         Group.findByIdAndUpdate(req.params.groupId, { $push: {
                         posts: post._id }}, function(err, result){

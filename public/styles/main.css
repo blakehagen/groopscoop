@@ -515,8 +515,8 @@ a:visited {
     
     .btn-container-item h6 {
         font-weight: 100;
-        font-size: 9px;
-        line-height: 42px;
+        font-size: 11px;
+        line-height: 41px;
         margin-left: 6px;
         color: #262E35;
         cursor: pointer;
@@ -630,6 +630,15 @@ a:visited {
         height: auto;
        margin: 0 0 5px 10px;
         border-radius: 5px;
+    }
+    
+    .ng-embed-container {
+        margin-left: 10px;
+        width: 90%;
+    }
+    
+    #ng-embed-custom-style {
+        padding: 0px;
     }
 
 .comment {

@@ -41,8 +41,8 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
         },
         groups: $rootScope.user.groups
     };
-    
-    $scope.toggleInput = function(){
+
+    $scope.toggleInput = function () {
         $scope.linkBox = !$scope.linkBox;
     };
 
@@ -76,7 +76,6 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
             $scope.postData.postContent.embedlyHtml = response.postContent.embedlyHtml;
             $scope.postData.postContent.embedlyType = response.postContent.embedlyType;
             // console.log('sending this data to socketIO ', $scope.postData);
-            
             socketService.emit('sendNewPost', $scope.postData);
             $scope.postData = {};
         })
@@ -149,7 +148,7 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
 
     ////// NG-EMBED OPTIONS DATA //////
     $scope.options = {
-        link: true,      //convert links into anchor tags 
+        link: false,      //convert links into anchor tags 
         linkTarget: '_blank',   //_blank|_self|_parent|_top|framename 
         pdf: {
             embed: true                 //to show pdf viewer. 
@@ -229,6 +228,6 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
         socketService.removeAllListeners();
         console.log('$Destroy triggered!');
     });
-    
-    
+
+
 });

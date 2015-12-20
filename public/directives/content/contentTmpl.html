@@ -7,7 +7,7 @@
         <div class="btn-container-item" id="flt-left" ng-click="toggleInput()">
             <img src="./assets/plussquare.png">
         </div>
-        <div class="btn-container-item" id="flt-left" ng-hide="linkBox" >
+        <div class="btn-container-item" id="flt-left" ng-hide="linkBox">
             <h6 ng-click="toggleInput()">Add Link</h6>
         </div>
         <div class="btn-container-item" id="flt-left" ng-show="linkBox">
@@ -37,9 +37,19 @@
    </div>
     <div class="content-row post-text">
         <h5>{{post.postContent.message}}</h5>
-        <a ng-href="{{post.postContent.linkUrl}}" target="_blank"><img ng-if="!!post.postContent.embedlyImg && post.postContent.embedlyType !== 'link'" ng-src="{{post.postContent.embedlyImg}}"></a>
+        
+        <a ng-href="{{post.postContent.linkUrl}}" target="_blank"><img ng-if="!!post.postContent.embedlyImg && post.postContent.embedlyType === 'photo'" ng-src="{{post.postContent.embedlyImg}}"></a>
+        
+        <a ng-href="{{post.postContent.linkUrl}}" target="_blank"><img ng-if="!!post.postContent.embedlyImg && post.postContent.embedlyType === 'gif'" ng-src="{{post.postContent.embedlyImg}}"></a>
+        
         <a ng-href="{{post.postContent.linkUrl}}" target="_blank"><img ng-if="!post.postContent.embedlyImg && post.postContent.embedlyType === 'photo'" ng-src="{{post.postContent.linkUrl}}"></a>
+        
+        <a ng-href="{{post.postContent.linkUrl}}" target="_blank"><img ng-if="!post.postContent.embedlyImg && post.postContent.embedlyType === 'gif'" ng-src="{{post.postContent.linkUrl}}"></a>
+        
         <a ng-href="{{post.postContent.linkUrl}}" target="_blank"><h5 id="pointer" ng-if="post.postContent.embedlyType === 'link'">{{post.postContent.linkUrl}}</h5></a>
+        <div class="ng-embed-container" ng-if="post.postContent.embedlyType === 'video'">
+            <ng-embed embed-data="post.postContent.linkUrl" embed-options="options"></ng-embed>
+        </div>
 
     </div>
     <div class="content-row comment">
