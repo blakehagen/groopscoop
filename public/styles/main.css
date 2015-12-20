@@ -503,13 +503,41 @@ a:visited {
     height: 100%;
     text-align: center;
     vertical-align: top;
+    /*border: 1px solid red;*/
+}
+
+    .btn-container-item img {
+        height: 40%;
+        margin-left: 10px;
+        margin-top: 12px;
+        cursor: pointer;
+    }
+    
+    .btn-container-item h6 {
+        font-weight: 100;
+        font-size: 9px;
+        line-height: 42px;
+        margin-left: 6px;
+        color: #262E35;
+        cursor: pointer;
+    }
+
+#flt-left {
+    float: left;
 }
 
     .btn-container-item input {
         width: 300px;
-        background: #fff;
-        margin: 9px 0 0 6px;
+        margin: 6px 0 0 10px;
     }
+    
+#link-input {
+    height: 28px;
+    font-size: 12px;
+    line-height: 27px;
+    font-weight: 100;
+    padding-left: 6px;
+}
 
 .post-btn {
     width: 88px;

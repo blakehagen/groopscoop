@@ -42,6 +42,9 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
         groups: $rootScope.user.groups
     };
     
+    $scope.toggleInput = function(){
+        $scope.linkBox = !$scope.linkBox;
+    };
 
     // POST NEW MESSAGE TO GROUP //
     $scope.postNew = function () {
@@ -60,6 +63,7 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
         };
         $scope.newMessage = '';
         $scope.linkUrl = '';
+        $scope.linkBox = false;
         
         // SEND NEW POST TO DB //
         groupService.postNewMessage($scope.postData).then(function (response) {

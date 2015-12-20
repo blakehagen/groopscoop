@@ -4,15 +4,17 @@
     </div>
 
     <div class="post-btn-container">
-        <div class="btn-container-item">
-            <input placeholder="Add Link" type="text" ng-model="linkUrl" />
+        <div class="btn-container-item" id="flt-left" ng-click="toggleInput()">
+            <img src="./assets/plussquare.png">
+        </div>
+        <div class="btn-container-item" id="flt-left" ng-hide="linkBox" >
+            <h6 ng-click="toggleInput()">Add Link</h6>
+        </div>
+        <div class="btn-container-item" id="flt-left" ng-show="linkBox">
+            <input class="group-input" id="link-input" type="text" placeholder="Add Link" ng-model="linkUrl">
         </div>
 
-        <div class="btn-container-item">
-            <div class="post-btn">
-                <h3>Add Link</h3>
-            </div>
-        </div>
+
         <div class="btn-container-item">
             <div class="post-btn" ng-click="postNew()">
                 <h3>Post</h3>
