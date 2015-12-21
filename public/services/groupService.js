@@ -38,15 +38,11 @@ angular.module('groupScoop').service('groupService', function ($http, $q) {
             dataType: 'json',
             data: postData
         }).then(function (response) {
+            // console.log('grp service response ', response.data)
             deferred.resolve(response.data)
         })
         return deferred.promise
     };
     
-
-
-
-
-
-
+    
 });

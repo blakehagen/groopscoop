@@ -9,6 +9,9 @@ var PostSchema = new Schema({
     postContent: {
         message: { type: String, required: true },
         linkUrl: { type: String },
+        embedlyImg: { type: String },
+        embedlyHtml: { type: String },
+        embedlyType: { type: String },
         comments: [{
             commentMsg: { type: String },
             commentLinkUrl: { type: String },

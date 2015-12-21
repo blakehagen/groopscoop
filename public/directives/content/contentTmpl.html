@@ -4,8 +4,21 @@
     </div>
 
     <div class="post-btn-container">
-        <div class="post-btn" ng-click="postNew()">
-            <h3>Post</h3>
+        <div class="btn-container-item" id="flt-left" ng-click="toggleInput()">
+            <img src="./assets/plussquare.png">
+        </div>
+        <div class="btn-container-item" id="flt-left" ng-hide="linkBox">
+            <h6 ng-click="toggleInput()">Add Link</h6>
+        </div>
+        <div class="btn-container-item" id="flt-left" ng-show="linkBox">
+            <input class="group-input" id="link-input" type="text" placeholder="Add Link" ng-model="linkUrl">
+        </div>
+
+
+        <div class="btn-container-item">
+            <div class="post-btn" ng-click="postNew()">
+                <h3>Post</h3>
+            </div>
         </div>
     </div>
 </div>
@@ -21,9 +34,23 @@
         <div class="sub right">
             <h4><span class="sml-txt" title="{{ post.dateCreatedNonRead | amDateFormat:'ddd, MMM D YYYY, h:mma' }}" am-time-ago="post.dateCreatedNonRead"></span>
         </div>
-    </div>
+   </div>
     <div class="content-row post-text">
         <h5>{{post.postContent.message}}</h5>
+        
+        <a ng-href="{{post.postContent.linkUrl}}" target="_blank"><img ng-if="!!post.postContent.embedlyImg && post.postContent.embedlyType === 'photo'" ng-src="{{post.postContent.embedlyImg}}"></a>
+        
+        <a ng-href="{{post.postContent.linkUrl}}" target="_blank"><img ng-if="!!post.postContent.embedlyImg && post.postContent.embedlyType === 'gif'" ng-src="{{post.postContent.embedlyImg}}"></a>
+        
+        <a ng-href="{{post.postContent.linkUrl}}" target="_blank"><img ng-if="!post.postContent.embedlyImg && post.postContent.embedlyType === 'photo'" ng-src="{{post.postContent.linkUrl}}"></a>
+        
+        <a ng-href="{{post.postContent.linkUrl}}" target="_blank"><img ng-if="!post.postContent.embedlyImg && post.postContent.embedlyType === 'gif'" ng-src="{{post.postContent.linkUrl}}"></a>
+        
+        <a ng-href="{{post.postContent.linkUrl}}" target="_blank"><h5 id="pointer" ng-if="post.postContent.embedlyType === 'link'">{{post.postContent.linkUrl}}</h5></a>
+        <div class="ng-embed-container" ng-if="post.postContent.embedlyType === 'video'">
+            <ng-embed embed-data="post.postContent.linkUrl" embed-options="options"></ng-embed>
+        </div>
+
     </div>
     <div class="content-row comment">
         <div class="comment-icon">
