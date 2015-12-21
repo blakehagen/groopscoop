@@ -200,7 +200,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
   
     $scope.$on('$destroy', function (event) {
         socketService.removeAllListeners();
-        console.log('$Destroy triggered!');
+        // console.log('$Destroy triggered!');
     });
 
 

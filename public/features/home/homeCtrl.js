@@ -6,7 +6,7 @@ angular.module('groupScoop').controller('homeCtrl', function ($scope, socketServ
   
     $scope.$on('$destroy', function (event) {
         socketService.removeAllListeners();
-        console.log('$Destroy triggered!');
+        // console.log('$Destroy triggered!');
     });
 
 });
