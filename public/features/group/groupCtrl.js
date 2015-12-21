@@ -1,8 +1,8 @@
 angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scope, groupService, socketService, userService, invitationService, $timeout, $stateParams, $location, $sanitize) {
     
-    //  if(!$rootScope.user){
-    //      $location.path('/');
-    //  };
+     if(!$rootScope.user){
+         $location.path('/');
+     };
    
     // // // // // // // // // // // // // // // // // // // // //
     // // GET GROUP DATA AFTER A GROUP IS SELECTED TO ENTER // //
@@ -12,8 +12,9 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
     $scope.getGroupData = function (groupId) {
         groupService.getGroup(groupId).then(function (group) {
             $scope.groupData = group;
+            // console.log($scope.groupData.posts);
             $scope.groupData.groupNameUpperCase = group.groupName.toUpperCase();
-            // console.log('grp data on userCtrl saved to $rootScope ', $rootScope.groupData);
+            
             // Check if Members of Grp > 5 to show scroll icon //
             if ($scope.groupData.users.length > 5) {
                 $scope.scrollMbr = true;

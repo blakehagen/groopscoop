@@ -20,9 +20,12 @@ module.exports = {
     },
     
     getGroupData: function(req, res, next){
-        Group.findById(req.params.groupId).populate('users').populate({
+        Group.findById(req.params.groupId).populate('users')
+        .populate({
             path: 'posts',
-            populate: {path: 'postedBy'}}).exec(function (err, group) {
+            populate: {path: 'postedBy'}
+            })
+            .exec(function (err, group) {
             if(err){
                 res.status(500);
             }
