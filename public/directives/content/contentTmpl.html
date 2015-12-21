@@ -47,9 +47,9 @@
         <a ng-href="{{post.postContent.linkUrl}}" target="_blank"><img ng-if="!post.postContent.embedlyImg && post.postContent.embedlyType === 'gif'" ng-src="{{post.postContent.linkUrl}}"></a>
         
         <a ng-href="{{post.postContent.linkUrl}}" target="_blank"><h5 id="pointer" ng-if="post.postContent.embedlyType === 'link'">{{post.postContent.linkUrl}}</h5></a>
-        <div class="ng-embed-container" ng-if="post.postContent.embedlyType === 'video'">
+        <!--<div class="ng-embed-container" ng-if="post.postContent.embedlyType === 'video'">
             <ng-embed embed-data="post.postContent.linkUrl" embed-options="options"></ng-embed>
-        </div>
+        </div>-->
 
     </div>
     <div class="content-row comment">
