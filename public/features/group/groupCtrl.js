@@ -67,7 +67,8 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
         
         // SEND NEW POST TO DB //
         groupService.postNewMessage($scope.postData).then(function (response) {
-            console.log('response from server ', response)
+            // console.log('response from server ', response);
+            
             // TO UPDATE VIEW WHEN NEW POST //
             $scope.postData.postedBy = user;
             $scope.postData.postId = response._id;
@@ -79,9 +80,7 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
                     $scope.postData.postContent.embedlyType = 'gif'
                 }
             }
-
-
-            console.log('sending this data to socketIO ', $scope.postData);
+            // console.log('sending this data to socketIO ', $scope.postData);
             socketService.emit('sendNewPost', $scope.postData);
             $scope.postData = {};
         })
