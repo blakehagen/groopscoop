@@ -138,7 +138,7 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
 
     $scope.sendIndividualInvite = function () {
         // console.log($scope.sendThisUserInvite);
-        invitationService.sendOneInvite($scope.sendThisUserInvite, $rootScope.groupData._id);
+        invitationService.sendOneInvite($scope.sendThisUserInvite, $stateParams.id /*$rootScope.groupData._id */);
         invitationService.clearInputForInvite();
         $scope.showInviteSuccess = true;
         $scope.redPlusToggle = false;
