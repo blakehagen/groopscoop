@@ -11,6 +11,7 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
     // Get data of group that was clicked (via group service) //
     $scope.getGroupData = function (groupId) {
         groupService.getGroup(groupId).then(function (group) {
+            // console.log('grp data ', group);
             $scope.groupData = group;
             // console.log($scope.groupData.posts);
             $scope.groupData.groupNameUpperCase = group.groupName.toUpperCase();

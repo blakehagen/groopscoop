@@ -44,6 +44,13 @@ module.exports = {
                     var embedlyData = data;
                     post.postContent.embedlyImg = embedlyData.thumbnail_url;
                     post.postContent.embedlyType = embedlyData.type;
+                    if (post.postContent.embedlyImg) {
+                        if (post.postContent.embedlyImg.toLowerCase().match(/\.(gif)/g)) {
+                            post.postContent.embedlyType = 'gif'
+                        }
+                    }
+                    
+                    
                     // console.log('postContent: ', post.postContent);
                     post.save(function (err, post) {
                         Group.findByIdAndUpdate(req.params.groupId, { $push: {
