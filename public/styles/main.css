@@ -665,6 +665,68 @@ a:visited {
    display: none;
 }
 
+
+/* COMMENTS BOX AND INPUT */
+
+.comments-box {
+    /*max-width: 700px;*/
+    width: 100%;
+    /*min-height: 60px;*/
+    overflow: auto;
+    background: #F5F5F5;
+    /*border: 1px solid red;*/
+}
+
+.comment-img {
+    width: 125px;
+    height: 100%;
+    /*border: 1px solid green;*/
+    float: left;
+    margin-top: 11px;
+}
+    .comment-img img {
+        width: 50px;
+        border-radius: 50%;
+        margin: 0 0 0 10px;
+    }
+
+.comment-row {
+    width: calc(100% - 125px);
+    /*border: 1px solid rebeccapurple;*/
+    float: right;
+}
+
+.comment-info {
+    width: auto;
+    height: 100%;
+    /*border: 1px solid dodgerblue;*/
+    display: inline-block
+}
+
+    .comment-info h5 {
+        font-size: 13px;
+        color: #4D4C4C;
+        line-height: 39px;
+        letter-spacing: 1px;
+        padding-right: 20px;
+    }
+    
+    .comment-row h6 {
+        font-size: 13px;
+        color: #4D4C4C;
+        font-weight: 400;
+        padding: 0px 20px 15px 0px;
+    }
+
+ .flexible {
+    height: auto;
+    min-height: 20px;
+    text-align: left;
+}
+
+
+
+
 /* MEMBERS DIRECTIVE STYLES */
 
 .plus-box {

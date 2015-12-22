@@ -38,11 +38,42 @@ angular.module('groupScoop').service('groupService', function ($http, $q) {
             dataType: 'json',
             data: postData
         }).then(function (response) {
-            // console.log('grp service response ', response.data)
             deferred.resolve(response.data)
         })
         return deferred.promise
     };
     
+    // GET COMMENTS FOR POST //
+    this.getComments = function (postId) {
+        var deferred = $q.defer();
+        $http({
+            method: 'GET',
+            url: '/api/v1/comments/' + postId
+        }).then(function (response) {
+            // console.log('get comments response on grpService', response)
+            deferred.resolve(response.data)
+        })
+        return deferred.promise
+    };
     
+    // POST NEW COMMENT TO POST //
+    this.postNewComment = function (commentData) {
+        var deferred = $q.defer();
+        $http({
+            method: 'POST',
+            url: '/api/v1/comments/' + commentData.post,
+            dataType: 'json',
+            data: commentData
+        }).then(function (response) {
+            // console.log('post new comment ', response)
+            deferred.resolve(response.data)
+        })
+        return deferred.promise
+    };
+
+
+
+
+
+
 });

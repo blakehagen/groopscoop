@@ -32,30 +32,55 @@
             <h4>{{post.postedBy.google.name}}</h4>
         </div>
         <div class="sub right">
-            <h4><span class="sml-txt" title="{{ post.dateCreatedNonRead | amDateFormat:'ddd, MMM D YYYY, h:mma' }}" am-time-ago="post.dateCreatedNonRead"></span>
+            <h4><span class="sml-txt" title="{{ post.dateCreatedNonRead | amDateFormat:'ddd, MMM D YYYY, h:mma' }}" am-time-ago="post.dateCreatedNonRead"></span></h4>
         </div>
-   </div>
+    </div>
     <div class="content-row post-text">
         <h5>{{post.postContent.message}}</h5>
-        
+
         <a ng-href="{{post.postContent.linkUrl}}" target="_blank"><img ng-if="!!post.postContent.embedlyImg && post.postContent.embedlyType === 'photo'" ng-src="{{post.postContent.embedlyImg}}"></a>
-        
+
         <a ng-href="{{post.postContent.linkUrl}}" target="_blank"><img ng-if="!!post.postContent.embedlyImg && post.postContent.embedlyType === 'gif'" ng-src="{{post.postContent.embedlyImg}}"></a>
-        
+
         <a ng-href="{{post.postContent.linkUrl}}" target="_blank"><img ng-if="!post.postContent.embedlyImg && post.postContent.embedlyType === 'photo'" ng-src="{{post.postContent.linkUrl}}"></a>
-        
+
         <a ng-href="{{post.postContent.linkUrl}}" target="_blank"><img ng-if="!post.postContent.embedlyImg && post.postContent.embedlyType === 'gif'" ng-src="{{post.postContent.linkUrl}}"></a>
-        
+
         <a ng-href="{{post.postContent.linkUrl}}" target="_blank"><h5 id="pointer" ng-if="post.postContent.embedlyType === 'link'">{{post.postContent.linkUrl}}</h5></a>
-        
+
         <div class="ng-embed-container" ng-if="post.postContent.embedlyType === 'video'">
             <ng-embed embed-data="post.postContent.linkUrl" embed-options="options"></ng-embed>
         </div>
 
     </div>
+
     <div class="content-row comment">
         <div class="comment-icon">
-            <img src="./assets/bubble1.png" alt="comments">
+            <img src="./assets/bubble1.png" alt="comments" ng-click="showComments(this, post._id)">
         </div>
     </div>
+
+
+    <div class="comments-box" ng-show="commentsBox" ng-repeat="comment in comments track by $index">
+        <div class="comment-img">
+            <img ng-src="{{comment.postedBy.google.image}}" alt="">
+        </div>
+        <div class="comment-row">
+            <div class="comment-info left">
+                <h5>{{comment.postedBy.google.name}} says</h5>
+            </div>
+            <div class="comment-info right">
+                <h5><span title="{{ comment.dateCreatedNonRead | amDateFormat:'ddd, MMM D YYYY, h:mma' }}" am-time-ago="comment.dateCreatedNonRead"></span></h5>
+            </div>
+        </div>
+
+        <div class="comment-row flexible">
+            <h6>{{comment.commentMessage}}</h6>
+        </div>
+
+        <!--<input type="text" placeholder="comment" ng-model="commentMsg">
+        <br>
+        <button ng-click="submitComment(post._id, commentMsg)">Submit</button>-->
+    </div>
+
 </div>

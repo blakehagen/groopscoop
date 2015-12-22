@@ -7,15 +7,15 @@ var UserSchema = new Schema({
         email: { type: String },
         name: { type: String, required: true, unique: true },
         googleId: { type: String, required: true, unique: true },
-        image: { type: String },
-        token: { type: String }
+        image: { type: String }
     },
     groups: [{ type: Schema.Types.ObjectId, ref: 'Group', unique: true }],
     invitations: [{
         groupInvitedTo: { type: Schema.Types.ObjectId, ref: 'Group' },
         invitedBy: { type: String }
     }],
-    posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }]
+    posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }],
+    comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
 });
 
 module.exports = mongoose.model('User', UserSchema);

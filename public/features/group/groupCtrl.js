@@ -1,8 +1,8 @@
 angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scope, groupService, socketService, userService, invitationService, $timeout, $stateParams, $location, $sanitize) {
     
-     if(!$rootScope.user){
-         $location.path('/');
-     };
+    //  if(!$rootScope.user){
+    //      $location.path('/');
+    //  };
    
     // // // // // // // // // // // // // // // // // // // // //
     // // GET GROUP DATA AFTER A GROUP IS SELECTED TO ENTER // //
@@ -150,10 +150,44 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
             $scope.showInviteSuccess = false;
         }, 800);
     };
+    
+    ////////////////////////
+    /// COMMENTS SECTION ///
+    ////////////////////////
+    
+    $scope.showComments = function (thisPost, postId) {
+        thisPost.commentsBox = !thisPost.commentsBox;
+        
+        groupService.getComments(postId).then(function (response) {
+            console.log('get comments on grpCtrl', response);
+            $scope.comments = response;
+        })
+    };
+
+    $scope.submitComment = function (postId, commentMsg) {
+        $scope.commentData = {
+            postedBy: user.id,
+            datePosted: moment().format('ddd MMM DD YYYY, h:mm a'),
+            post: postId,
+            dateCreatedNonRead: new Date(),
+            commentMessage: commentMsg
+        };
+
+        groupService.postNewComment($scope.commentData).then(function (comment) {
+            console.log(comment);
+        })
+    };
+
+    
+    
+    
+    
+    
 
 
-
+    ///////////////////////////////////
     ////// NG-EMBED OPTIONS DATA //////
+    ///////////////////////////////////
     $scope.options = {
         link: false,      //convert links into anchor tags 
         linkTarget: '_blank',   //_blank|_self|_parent|_top|framename 

@@ -32,44 +32,43 @@ module.exports = {
             res.status(200).send(group);
         })
     },
-    
-        addNewPost: function(req, res, next){
-            var post = new Post(req.body);
-            if(post.postContent.linkUrl){
-                    var options = {
-                    uri: 'http://api.embed.ly/1/oembed?key=' + embedly.embedly.key + '&url=' + post.postContent.linkUrl,
-                    json: true
-                };
-                rp(options).then(function (data){
-                    var embedlyData = data;
-                    post.postContent.embedlyImg = embedlyData.thumbnail_url;
-                    post.postContent.embedlyType = embedlyData.type;
-                    if (post.postContent.embedlyImg) {
-                        if (post.postContent.embedlyImg.toLowerCase().match(/\.(gif)/g)) {
-                            post.postContent.embedlyType = 'gif'
-                        }
+
+    addNewPost: function(req, res, next){
+        var post = new Post(req.body);
+        if(post.postContent.linkUrl){
+                var options = {
+                uri: 'http://api.embed.ly/1/oembed?key=' + embedly.embedly.key + '&url=' + post.postContent.linkUrl,
+                json: true
+            };
+            rp(options).then(function (data){
+                var embedlyData = data;
+                post.postContent.embedlyImg = embedlyData.thumbnail_url;
+                post.postContent.embedlyType = embedlyData.type;
+                if (post.postContent.embedlyImg) {
+                    if (post.postContent.embedlyImg.toLowerCase().match(/\.(gif)/g)) {
+                        post.postContent.embedlyType = 'gif'
                     }
-                    
-                    
-                    // console.log('postContent: ', post.postContent);
-                    post.save(function (err, post) {
-                        Group.findByIdAndUpdate(req.params.groupId, { $push: {
-                        posts: post._id }}, function(err, result){
-                            if(err){
-                                    res.status(500);
-                                }
-                            })
-                        User.findByIdAndUpdate(post.postedBy, { $push: {
-                        posts: post._id }}, function(err, result){
-                            if(err){
+                }               
+                // console.log('postContent: ', post.postContent);
+                post.save(function (err, post) {
+                    Group.findByIdAndUpdate(req.params.groupId, { $push: {
+                    posts: post._id }}, function(err, result){
+                        if(err){
                                 res.status(500);
                             }
                         })
+                    User.findByIdAndUpdate(post.postedBy, { $push: {
+                    posts: post._id }}, function(err, result){
+                        if(err){
+                            res.status(500);
+                        }
                     })
-                    res.status(200).send(post);
-                }).catch(function(err){
-                    res.status(500);    
-                });
+                })
+                // console.log('post', post);
+                res.status(200).send(post);
+            }).catch(function(err){
+                res.status(500);    
+            });
 
             } 
             else {
@@ -87,7 +86,8 @@ module.exports = {
                         res.status(500);
                     }
                 })
-                res.status(200).send(post);
+                // console.log('post', post);
+                res.status(200).json(post);
             })
         }
     }

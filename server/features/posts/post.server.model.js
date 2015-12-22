@@ -10,16 +10,10 @@ var PostSchema = new Schema({
         message: { type: String, required: true },
         linkUrl: { type: String },
         embedlyImg: { type: String },
-        embedlyHtml: { type: String },
+        // embedlyHtml: { type: String },
         embedlyType: { type: String },
-        comments: [{
-            commentMsg: { type: String },
-            commentLinkUrl: { type: String },
-            commentPostedBy: { type: Schema.Types.ObjectId, ref: 'User' },
-            commentDatePosted: { type: String },
-            dateCommentCreatedNonRead: { type: Date, default: new Date() },
-        }]
-    }
+    },
+    comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
 });
 
 module.exports = mongoose.model('Post', PostSchema);
