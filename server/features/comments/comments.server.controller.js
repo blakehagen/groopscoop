@@ -15,11 +15,10 @@ module.exports = {
            }
            // Strip out unneccessary data //
            for(var i = 0; i < post.comments.length; i++){
-               console.log(post.comments[i]);
                post.comments[i].postedBy.posts = null;
                post.comments[i].postedBy.comments = null;
                post.comments[i].postedBy.groups = null;
-               post.comments[i].postedBy.invitations = null;              
+               post.comments[i].postedBy.invitations = null;
                post.comments[i].postedBy.google.googleId = null;      
                post.comments[i].postedBy.google.email = null;   
            }

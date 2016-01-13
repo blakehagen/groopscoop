@@ -154,15 +154,24 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
     ////////////////////////
     /// COMMENTS SECTION ///
     ////////////////////////
-    
+    $scope.commentsBox = false;
     $scope.showComments = function (thisPost, postId) {
-        thisPost.commentsBox = !thisPost.commentsBox;
-        
-        groupService.getComments(postId).then(function (response) {
-            console.log('get comments on grpCtrl', response);
-            $scope.comments = response;
-        })
+        $scope.comments = [];
+        if (thisPost.commentsBox === false) {
+            groupService.getComments(postId).then(function (response) {
+                console.log('get comments on grpCtrl', response);
+                thisPost.commentsBox = true;
+                $scope.comments = response;
+            })
+        } else if (thisPost.commentsBox === true) {
+            thisPost.commentsBox = false;
+            $scope.comments = [];
+        }
     };
+
+    $scope.toggleLinkInputComments = function (thisBox) {
+        thisBox.linkInputComments = !thisBox.linkInputComments;
+    }
 
     $scope.submitComment = function (postId, commentMsg) {
         $scope.commentData = {

@@ -518,7 +518,7 @@ a:visited {
         font-size: 11px;
         line-height: 41px;
         margin-left: 6px;
-        color: #262E35;
+        color: #4D4C4C;
         cursor: pointer;
     }
 
@@ -654,6 +654,7 @@ a:visited {
 .comment-icon img {
     margin-top: 10px;
     height: 50%;
+    cursor: pointer;
 }
 
 .grp {
@@ -669,12 +670,11 @@ a:visited {
 /* COMMENTS BOX AND INPUT */
 
 .comments-box {
-    /*max-width: 700px;*/
     width: 100%;
-    /*min-height: 60px;*/
+    min-height: 78px;
     overflow: auto;
     background: #F5F5F5;
-    /*border: 1px solid red;*/
+    /*border: 1px solid blue;*/
 }
 
 .comment-img {
@@ -682,7 +682,7 @@ a:visited {
     height: 100%;
     /*border: 1px solid green;*/
     float: left;
-    margin-top: 11px;
+    margin-top: 14px;
 }
     .comment-img img {
         width: 50px;
@@ -699,6 +699,7 @@ a:visited {
 .comment-info {
     width: auto;
     height: 100%;
+    padding-top: 2px;
     /*border: 1px solid dodgerblue;*/
     display: inline-block
 }
@@ -723,6 +724,107 @@ a:visited {
     min-height: 20px;
     text-align: left;
 }
+
+.comment-input-container {
+    height: 100%;
+    margin-top: 10px;
+    float: right;
+    width: calc(100% - 125px);
+    /*border: 1px solid deeppink;*/
+}
+
+.sub-comment-holder {
+    height: 100%;
+    border: 1px solid #C9C8C8;
+    width: 75%;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+    .sub-comment-holder input {
+        width: 100%;
+        height: 28px;
+        border: none;
+        border-radius: 4px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 12px;
+        line-height: 27px;
+        font-weight: 100;
+        padding-left: 6px;
+        letter-spacing: 1px;
+    }
+    
+.comment-post-btn {
+    width: 60px;
+    height: 21px;
+    background: #ED6464;
+    border-radius: 4px;
+    margin-right: 34px;
+    margin-top: 4px;
+}
+
+    .comment-post-btn h6 {
+        color: #fff;
+        line-height: 20px;
+        font-weight: 100;
+        font-size: 13px;
+        cursor: pointer;
+    }
+    
+.comment-input-img-holder {
+    /*border: 1px solid lightseagreen;*/
+    height: 100%;
+    display: inline-block;
+    vertical-align: top;
+    margin: 6px 0 0 0;
+    text-align: left;
+}
+    
+.comment-input-img-holder img {
+    width: 12px;
+    float: left;
+    margin: 0 2px;
+    cursor: pointer;
+}
+    .comment-input-img-holder h6 {
+        font-size: 11px;
+        font-weight: 100;
+        color: #4D4C4C;
+        line-height: 11px;
+        cursor: pointer;
+    }
+    
+.input-link-comments {
+    border: 1px solid #C9C8C8;
+    border-radius: 4px;
+    width: 300px;
+    margin: 0 0 0 5px;
+    background: #fff;
+}
+        .comment-input-img-holder input {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 100;
+            text-align: left;
+            padding-left: 10px;
+            line-height: 17px;
+            letter-spacing: 1px;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 4px;
+    }
+    
+#add-link-container {
+    margin: 8px 0 8px 0;
+    /*border: 1px solid royalblue;*/
+    text-align: left;
+}
+
+
+
+
+
 
 
 
