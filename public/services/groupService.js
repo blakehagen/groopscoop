@@ -58,6 +58,7 @@ angular.module('groupScoop').service('groupService', function ($http, $q) {
     
     // POST NEW COMMENT TO POST //
     this.postNewComment = function (commentData) {
+        console.log(commentData);
         var deferred = $q.defer();
         $http({
             method: 'POST',

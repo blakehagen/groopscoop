@@ -53,60 +53,8 @@
 
     </div>
 
-    <div class="content-row comment">
-        <div class="comment-icon">
-            <img src="./assets/bubble1.png" alt="comments" ng-click="showComments(this, post._id)">
-        </div>
-    </div>
-
-    <div ng-show="commentsBox">
-        <div class="comments-box" ng-repeat="comment in comments track by $index">
-            <div class="comment-img">
-                <img ng-src="{{comment.postedBy.google.image}}" alt="">
-            </div>
-            <div class="comment-row">
-                <div class="comment-info left">
-                    <h5>{{comment.postedBy.google.name}} says</h5>
-                </div>
-                <div class="comment-info right">
-                    <h5><span title="{{ comment.dateCreatedNonRead | amDateFormat:'ddd, MMM D YYYY, h:mma' }}" am-time-ago="comment.dateCreatedNonRead"></span></h5>
-                </div>
-            </div>
-
-            <div class="comment-row flexible">
-                <h6>{{comment.commentMessage}}</h6>
-            </div>
-        </div>
-
-        <div class="comments-box">
-            <div class="comment-img">
-                <img ng-src="{{user.google.image}}" alt="">
-            </div>
-            <div class="comment-input-container">
-                <div class="sub-comment-holder left">
-                    <input type="text" placeholder="Add comment" ng-model="commentMsg">
-                </div>
-                <div class="right">
-                    <div class="comment-post-btn" ng-click="submitComent(post_id, commentMsg)">
-                        <h6>Post</h6>
-                    </div>
-                </div>
-            </div>
-
-            <div class="comment-input-container" id="add-link-container">
-                <div class="comment-input-img-holder">
-                    <img src="./assets/plussquare.png" ng-click="toggleLinkInputComments(this)">
-                </div>
-                <div class="comment-input-img-holder" ng-hide="linkInputComments">
-                    <h6 ng-click="toggleLinkInputComments(this)">Add Link</h6>
-                </div>
-                <div class="comment-input-img-holder input-link-comments" ng-show="linkInputComments">
-                    <input type="text" placeholder="Add link">
-                </div>
-            </div>
-
-        </div>
-
+    <div>
+        <comments-directive post-id="post._id" authed-user="authedUser"></comments-directive>
     </div>
 
 </div>

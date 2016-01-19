@@ -11,9 +11,9 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
     // Get data of group that was clicked (via group service) //
     $scope.getGroupData = function (groupId) {
         groupService.getGroup(groupId).then(function (group) {
-            // console.log('grp data ', group);
+            console.log('grp data ', group);
             $scope.groupData = group;
-            // console.log($scope.groupData.posts);
+            console.log($scope.groupData.posts);
             $scope.groupData.groupNameUpperCase = group.groupName.toUpperCase();
             
             // Check if Members of Grp > 5 to show scroll icon //
@@ -35,6 +35,12 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
     };
     
     // USER OBJECT INFO FOR USE WITH NEW POSTS //
+
+    $scope.authedUser = {
+        id: $rootScope.user._id,
+        img: $rootScope.user.google.image
+    };
+    
     var user = {
         id: $rootScope.user._id,
         google: {
@@ -151,47 +157,7 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
         }, 800);
     };
     
-    ////////////////////////
-    /// COMMENTS SECTION ///
-    ////////////////////////
-    $scope.commentsBox = false;
-    $scope.showComments = function (thisPost, postId) {
-        $scope.comments = [];
-        if (thisPost.commentsBox === false) {
-            groupService.getComments(postId).then(function (response) {
-                console.log('get comments on grpCtrl', response);
-                thisPost.commentsBox = true;
-                $scope.comments = response;
-            })
-        } else if (thisPost.commentsBox === true) {
-            thisPost.commentsBox = false;
-            $scope.comments = [];
-        }
-    };
-
-    $scope.toggleLinkInputComments = function (thisBox) {
-        thisBox.linkInputComments = !thisBox.linkInputComments;
-    }
-
-    $scope.submitComment = function (postId, commentMsg) {
-        $scope.commentData = {
-            postedBy: user.id,
-            datePosted: moment().format('ddd MMM DD YYYY, h:mm a'),
-            post: postId,
-            dateCreatedNonRead: new Date(),
-            commentMessage: commentMsg
-        };
-
-        groupService.postNewComment($scope.commentData).then(function (comment) {
-            console.log(comment);
-        })
-    };
-
-    
-    
-    
-    
-    
+  
 
 
     ///////////////////////////////////

@@ -7,7 +7,7 @@ angular.module('groupScoop').controller('userCtrl', function ($rootScope, $scope
     // Gets user data on user view page load //
     $rootScope.getAuthUser = function () {
         authService.getUser().then(function (user) {
-            // console.log('MY DATA: ', user);
+            console.log('MY DATA: ', user);
             $rootScope.getUsersFromDatabase();
             $rootScope.user = user;
             // Check if groups > 5 to show scroll icon //

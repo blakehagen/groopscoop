@@ -23,8 +23,8 @@ module.exports = {
         Group.findById(req.params.groupId).populate('users')
         .populate({
             path: 'posts',
-            populate: {path: 'postedBy'}
-            })
+            populate: { path: 'postedBy',
+                        select: 'google.name google.image'}})
             .exec(function (err, group) {
             if(err){
                 res.status(500);
