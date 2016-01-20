@@ -1,10 +1,8 @@
 <div class="content-row comment">
     <div class="comment-icon">
-        <img src="./assets/bubble1.png" alt="comments" ng-click="commentsBox = !commentsBox">
+        <img src="./assets/bubble1.png" alt="comments" ng-click="toggleComments()">
     </div>
 </div>
-
-
 
 <div ng-show="commentsBox">
     <div class="comments-box" ng-repeat="comment in comments">

@@ -22,7 +22,7 @@
     </div>
 </div>
 
-<div class="content" ng-repeat="post in groupData.posts track by $index">
+<div class="content" ng-repeat="post in groupData.posts | orderBy: '-dateCreatedNonRead'">
     <div class="img-container">
         <img ng-src="{{post.postedBy.google.image}}" alt="PostedBy">
     </div>

@@ -24,11 +24,17 @@ module.exports = {
         .populate({
             path: 'posts',
             populate: { path: 'postedBy',
-                        select: 'google.name google.image'}})
+                        select: 'google.name google.image'
+                        }})
             .exec(function (err, group) {
             if(err){
                 res.status(500);
             }
+            
+            // group.posts = group.posts.slice(0, req.params.num)
+
+            
+
             res.status(200).send(group);
         })
     },
@@ -64,7 +70,7 @@ module.exports = {
                         }
                     })
                 })
-                // console.log('post', post);
+                console.log('post', post);
                 res.status(200).send(post);
             }).catch(function(err){
                 res.status(500);    
@@ -86,7 +92,7 @@ module.exports = {
                         res.status(500);
                     }
                 })
-                // console.log('post', post);
+                console.log('post', post);
                 res.status(200).json(post);
             })
         }

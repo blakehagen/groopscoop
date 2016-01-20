@@ -9,6 +9,7 @@ angular.module('groupScoop').directive('commentsDirective', function () {
         },
 
         controller: function ($scope, groupService) {
+            
             // console.log('userId', $scope);
             $scope.getComments = function (postId) {
 
@@ -22,6 +23,16 @@ angular.module('groupScoop').directive('commentsDirective', function () {
             $scope.toggleLinkInputComments = function (thisBox) {
                 thisBox.linkInputComments = !thisBox.linkInputComments;
             }
+
+            $scope.toggleComments = function () {
+                $scope.commentsBox = !$scope.commentsBox;
+                if ($scope.commentsBox) {
+                    $scope.getComments($scope.postId);
+                }
+                // $scope.$apply();
+            }
+
+
 
             $scope.submitComment = function () {
                 $scope.commentData = {
@@ -38,21 +49,21 @@ angular.module('groupScoop').directive('commentsDirective', function () {
                     console.log(comment);
                     $scope.getComments($scope.postId);
 
-
                 })
             };
-        },
-
-        link: function (scope, elem, attrs) {
-            // console.log('attrs', attrs);
-            elem.on('click', function () {
-                if (scope.commentsBox) {
-                    scope.getComments(scope.postId);
-                }
-
-                scope.$apply();
-            })
         }
+
+        // link: function (scope, elem, attrs) {
+        //     // console.log('attrs', attrs);
+        //     var postButton = elem.find('.comment-post-btn');
+        //     console.log(postButton);
+        //     elem.on('click', function () {
+        //         // if (scope.commentsBox) {
+        //         //     scope.getComments(scope.postId);
+        //         // }
+        //         // scope.$apply();
+        //     })
+        // }
     }
 
 });

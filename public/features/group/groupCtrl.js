@@ -1,16 +1,19 @@
 angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scope, groupService, socketService, userService, invitationService, $timeout, $stateParams, $location, $sanitize) {
-    
-    //  if(!$rootScope.user){
-    //      $location.path('/');
-    //  };
+
+    if (!$rootScope.user) {
+        $location.path('/');
+    };
    
     // // // // // // // // // // // // // // // // // // // // //
     // // GET GROUP DATA AFTER A GROUP IS SELECTED TO ENTER // //
     // // // // // // // // // // // // // // // // // // // // //
     
+    //  var count = 10;
     // Get data of group that was clicked (via group service) //
     $scope.getGroupData = function (groupId) {
-        groupService.getGroup(groupId).then(function (group) {
+
+        groupService.getGroup(groupId /*,count*/).then(function (group) {
+            // count += 11;
             console.log('grp data ', group);
             $scope.groupData = group;
             console.log($scope.groupData.posts);
@@ -34,13 +37,14 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
         $scope.scrollGrps = false;
     };
     
-    // USER OBJECT INFO FOR USE WITH NEW POSTS //
+
 
     $scope.authedUser = {
         id: $rootScope.user._id,
         img: $rootScope.user.google.image
     };
     
+    // USER OBJECT INFO FOR USE WITH NEW POSTS //
     var user = {
         id: $rootScope.user._id,
         google: {
@@ -69,20 +73,24 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
                 linkUrl: $scope.linkUrl
             }
         };
+        
+        console.log($scope.postData);
         $scope.newMessage = '';
         $scope.linkUrl = '';
         $scope.linkBox = false;
         
         // SEND NEW POST TO DB //
         groupService.postNewMessage($scope.postData).then(function (response) {
-            // console.log('response from server ', response);
+            console.log('response from server ', response);
             
             // TO UPDATE VIEW WHEN NEW POST //
             $scope.postData.postedBy = user;
-            $scope.postData.postId = response._id;
+            $scope.postData._id = response._id;
             $scope.postData.dateCreatedNonRead = response.dateCreatedNonRead;
-            $scope.postData.postContent.embedlyImg = response.postContent.embedlyImg;
-            $scope.postData.postContent.embedlyType = response.postContent.embedlyType;
+            if (response.postContent.embedlyImg !== undefined) {
+                $scope.postData.postContent.embedlyImg = response.postContent.embedlyImg;
+                $scope.postData.postContent.embedlyType = response.postContent.embedlyType;
+            }
             if ($scope.postData.postContent.embedlyImg) {
                 if ($scope.postData.postContent.embedlyImg.toLowerCase().match(/\.(gif)/g)) {
                     $scope.postData.postContent.embedlyType = 'gif'
@@ -90,16 +98,18 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
             }
             // console.log('sending this data to socketIO ', $scope.postData);
             socketService.emit('sendNewPost', $scope.postData);
+            console.log('new post data: ', $scope.postData);
             $scope.postData = {};
         })
     };
 
     // Listening for New Posts //
     socketService.on('getNewPost', function (data) {
-        // console.log('socketdata coming back from server: ', data);
+        console.log('socketdata coming back from server after new post: ', data);
         if (data.group === $scope.groupData._id) {
-            $scope.groupData.posts.unshift(data);
+            $scope.groupData.posts.push(data);
         }
+        console.log('array of posts after new post added: ', $scope.groupData.posts);
     });
     
     // Listening for New Invitations //
@@ -156,6 +166,11 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
             $scope.showInviteSuccess = false;
         }, 800);
     };
+    
+    
+    /// GET COMMENTS ///
+    
+    
     
   
 
