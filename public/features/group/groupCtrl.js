@@ -14,9 +14,9 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
 
         groupService.getGroup(groupId /*,count*/).then(function (group) {
             // count += 11;
-            console.log('grp data ', group);
+            // console.log('grp data ', group);
             $scope.groupData = group;
-            console.log($scope.groupData.posts);
+            // console.log($scope.groupData.posts);
             $scope.groupData.groupNameUpperCase = group.groupName.toUpperCase();
             
             // Check if Members of Grp > 5 to show scroll icon //
@@ -36,12 +36,13 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
     } else {
         $scope.scrollGrps = false;
     };
-    
 
 
+    // console.log('authed user: ', $rootScope.user);
     $scope.authedUser = {
         id: $rootScope.user._id,
-        img: $rootScope.user.google.image
+        img: $rootScope.user.google.image,
+        name: $rootScope.user.google.name
     };
     
     // USER OBJECT INFO FOR USE WITH NEW POSTS //
@@ -73,15 +74,15 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
                 linkUrl: $scope.linkUrl
             }
         };
-        
-        console.log($scope.postData);
+
+        // console.log($scope.postData);
         $scope.newMessage = '';
         $scope.linkUrl = '';
         $scope.linkBox = false;
         
         // SEND NEW POST TO DB //
         groupService.postNewMessage($scope.postData).then(function (response) {
-            console.log('response from server ', response);
+            // console.log('response from server ', response);
             
             // TO UPDATE VIEW WHEN NEW POST //
             $scope.postData.postedBy = user;
@@ -98,18 +99,18 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
             }
             // console.log('sending this data to socketIO ', $scope.postData);
             socketService.emit('sendNewPost', $scope.postData);
-            console.log('new post data: ', $scope.postData);
+            // console.log('new post data: ', $scope.postData);
             $scope.postData = {};
         })
     };
 
     // Listening for New Posts //
     socketService.on('getNewPost', function (data) {
-        console.log('socketdata coming back from server after new post: ', data);
+        // console.log('socketdata coming back from server after new post: ', data);
         if (data.group === $scope.groupData._id) {
             $scope.groupData.posts.push(data);
         }
-        console.log('array of posts after new post added: ', $scope.groupData.posts);
+        // console.log('array of posts after new post added: ', $scope.groupData.posts);
     });
     
     // Listening for New Invitations //
@@ -167,8 +168,7 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
         }, 800);
     };
     
-    
-    /// GET COMMENTS ///
+
     
     
     
@@ -249,7 +249,6 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
         ideoneEmbed: true,        //set to true to embed ideone 
         ideoneHeight: 300
     };
-
     
     // // // // // // // // // // // // // // // // // // // /
     // // DESTROY SOCKET CONNECTIONS TO AVOID DUPLICATES // //

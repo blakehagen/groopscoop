@@ -4,6 +4,8 @@ var Schema = mongoose.Schema;
 var CommentSchema = new Schema({
     post: { type: Schema.Types.ObjectId, ref: 'Post' },
     postedBy: { type: Schema.Types.ObjectId, ref: 'User' },
+    postedByName: { type: String },
+    postedByImage: { type: String },
     datePosted: { type: String },
     dateCreatedNonRead: { type: Date, default: new Date() },
     commentMessage: { type: String },

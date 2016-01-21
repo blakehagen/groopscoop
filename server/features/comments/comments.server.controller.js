@@ -6,10 +6,12 @@ var User = require('../users/user.server.model');
 module.exports = {
     
     getPostComments: function(req, res, next){
-        Post.findById(req.params.postId).populate({
+        Post.findById(req.params.postId).populate(
+            {
             path: 'comments',
             populate: { path: 'postedBy',
-                        select: 'google.name google.image'}})
+                        select: 'google.name google.image'}}
+        )
         .exec(function(err, post){
             if(err){
                 res.status(500);
@@ -38,7 +40,6 @@ module.exports = {
                      res.status(500);
                  }
              })
-
         })
         res.status(200).json(comment);
     }

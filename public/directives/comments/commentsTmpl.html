@@ -7,11 +7,11 @@
 <div ng-show="commentsBox">
     <div class="comments-box" ng-repeat="comment in comments">
         <div class="comment-img">
-            <img ng-src="{{comment.postedBy.google.image}}" alt="">
+            <img ng-src="{{comment.postedByImage}}" alt="">
         </div>
         <div class="comment-row">
             <div class="comment-info left">
-                <h5>{{comment.postedBy.google.name}} says</h5>
+                <h5>{{comment.postedByName}} says</h5>
             </div>
             <div class="comment-info right">
                 <h5><span title="{{ comment.dateCreatedNonRead | amDateFormat:'ddd, MMM D YYYY, h:mma' }}" am-time-ago="comment.dateCreatedNonRead"></span></h5>

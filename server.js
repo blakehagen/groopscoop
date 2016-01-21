@@ -51,10 +51,14 @@ io.on('connection', function (socket) {
         // console.log('on send new post ', data);
         io.to(data.group).emit('getNewPost', data);
     });
-    socket.on('invitationSend', function(data){
+    socket.on('sendNewComment', function (data) {
+        // console.log('serverSide on send new comment ', data);
+        io.emit('getNewComment', data);
+    });
+    socket.on('invitationSend', function (data) {
         io.emit('invitationGet', data);
     });
-    socket.on('userJoinedGrp', function(updatedGrpId){
+    socket.on('userJoinedGrp', function (updatedGrpId) {
         // console.log('userjoinedgrp: ', updatedGrpId);
         io.to(updatedGrpId).emit('userAdded', updatedGrpId);
     })
@@ -65,5 +69,5 @@ var port = process.env.PORT || 3000;
 
 http.listen(port, function () {
     console.log('Listenting on port ' + port);
-    
+
 });
