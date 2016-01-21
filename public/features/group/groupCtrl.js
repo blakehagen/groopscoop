@@ -16,7 +16,11 @@ angular.module('groupScoop').controller('groupCtrl', function ($rootScope, $scop
             // count += 11;
             // console.log('grp data ', group);
             $scope.groupData = group;
-            // console.log($scope.groupData.posts);
+            // for (var i = 0; i < $scope.groupData.posts.length; i++) {
+            //     console.log('$scope.groupData.posts.comments: ', $scope.groupData.posts[i].comments.length);
+            // }
+
+
             $scope.groupData.groupNameUpperCase = group.groupName.toUpperCase();
             
             // Check if Members of Grp > 5 to show scroll icon //
