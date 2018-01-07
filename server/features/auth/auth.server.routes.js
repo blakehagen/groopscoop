@@ -9,7 +9,7 @@ module.exports = function (app, passport) {
 
     app.get('/auth/google/callback', passport.authenticate('google'), function (req, res, next) {
         if (req.user) {
-            res.redirect('/#/user/' + req.user._id + '/create');
+            res.redirect('http://groopscoop.com/#/user/' + req.user._id + '/create');
         }
         else {
             res.redirect('/');
